@@ -2,12 +2,25 @@
 ;; Define the load-path
 ;(pushnew (expand-file-name emacs-directory) load-path)
 
+;----------------------------------------------------------------------
+; Customise for different environments
+;----------------------------------------------------------------------
+;; (require 'cl)
+;; (case (window-system) 
+;;   ('ns "We are on a mac")
+;;   ('x "We are in UNIX")
+;;   (nil "We are running a terminal?")
+;;   (otherwise "Window System/Environment unknown!"))
+
+
+
 
 ;----------------------------------------------------------------------
 ; Some nice global emacs settings
 ;----------------------------------------------------------------------
 ;; Persisting command history and other things between emacs sessions
 (savehist-mode 1)
+(setq history-length 1000)
 ; Save entire emacs session - can be done manually to load/save different setups to/from different locations
 (if window-system
     (desktop-save-mode 1))
@@ -23,6 +36,8 @@
 ;; (set 'scroll-preserve-screen-position nil)
 ;; Enable Line numbers in margins of all buffers
 (global-linum-mode 1)
+;; Show column number in minibuffer
+(column-number-mode 1)
 ;; Web derived theme stuff.
 (set-frame-font "Menlo-16" nil t)
 (load-theme 'wheatgrass) 
@@ -31,6 +46,9 @@
 (show-paren-mode 1)
 (setq show-paren-style 'expression)
 (ido-mode t)
+;; Enable the use of set upper/lower case commands
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
 ;----------------------------------------------------------------------
 ;; Mouse Scrolling Stuff From Web - scroll one line at a time (less "jumpy" than defaults)
 ;----------------------------------------------------------------------
@@ -79,7 +97,8 @@
 ;; (smooth-scroll-mode)
 ;----------------------------------------------------------------------
 
-
+;----------------------------------------------------------------------
+; SELF INSTALLED PACKAGE MANAGEMENT
 ;----------------------------------------------------------------------
 ;; Attempting to set up my own official location for 
 ;; self installed packages and code
@@ -87,6 +106,8 @@
 (add-to-list 'load-path "~/.emacs.d/packages/") 
 ;; This package provides revbufs command to automatically and safely revert all buffers e.g. after git checkout branch
 (require 'revbufs)
+;; A major mode for editing javascript Handlebars templates
+(require 'handlebars-mode)
 ;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------
@@ -490,6 +511,17 @@ should turn the current window into 4 new windows."
 						     (setq this-command 'comint-next-matching-input-from-input)) ;This function checks last-command to see if it was the last command called
 						   (next-line n))))))
 ;; (forward-line n))))))
+
+;----------------------------------------------------------------------
+;; Ruby Mode
+;----------------------------------------------------------------------
+;;; enables outlining for ruby by default
+;;; You may also want to bind hide-body, hide-subtree, show-substree,
+;;; show-all, show-children, ... to some keys easy folding and unfolding
+(add-hook 'ruby-mode-hook
+              '(lambda ()
+                 (outline-minor-mode)
+                 (setq outline-regexp " *\\(def \\|class\\|module\\)")))
 ;----------------------------------------------------------------------
 ;; Ruby/Rails Specific Stuff
 ;; http://viget.com/extend/emacs-24-rails-development-environment-from-scratch-to-productive-in-5-minu
@@ -527,6 +559,8 @@ should turn the current window into 4 new windows."
 ;; which is the format that font-lock-defaults wants
 ;; Second, you used ' (quote) at the outermost level where you wanted ` (backquote)
 ;; you were very close
+(defvar hero-keywords nil)
+(defvar hero-events nil)
 (defvar hero-font-lock-defaults
   `((
      ;; stuff between "
@@ -641,6 +675,10 @@ should turn the current window into 4 new windows."
 ;; karupsdb.com/tgp.php
 ;; http://wildteenfuck.com/
 ;; http://www.dinathumbs.com/
+;; jerkroom.com
+;; auntmia.com
+;; atozgals.com
+;; erotica7.com
 ;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------
@@ -695,121 +733,7 @@ should turn the current window into 4 new windows."
 ;----------------------------------------------------------------------
 ; Representative Sampling of Current key bindings			
 ;----------------------------------------------------------------------
-;; C-@		set-mark-command
-;; C-a		move-beginning-of-line
-;; C-b		backward-char
-;; C-c		mode-specific-command-prefix
-;; C-d		delete-char
-;; C-e		move-end-of-line
-;; C-f		forward-char
-;; C-g		keyboard-quit
-;; C-h		help-command
-;; TAB		indent-for-tab-command
-;; C-j		newline-and-indent
-;; C-k		kill-line
-;; C-l		recenter-top-bottom
-;; RET		newline
-;; C-n		next-line
-;; C-o		open-line
-;; C-p		previous-line
-;; C-q		quoted-insert
-;; C-r		isearch-backward
-;; C-s		isearch-forward
-;; C-t		transpose-chars
-;; C-u		universal-argument
-;; C-v		scroll-up-command
-;; C-w		kill-region
-;; C-x		Control-X-prefix
-;; C-y		yank
-;; C-z		suspend-frame
-;; ESC		ESC-prefix
-;; C-\		toggle-input-method
-;; C-]		abort-recursive-edit
-;; C-_		undo
-;; s-&		kill-this-buffer
-;; s-'		next-multiframe-window
-;; s-,		customize
-;; s--		center-line
-;; s-:		ispell
-;; s-;		ispell-next
-;; s-?		info
-;; s-C		comment-or-uncomment-region
-;; s-D		dired
-;; s-E		edit-abbrevs
-;; s-H		ns-do-hide-others
-;; s-L		shell-command
-;; s-M		manual-entry
-;; s-S		ns-write-file-using-panel
-;; s-^		kill-some-buffers
-;; s-`		other-frame
-;; s-a		mark-whole-buffer
-;; s-b		switch-to-buffer
-;; s-c		ns-copy-including-secondary
-;; s-d		isearch-repeat-backward
-;; s-e		isearch-yank-kill
-;; s-f		isearch-forward
-;; s-g		isearch-repeat-forward
-;; s-h		ns-do-hide-emacs
-;; s-j		exchange-point-and-mark
-;; s-k		kill-this-buffer
-;; s-l		goto-line
-;; s-m		iconify-frame
-;; s-n		make-frame
-;; s-o		ns-open-file-using-panel
-;; s-p		ns-print-buffer
-;; s-q		save-buffers-kill-emacs
-;; s-s		save-buffer
-;; s-t		ns-popup-font-panel
-;; s-u		revert-buffer
-;; s-v		yank
-;; s-w		delete-frame
-;; s-x		kill-region
-;; s-y		ns-paste-secondary
-;; s-z		undo
-;; s-|		shell-command-on-region
-;; s-~		ns-prev-frame
-;; C-SPC		set-mark-command
-;; C--		negative-argument
-;; C-/		undo
-;; C-0 .. C-9	digit-argument
-;; <C-M-down>	down-list
-;; <C-M-end>	end-of-defun
-;; <C-M-home>	beginning-of-defun
-;; <C-M-left>	backward-sexp
-;; <C-M-right>	forward-sexp
-;; <C-M-up>	backward-up-list
-;; <C-S-backspace>			kill-whole-line
-;; <C-backspace>			backward-kill-word
-;; <C-delete>	kill-word
-;; <C-down>	forward-paragraph
-;; <C-down-mouse-1>		mouse-buffer-menu
-;; <C-down-mouse-2>		facemenu-menu
-;; <C-end>		end-of-buffer
-;; <C-home>	beginning-of-buffer
-;; <C-insert>	kill-ring-save
-;; <C-insertchar>	kill-ring-save
-;; <C-left>	left-word
-;; <C-next>	scroll-left
-;; <C-prior>	scroll-right
-;; <C-right>	right-word
-;; <C-up>		backward-paragraph
-;; <C-wheel-down>	mwheel-scroll
-;; <C-wheel-up>	mwheel-scroll
-;; <M-begin>	beginning-of-buffer-other-window
-;; <M-down>	sfp-bit-down
-;; <M-down-mouse-1>		mouse-drag-secondary
-;; <M-drag-mouse-1>		mouse-set-secondary
-;; <M-end>		end-of-buffer-other-window
-;; <M-home>	beginning-of-buffer-other-window
-;; <M-left>	left-word
-;; <M-mouse-1>	mouse-start-secondary
-;; <M-mouse-2>	mouse-yank-secondary
-;; <M-mouse-3>	mouse-secondary-save-then-kill
-;; <M-next>	scroll-other-window
-;; <M-prior>	scroll-other-window-down
-;; <M-right>	right-word
-;; <M-up>		sfp-bit-up
-
-
+;; .....
+;----------------------------------------------------------------------
 
 
