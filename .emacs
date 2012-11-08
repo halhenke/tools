@@ -2,6 +2,17 @@
 ;; Define the load-path
 ;(pushnew (expand-file-name emacs-directory) load-path)
 
+;----------------------------------------------------------------------
+;; Lets create some environment independent variables for the different functions that
+;; are very dependent on which OS you are using e.g. ns-next-frame etc
+;----------------------------------------------------------------------
+;; A directory with all OS dependent configurations
+(add-to-list 'load-path "~/.emacs.d/init_files/") 
+
+(cond ((equal window-system 'ns)
+       (require 'mac_setup))
+      ((equal window-system 'x)
+       (require 'unix_setup)))
 
 ;----------------------------------------------------------------------
 ; Some nice global emacs settings
@@ -24,13 +35,21 @@
 ;; Enable Line numbers in margins of all buffers
 (global-linum-mode 1)
 ;; Web derived theme stuff.
-(set-frame-font "Menlo-16" nil t)
+;; This is now defined in OS-specific setup ~/.emacs.d/init_files
+
 (load-theme 'wheatgrass) 
 ;; (load-theme 'tango) ;bit hard to read....
 ;; Should really make this so it only goes on in lisp mode...
 (show-paren-mode 1)
 (setq show-paren-style 'expression)
 (ido-mode t)
+;; At the moment my 'frame-title-format variable is set to
+;; (multiple-frames "%b" ("" invocation-name "@" system-name))
+;; might be nice to set it to somethibng that shows the path of the current file so i dont have to invoke
+;; (buffer-file-name) all the time... e.g. from stack overflow:
+;; (setq frame-title-format
+;;       (list (format "%s %%S: %%j " (system-name))
+;;         '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 ;----------------------------------------------------------------------
 ;; Mouse Scrolling Stuff From Web - scroll one line at a time (less "jumpy" than defaults)
 ;----------------------------------------------------------------------
@@ -87,6 +106,7 @@
 (add-to-list 'load-path "~/.emacs.d/packages/") 
 ;; This package provides revbufs command to automatically and safely revert all buffers e.g. after git checkout branch
 (require 'revbufs)
+
 ;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------
@@ -119,30 +139,31 @@
 ;; Wrapping Search
 ;----------------------------------------------------------------------
 ;; Enable interactive search to wrap by default
-(defadvice isearch-repeat (after isearch-no-fail activate)
-  "isearch-repeat (<Command-g>) will automatically wrap"
-  ;; If we found a match then do nothing
-  (unless isearch-success
-    ;; Otherwise disable this advice - ad-activate call is also necessary
-    (ad-disable-advice 'isearch-repeat 'after 'isearch-no-fail)
-    (ad-activate 'isearch-repeat)
-    ;; OK - if isearch-forward returns succesfully then we call isearch-repeat with "forward" arg
-    (isearch-repeat (if isearch-forward 'forward))
-    ;; Re-enable this advice - ad-activate call is also necessary
-    (ad-enable-advice 'isearch-repeat 'after 'isearch-no-fail)
-    (ad-activate 'isearch-repeat)))
+;; (defadvice isearch-repeat (after isearch-no-fail activate)
+;;   "isearch-rqepeat (<Command-g>) will automatically wrap"
+;;   ;; If we found a match then do nothing
+;;   (unless isearch-success
+;;     ;; Otherwise disable this advice - ad-activate call is also necessary
+;;     (ad-disable-advice 'isearch-repeat 'after 'isearch-no-fail)
+;;     (ad-activate 'isearch-repeat)
+;;     ;; OK - if isearch-forward returns succesfully then we call isearch-repeat with "forward" arg
+;;     (isearch-repeat (if isearch-forward 'forward))
+;;     ;; Re-enable this advice - ad-activate call is also necessary
+;;     (ad-enable-advice 'isearch-repeat 'after 'isearch-no-fail)
+;;     (ad-activate 'isearch-repeat)))
+
 ;; My attempt to do the same for isearch-forward - not ready yet
-(defadvice isearch-forward (after isearch-forward-no-fail activate)
-  "isearch-forward (<Command-f>) will automatically wrap"
-  ;; If we found a match then do nothing
-  (unless isearch-success
-    ;; Otherwise disable this advice - ad-activate call is also necessary
-    (ad-disable-advice 'isearch-forward 'after 'isearch-forward-no-fail)
-    (ad-activate 'isearch-forward)
-    (isearch-repeat (if isearch-forward 'forward))
-    ;; Re-enable this advice - ad-activate call is also necessary
-    (ad-enable-advice 'isearch-forward 'after 'isearch-forward-no-fail)
-    (ad-activate 'isearch-forward)))
+;; (defadvice isearch-forward (after isearch-forward-no-fail activate)
+;;   "isearch-forward (<Command-f>) will automatically wrap"
+;;   ;; If we found a match then do nothing
+;;   (unless isearch-success
+;;     ;; Otherwise disable this advice - ad-activate call is also necessary
+;;     (ad-disable-advice 'isearch-forward 'after 'isearch-forward-no-fail)
+;;     (ad-activate 'isearch-forward)
+;;     (isearch-repeat (if isearch-forward 'forward))
+;;     ;; Re-enable this advice - ad-activate call is also necessary
+;;     (ad-enable-advice 'isearch-forward 'after 'isearch-forward-no-fail)
+;;     (ad-activate 'isearch-forward)))
 ;----------------------------------------------------------------------
 ; Hals Custom Key Bindings
 ; 
@@ -226,13 +247,9 @@ are 'touched' by a particular region."
 ;----------------------------------------------------------------------
 ;; Use default emacs function for <Command-o> and OS X version for <Command-Shift-o>
 (global-set-key (kbd "s-o") 'find-file)
-(global-set-key (kbd "s-O") 'ns-open-file-using-panel)
-
+;; <"s-O"> binding defined in OS-specific setup ~/.emacs.d/init_files
 
 ;; (generate-new-buffer "Mongodb & noSQL - Thoughts")
-
-
-
 ;----------------------------------------------------------------------
 ; Buffer/Frame/Window Switching
 ;----------------------------------------------------------------------
@@ -240,14 +257,13 @@ are 'touched' by a particular region."
 ;; "s-(" & "s-)" or without shift key "s-9" & "s-0" 
 ;; "s-{" & "s-}" or without shift key "s-[" & "s-]"
 ;----------------------------------------------------------------------
-;; Frames
+;; Frames - See OS specific implementations in ~/.emacs.d/init_files/
+;----------------------------------------------------------------------
 ;; "s-<" & "s->" -- "s-," is bound to 'customize while "s-." is unbound
 ;; These give errors - wrong args - not to be used interactively?
 ;; (global-set-key (kbd "s-[") 'previous-window)
 ;; (global-set-key (kbd "s-]") 'next-window)
 ;; Switching Forward & Backward between frames with Command-{ & Command-}
-(global-set-key (kbd "s-{") 'ns-prev-frame)
-(global-set-key (kbd "s-}") 'ns-next-frame)
 ;----------------------------------------------------------------------
 ;; Windows
 ;----------------------------------------------------------------------
@@ -430,7 +446,7 @@ should turn the current window into 4 new windows."
 
 
 ;----------------------------------------------------------------------
-;; MODE SPECIFIC BINDINGS
+;; MODE SPECIFIC BINDINGS, COMMANDS, AND SETTINGGS
 ;----------------------------------------------------------------------
 ;;* ELISP Mode 
 ;----------------------------------------------------------------------
@@ -508,6 +524,22 @@ should turn the current window into 4 new windows."
 ;;         (term-line-mode))
 ;;     (switch-to-buffer "*rails-console*")))
 ;----------------------------------------------------------------------
+;; Javascript useful stuff
+;----------------------------------------------------------------------
+;; JSFiddle
+(defun js-to-fiddle ()
+  "Switching the contents of a js script that is set up to run in the browser and log 
+error messages to console.log to append error messages to a <div> on the page with the id #messages.
+Basically so I can quickly grab the contents of a buffer and chuck it into jsFiddle."
+  (interactive)
+  ;; (query-replace '"console.log" '"$("\#messages").append"))
+  (replace-string '"console.log" '"$("\#messages").append"))
+
+
+
+
+
+;----------------------------------------------------------------------
 ;; My own Modes!
 ;----------------------------------------------------------------------
 (define-generic-mode 
@@ -527,6 +559,9 @@ should turn the current window into 4 new windows."
 ;; which is the format that font-lock-defaults wants
 ;; Second, you used ' (quote) at the outermost level where you wanted ` (backquote)
 ;; you were very close
+(defvar hero-keywords nil)
+(defvar hero-events nil)
+
 (defvar hero-font-lock-defaults
   `((
      ;; stuff between "
@@ -626,7 +661,7 @@ should turn the current window into 4 new windows."
 ;; M-x edebug-eval-top-level-form
 ;; or go to the source and do C-u C-M-x (<Control u> <Control Alt x>) to set up a function for edebugging
 ;; last-command and this-command
-;; Normally, whenever a function is executed, Emacs sets the value of this-command to the function being executed (which in this case would be copy-region-as-kill). At the same time, Emacs sets the value of last-command to the previous value of this-command.
+;; Normally, whenever a function is executed, Emacs sets the value of this-command to the function being executed (which in this case would be copy-region-as-kisll). At the same time, Emacs sets the value of last-command to the previous value of this-command.
 ;; diff-buffer-with-file to see if a buffers contents are different from the file
 ;; M-: buffer-file-name ; to see the file name for the current buffer...
 ;; C-u M-x shell will let you open multiple shells
@@ -676,6 +711,10 @@ should turn the current window into 4 new windows."
 ;; * Interactive lisp - call eval-print-last-sexp such that it evals the S-expression that the cursor is inside of OR the last one if not inside one
 ;;     - could be a little dangerous - we might be in an "implicit lisp environment"
 ;; A function to evaluate a region of lisp functions (a la eval-region) but then capture the output of each s-expression (a la eval-print-last-sexp) in a new buffer
+;; * If not available - create a means of navigating in directoory mode similar to in Mac OSX Finder - 
+;; - <Command-up> up a directory
+;; - <Command-right> open a directory
+;; - Should still allow global buffer/frame/window navigation as much as possible so will have to think hard about bindings to use
 
 ;----------------------------------------------------------------------
 ; Ways to jump between predefined points in a file (function definitions etc)
@@ -813,3 +852,5 @@ should turn the current window into 4 new windows."
 
 
 
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
