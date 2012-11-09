@@ -17,3 +17,6 @@
 (global-set-key (kbd "s-O") 'ns-open-file-using-panel)
 ;----------------------------------------------------------------------
 
+
+;; Different search forward command on OS X/Linux
+(global-set-key (kbd "s-g") 'isearch-repeat-forward)

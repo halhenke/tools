@@ -140,7 +140,7 @@
 ;----------------------------------------------------------------------
 ;; Enable interactive search to wrap by default
 ;; (defadvice isearch-repeat (after isearch-no-fail activate)
-;;   "isearch-rqepeat (<Command-g>) will automatically wrap"
+;;   "isearch-repeat (<Command-g>) will automatically wrap"
 ;;   ;; If we found a match then do nothing
 ;;   (unless isearch-success
 ;;     ;; Otherwise disable this advice - ad-activate call is also necessary

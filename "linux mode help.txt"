@@ -1,0 +1,308 @@
+Desktop Configuration
+Use:
+$ dconf-editor
+to change many hidden/non-obvious settings in Linux
+Also: 
+Settings->Keyboard->Shortcut
+AND
+Settings->Keyboard Layout
+for various weird things
+
+Package Management
+
+Update Package List
+$ apt-get update
+
+Search for package
+e.g. port search package
+$ apt-cache search package
+OR to match against/search only the package names
+$ apt-cache search -n package
+
+
+Info on package
+e.g. port info package
+$ apt-cache show package
+or more detail
+$ apt-cache showpkg package
+
+
+Package Dependencies
+apt-cache depends sbcl
+
+Show installed packages
+e.g. port installed | grep python
+$ dpkg --get-selections | grep python
+OR
+$ dpkg -l
+
+Show available packages
+$ apt-cache pkgnames
+
+Show which version of a package is installed
+e.g. port installed | grep python
+$ dpkg -l | grep package
+
+Show which packages a package needs that arent yet installed
+
+
+Show which package dependecies our SYSTEM currently has unfulfilled
+$ apt-cache unmet package
+
+Show where files from a package are installed
+$ dpkg-query -L bash-completion
+
+Reconfigure package
+$ dpkg-reconfigure packagename
+
+
+
+Server/Apache Management
+
+Restart the server
+$ sudo /etc/init.d/apache2 restart
+OR
+$ service apache2 reload
+OR
+$ apache2ctl restart
+
+other useful stuff maybe:
+check and modify which apache modules are available and enabled
+$ a2enmod
+copies a site from available to enabled directory of apache:
+$ a2ensite drupal-cat-au-website.conf  
+
+However are we restarting
+/etc/init.d/apache2
+OR
+ /usr/sbin/apache2
+
+I edited the apache2 file:
+/etc/apache2/sites-available/default
+adding:
+    Alias /hal/ "/home/hal/work/"
+    <Directory "/home/hal/work/">
+        Options Indexes MultiViews FollowSymLinks
+        AllowOverride None
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.0/255.0.0.0 ::1/128
+    </Directory>
+so that i can access my /home/hal/work folder at the URL:
+http://localhost/hal/
+
+Later we added
+a file:
+drupal-cat-au-website.conf 
+to the directory:
+/etc/apache2/sites-available
+This specified some site specific error/access logging in a new directory/file
+/var/log/sitelogs/drupal-site-cat-au-website/
+did:
+$ chgrp www-data /var/log/sitelogs/drupal-site-cat-au-website/
+$ chmod g+w /var/log/sitelogs/drupal-site-cat-au-website/
+$ a2ensite drupal-cat-au-website.conf 
+
+
+
+Postgres Setup
+
+First grant yourself superuser privileges:
+sudo -su postgres createuser yourname
+
+list databases
+$ psql -l
+
+Then login with 
+psql -d databasename
+
+
+Databases live in
+/var/lib/postgresql/9.1/main/
+Configuration lives in
+/etc/postgresql/9.1/main/
+Log files live in:
+/var/log/postgres
+
+sudo -u postgres 
+
+Create Database and then
+psql databasename < data_base_dump
+
+Restart postgres with
+sudo /etc/init.d/postgresql restart
+
+Also - 
+in pg_hba.conf under: 
+# IPv4 local connections:
+we changed:
+host    all             all             127.0.0.1/32            md5
+to:
+host    all             all             127.0.0.1/32            trust
+
+which meant we dont have to provide passwords for local connections (in drush at least)
+
+Drupal Site Config
+
+Need the php postgres driver
+$ sudo apt-get install php5-pgsql
+
+php log in:
+...
+
+* Below relates by example to the Catalyst Australian website: cat-au-website
+
+Site was "stored" in two parts - a git repository with the drupal code/directory structure: 
+$ git clone git+ssh://gitprivate.catalyst.net.nz/git/private/drupal/cat-au-website.git cat-au-website
+and a 
+pg_dump backup of the postgres database on the machine vedra:
+root@vedra://data/rsync/cabotage/var/backups/pg/pg-9.0-main/current/pg-catalyst_website-2012-11-06-220105.pgdump
+To get this database from vedra i  logged into vedra as root:
+$ ssh vedra
+
+Sites are deployed onto the machine "bordon"
+into the 
+/var/www/drupal-site-cat-au-website
+I copied the sites/default/settings.php file from here to my machine and made a couple of changes:
+changed:
+$conf["archimedes_site_environment"] = "staging";
+to:
+$conf["archimedes_site_environment"] = "development";
+had to change the database settings:
+$db_url["default"] = "pgsql://catalyst_website:Eu4mee5hAuk1pa7v@db-host/catalyst_website";
+to:
+$db_url["default"] = "pgsql://catalyst_website:Eu4mee5hAuk1pa7v@localhost/hal/cat-au-website/";
+
+Also - so that the site cannot write to its own directory/self:
+I created a directory
+/var/lib/sitedata/cat-au-drupal/files/ (could be anywhere)
+and then created a symlink to it 
+sites/default/files -> /var/lib/sitedata/cat-au-drupal/files/
+
+
+Drupal Update Module Procedure:
+1 Login as admin
+2 Go to available updates
+3 Click on Download for an outdated module (Yellow/Red) sorted by urgency (Red first)
+4 Save in some tmp directory
+5 cd to site directory/sites/all/modules
+6 Find directory where module is - 
+Could be: 
+contrib/
+patched/
+custom/
+or, if older project, everything in the one directory
+BE CAREFUL IF IT IS A MODULE IN PATCHED - you willl have to apply patches again or modify/ignore patches if module no longer needs them.
+otherwise:
+7 tar -xvf ~/directory_where_tgz_is_downloaded/old-module.tgz    in_parent_directory_of_old-module
+will update/replace old module.
+8 Create a new branch 
+8 Commit changes per module (easier to use git bisect to trace the problem if an update breaks the site)
+9 Push new branch to remote repo before your machine dies....
+10 If all is cool - deploy via API1 method described here:
+https://wiki.wgtn.cat-it.co.nz/wiki/Drupal/Getting_Started#For_API_1
+
+
+Getting Important Passwords
+
+$ ssh turing
+then use:
+$ pview -d sydney catalyst-au.net
+where sydney is a group and catalyst-au-net is a search term IIRC
+This returns a format
+catalyst-au drupal site - email_address
+
+
+Keyboard Settings & Keymappings
+
+Important Files:
+default keyboard...thing:
+/etc/default/keyboard
+xorg global input settings:
+/etc/X11/xorg.conf
+Present in Debian but not Ubuntu?
+/etc/X11/Xmodmap
+
+Important Keyboard Tools:
+See the base linux mappings with:
+xmodmap
+See the output of various keys with:
+xev
+See the output of a single key by pressing Control-V in a terminal
+
+In KDE:
+khotkeys ?
+~/.kde/share/config/kglobalshortcutsrc
+~/.kde/share/config/khotkeysrc
+
+Debian - new:
+/etc/default/keyboard
+Debian - old:
+/etc/console-tools/remap
+Ubuntu - virtual consoles
+/etc/default/console-setup 
+
+PROBLEMS:
+In KDE, in Emacs the super key only works with some keys
+* For some keys such as s-f it will say s-f is undefined despite it showing up in emacs keybindings
+* For other keys such as s-up the input just wont register to emacs at all
+
+Appears to be a bug in KDE:
+https://bugs.kde.org/show_bug.cgi?id=157468
+
+
+
+If you want to use it like in windows, to trigger the menu, go to System -> Preferences -> Keyboard Shortcuts. Scroll down to and click on 'Show the panel's main menu'. Click on the right hand cell, which should change to 'New shortcut...' and press the Windows key.
+
+EDIT: turns out this doesn't work but you can make it work by pressing Alt+F2 then entering
+
+gconftool-2 --set /apps/metacity/global_keybindings/panel_main_menu --type string "Super_L"
+You can bind it to other things as well. You can use it as part of a key combination in for another shortcut or for an action in compiz. For example, I have my Windows key bound to the Initiate Window Resize action (because this is easier than trying to grab the sides of the window) which can be found in Compiz Config Settings Manager  under Window Management -> Resize Window.
+
+
+Going to work around this wih a combo of xmodmap and EMACS:
+The problem:
+1 My Emacs commands are geared around an OS X configuration where Super key is used a lot
+2 KDE sits between the xmodmap settings and breaks the use of the Super key as a modifier for SOME key combinations (Super key + arrow keys, s-f) but not others (s-c, s-o etc)
+
+The solution:
+xmodmap Super key to something else and then translate that to Super key locally in emacs, thus preserving all my existing emacs bindings...
+
+
+The idea - more detail - 
+xmodmap -e 'keycode 133 = F13'
+Put F13 in the appropriate mod group
+And then pick it up in Emacs by translating to super key (pseudocode follows)
+(translate-command-thing "F13" "s")
+This SHOULD make emacs recognise all Super_L key combinations rather than just those that KDE doesnt eat and destroy for whatever fucked up reason.
+
+Emacs key remapping functions:
+input-decode-map
+ local-function-key-map
+key-translation-map
+
+
+
+Git commands
+
+List all files in a branch (recursively)
+git ls-tree -r branch
+
+git ls-tree -r branch | wc -l
+
+git diff --name-only updates_2012_11-core-upgrade upstream/6.x |wc -l
+
+What bevan did:
+git branch updates_2012_11-core-upgrade
+git checkout updates_2012_11-core-upgrade
+git checkout upstream/catalyst-6.x
+git checkout -b catalyst-6.x
+git pull upstream catalyst-6.x
+git checkout updates_2012_11-core-upgrade
+git merge catalyst-6.x
+
+What i did:
+git branch updates_2012_11-core-upgrade
+git checkout updates_2012_11-core-upgrade
+git merge upstream/catalyst-6.x
+

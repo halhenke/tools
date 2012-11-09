@@ -28,7 +28,8 @@
 (global-set-key (kbd "s-x") 'kill-region)
 (global-set-key (kbd "s-z") 'undo)
 (global-set-key (kbd "s-f") 'isearch-forward)
-(global-set-key (kbd "s-g") 'isearch-repeat)
+;; isearch-repeat DOES NOT SEEM TO EXIST ON LINUX!!!
+;; (global-set-key (kbd "s-g") 'isearch-repeat)
 ;; (global-set-key (kbd "s-o") 'execute-extended-command)
 (global-set-key (kbd "s-s") 'save-buffer)
 (global-set-key (kbd "s-k") 'kill-buffer)
@@ -37,3 +38,16 @@
 (global-set-key (kbd "s-u") 'revert-buffer)
 (global-set-key (kbd "s-q") 'save-buffers-kill-terminal)
 ;----------------------------------------------------------------------
+
+
+;; Trying to fix search repeat which appears to be broken on linux
+(global-set-key (kbd "s-g") 'isearch-repeat-forward)
+;; (global-set-key (kbd "s-G") 'isearch-repeat-backward)
+
+;; Trying to fix Super key commands which appears to be broken on KDE
+;; (global-set-key (kbd  "S-<left>") 'move-beginning-of-line)
+;; move-beginning-of-line
+;; (global-set-key (kbd  "<s-right>") 'move-end-of-line)
+
+
+
