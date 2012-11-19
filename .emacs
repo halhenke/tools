@@ -14,6 +14,14 @@
       ((equal window-system 'x)
        (require 'unix_setup)))
 
+;; Stuff to choose if we are using a terminal rather than one of the window system
+;; (unless (display-graphic-p)
+;;   (progn
+;;     (define-key input-decode-map "\e[1;5C" [(control right)])
+;;     (define-key input-decode-map "\e[1;5D" [(control left)])
+;;     (define-key input-decode-map "\e[1;5E" [(control up)])
+;;     (define-key input-decode-map "\e[1;5F" [(meta left)])))
+
 ;----------------------------------------------------------------------
 ; Some nice global emacs settings
 ;----------------------------------------------------------------------
@@ -43,6 +51,11 @@
 (show-paren-mode 1)
 (setq show-paren-style 'expression)
 (ido-mode t)
+
+;; No idea why this is diabled by default...
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
 ;; At the moment my 'frame-title-format variable is set to
 ;; (multiple-frames "%b" ("" invocation-name "@" system-name))
 ;; might be nice to set it to somethibng that shows the path of the current file so i dont have to invoke
@@ -272,14 +285,14 @@ are 'touched' by a particular region."
 ;; http://stackoverflow.com/questions/91071/emacs-switch-active-window
 ;; Windows Cycling
 (setq windmove-wrap-around t)
-(global-set-key (kbd "<prior>") 'windmove-up)
-(global-set-key (kbd "<next>") 'windmove-down)
-(global-set-key (kbd "<end>") 'windmove-right)
-(global-set-key (kbd "<home>") 'windmove-left)
-;; (global-unset-key (kbd "<C-s-up>"))
-;; (global-unset-key (kbd "<C-s-down>"))
-;; (global-unset-key (kbd "<C-s-right>"))
-;; (global-unset-key (kbd "<C-s-left>"))
+;; (global-unset-key (kbd "<prior>"))
+;; (global-unset-key (kbd "<next>"))
+;; (global-unset-key (kbd "<end>"))
+;; (global-unset-key (kbd "<home>"))
+(global-set-key (kbd "<C-s-up>") 'windmove-up)
+(global-set-key (kbd "<C-s-down>") 'windmove-down)
+(global-set-key (kbd "<C-s-right>") 'windmove-right)
+(global-set-key (kbd "<C-s-left>") 'windmove-left)
 ;; Again from the web
 (defun win-bck()
   "Step sequentially forwards from one window in current frame to the next."
@@ -348,12 +361,6 @@ should turn the current window into 4 new windows."
           (set-window-start w2 s1)
           (setq i (1+ i))))))))
 (global-set-key (kbd "s-5") 'rotate-windows)
-;----------------------------------------------------------------------
-;; Changing window size - keys are actually <Function-Command-Arrow>
-(global-set-key (kbd "<s-home>") 'shrink-window-horizontally)
-(global-set-key (kbd "<s-end>") 'enlarge-window-horizontally)
-(global-set-key (kbd "<s-next>") 'shrink-window)
-(global-set-key (kbd "<s-prior>") 'enlarge-window)
 ;----------------------------------------------------------------------
 ;; Ask before closing other windows
 ;; (defun ask-before-closing-windows ()
@@ -852,5 +859,4 @@ Basically so I can quickly grab the contents of a buffer and chuck it into jsFid
 
 
 
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
+

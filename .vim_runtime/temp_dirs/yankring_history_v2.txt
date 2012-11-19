@@ -1,0 +1,25 @@
+e,V
+" :bprevious<CR>,V
+g,v
+		Set-Up stuff ,v
+,V
+" :bnext<CR>,V
+n,v
+ ,v
+",v
+"  " ,V
+" " " " " " " " ,2
+"""""",1
+		TO mode						    ~		Normal	Visual	Select	Insert	  Replace   Cmd-line  Ex ~FROM mode								 ~Normal			v V ^V	  *4	 *1	   R gR     : / ? !   QVisual		 *2		  ^G	 c C	    --	      :       --Select		 *5	^O ^G		 *6	    --	      --      --Insert		 <Esc>	  --	  --		  <Insert>    --      --Replace		 <Esc>	  --	  --	<Insert>	      --      --Command-line	 *3	  --	  --	 :start	    --		      --Ex		 :vi	  --	  --	 --	    --	      --,V
+		 modal	al	ct	rt	ace	and-	,4
+ " How to switch from mode to mode		TO mode						    ~		Normal	Visual	Select	Insert	  Replace   Cmd-line  Ex ~FROM mode								 ~Normal			v V ^V	  *4	 *1	   R gR     : / ? !   QVisual		 *2		  ^G	 c C	    --	      :       --Select		 *5	^O ^G		 *6	    --	      --      --Insert		 <Esc>	  --	  --		  <Insert>    --      --Replace		 <Esc>	  --	  --	<Insert>	      --      --Command-line	 *3	  --	  --	 :start	    --		      --Ex		 :vi	  --	  --	 --	    --	      --,V
+:unm[ap]  {lhs}			|mapmode-nvo|		*:unm*  *:unmap*:nun[map] {lhs}			|mapmode-n|		*:nun*  *:nunmap*:vu[nmap] {lhs}			|mapmode-v|		*:vu*   *:vunmap*:xu[nmap] {lhs}			|mapmode-x|		*:xu*   *:xunmap*:sunm[ap] {lhs}			|mapmode-s|		*:sunm* *:sunmap*:ou[nmap] {lhs}			|mapmode-o|		*:ou*   *:ounmap*:unm[ap]! {lhs}			|mapmode-ic|		*:unm!* *:unmap!*:iu[nmap] {lhs}			|mapmode-i|		*:iu*   *:iunmap*:lu[nmap] {lhs}			|mapmode-l|		*:lu*   *:lunmap*:cu[nmap] {lhs}			|mapmode-c|		*:cu*   *:cunmap*,V
+V[Zdddddddd		        <OB<,V
+k,v
+nnoremap <Tab> :bnext<CR>nnoremap <S-Tab> :bprevious<CR>,V
+2,v
+ 620   621   62,5
+----------------------------------------,v
+------------------------------------------------------,v
+extended,v
+source ~/.vim_runtime/vimrcs/extended.vim,V
