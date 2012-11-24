@@ -1,0 +1,2 @@
+---
+BUNDLE_BUILD__PG: --with-pg-config=/opt/local/lib/postgresql92/bin/pg_config
