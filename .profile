@@ -3,16 +3,30 @@ echo "~/.profile called!"
 
 #===============================================================================================================
 # MacPorts Installer addition on 2011-06-24_at_01:49:48: adding an appropriate PATH variable for use with MacPorts.
+echo "Configuring your PATH for use with MacPorts..."
+
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
+
 #Below is modification to put a folder I made with symlinks of versions of commands 
 #without version Number suffixes to the main files e.g /opt/local/bin/$symlinkfolder/mysql -> /opt/local/bin/mysql5
 # Basically this means i dont have to set aliases as I did in .profile_old - that method interferes with rvm, virtualenv etc...
+echo "Adding a path to \"deversioned\" symlinks to some MacPorts commands..."
 symlinkfolder=halsRenamed
 export PATH=/opt/local/bin/$symlinkfolder:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
+
+
+# Alternatively this means we link directly to the postgres commands such as 
+# createuser, psql etc associated with the current version of postgres that i am using
+# echo "Adding a path to postgresql-92 commands..."
+# export PATH=/opt/local/lib/postgresql92/bin/psql:$PATH
+
+
+echo "Finished adapting your PATH environment variable for use with MacPorts."
 
 # Add GO compiler to your PATH variable
 # Meh - leave out for now - maybe install via Macports later
+echo "Adding Go compiler to your path..."
 #export PATH=$PATH:/Developer/go/bin
 
 #===============================================================================================================
@@ -26,6 +40,7 @@ alias mysqlstop='sudo /opt/local/share/mysql5/mysql/mysql.server stop'
 
 #===============================================================================================================
 # Python related
+echo "Modifying some Pyhton related environment variables: PYTHONPATH & PYTHONSTARTUP..."
 export PYTHONPATH=$PYTHONPATH:/Users/Noches/Code/Python/MyModules
 export PYTHONSTARTUP=/Users/Noches/Code/Python/MyModules/PythonStartUp.py
 # Python VirtualEnvwrapper
@@ -65,3 +80,20 @@ export HISTSIZE=2000
 #===============================================================================================================
 #Setup Git editor - not sure about this....
 export GIT_EDITOR='emacs'
+
+
+
+#===============================================================================================================
+# Some crazy shit from the internets...
+
+red="\[\e[0;33m\]"
+yellow="\[\e[0;31m\]"
+
+if [ `id -u` -eq "0" ]; then
+        root="${yellow}"
+    else
+            root="${red}"
+        fi
+
+        PS1="\[\e[0;37m\]┌─[${root}\u\[\e[0;37m\]][\[\e[0;96m\]\h\[\e[0;37m\]][\[\e[0;32m\]\w\[\e[0;37m\]]\n\[\e[0;37m\]└──╼ \[\e[0m\]"
+        PS2="╾──╼ "
