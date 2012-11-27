@@ -57,6 +57,37 @@ $ dpkg-reconfigure packagename
 
 
 
+** Show Contents of a package
+*** A package in the cache
+use apt-file 
+*** A  local .deb package 
+dpkg-deb -c package.deb
+
+* Setting up emacs24 when only emacs23 is in the cache/thing
+First get all the dependencies of emacs 23 and then i think i just installed 24 to /usr/local
+
+Alternatively this guy has a repository where he has snapshots of later builds
+#+BEGIN_SRC bash
+sudo add-apt-repository ppa:cassou/emacs
+sudo apt-get update
+sudo apt-get install emacs-snapshot
+emacs-snapshot
+#+END_SRC bash
+* Setting Up Vim
+** Two choices
+This
+https://github.com/spf13/spf13-vim
+Or
+this:
+https://github.com/amix/vimrc.git
+
+I installed amix on HAL9000
+might try spf13 on Hurricane box
+
+*** Evaluation
+Ugh spf13 has numbers package that needs Vim 7.3 - problem given we have 7.2
+
+
 * Server/Apache Management
 
 ** Restart the server
@@ -113,6 +144,11 @@ Also have to add the line:
 127.0.0.1 d.catalyst-au.net
 to /etc/hosts where d.catalyst-au.net is the SeverName from drupal-cat-au-website.conf 
 
+q
+
+** Apache on Debian uses a Non-Standard Configuration
+See here:
+http://www.control-escape.com/web/configuring-apache2-debian.html
 
 * Postgres Setup
 
@@ -151,6 +187,82 @@ host    all             all             127.0.0.1/32            trust
 
 which meant we dont have to provide passwords for local connections (in drush at least)
 
+
+* Git
+
+Show all files in a commit
+$ git ls-tree --name-only -r 5ff6ef6dccd7f57d30c2bcc9c3fb203a25930e12
+
+Show all changes in a committ
+$ git diff-tree --name-only -r <commit-ish>
+
+** Problems
+
+*** Git wont add files from a directory
+
+If you add a folder containing a git repository to your git repository the contents of that folder will 
+by default be invisible to git and it will not add them even if you add the enclosing directory.
+
+To get out of this:
+
+rename the folder a couple of times
+or more properly
+$ git rm --cached  /path/to/directory
+* Git commands
+
+List all files in a branch (recursively)
+git ls-tree -r branch
+
+git ls-tree -r branch | wc -l
+
+git diff --name-only updates_2012_11-core-upgrade upstream/6.x |wc -l
+
+What bevan did:
+git branch updates_2012_11-core-upgrade
+git checkout updates_2012_11-core-upgrade
+git checkout upstream/catalyst-6.x
+git checkout -b catalyst-6.x
+git pull upstream catalyst-6.x
+git checkout updates_2012_11-core-upgrade
+git merge catalyst-6.x
+
+What i did:
+git branch updates_2012_11-core-upgrade
+git checkout updates_2012_11-core-upgrade
+git merge upstream/catalyst-6.x
+
+
+
+Querying Drupal node_type table
+SELECT type, name, module, has_title, title_label, has_body, body_label, custom, modified, locked, orig_type FROM node_type;
+
+* Recovering from a bad git commit
+
+** The naughty way
+
+WARNING this will lose all your latest changes you have done also...
+
+Find the last good commit you did
+checkout that branch
+$ git checkout 6gfgsgdhsghjghjgsy78798
+do 
+$ git clean -fd 
+to delete later commits (i think)
+do 
+$ git branch -D updates_2012_11
+To delete the current branchx
+create a new branch
+$ git branch  updates_2012_11
+checkout that branch
+$ git checkout  updates_2012_11
+Now heres the really bad bit:
+$ git push origin updates_2012_11 -f
+This will force the upstream branch to match the local branch and get rid of later commits
+Its only OK if you are the only one working on that branch.
+
+Now you have to start from the beginning and redo the changes
+
+
 * Drupal Setup With Postgres - FRESH INSTALL
 
 Important last step - Grant all:
@@ -173,7 +285,136 @@ $ sudo apt-get install php5-pgsql
 
 php log in:
 ...
+* Logging into A Drupal Site as admin
 
+Go to
+
+domain-name/user/login
+
+and input the info gained as described in section
+\\do org-mode inner link here\\
+* Drush
+
+** Upgrading modules
+Use 
+$ drush dl modulename 
+rather than 
+$ drush pm-updatecode modulename
+as the latter does a lot more stuff we dont necessarily want.
+
+** Drush Problems
+
+You should make sure you have the Catalyst version.
+The one from git is more recent than the one from the Catalyst stable/unstable repository
+
+If you get the error 
+"No valid version control or backup engine found (the --version-control option was set to "git")"
+Then you are probably not working in a git repository
+ - if you didnt clone it somewhere then just 'git ini't
+
+*** version number fuck up
+Drush will ask you if you want to bump (and tag) the package
+Inside your site directory there will be a .debian directory with a changelog file
+i.e.
+.debian/changelog
+You can edit this and manually change the version number.
+drush will then build the package with this version number 
+AND you dont have to bump when you do 
+$ drush dh-make
+* Drupal Deployment
+See here:
+https://wiki.wgtn.cat-it.co.nz/wiki/Catalyst_Australia_Pty_Ltd/Catalyst_Australia_Debian_repository
+
+Finish changes.
+Run drush dh-make-drupal
+This will make a package to install on the server and a changelist
+
+** Staging Deployment
+
+First - merge changes into master branch
+
+You then have to put this package AND the changelist in the staging environment
+$ scp drupal-site-cat-au-website_20121112-1_all.deb caldara:/repo-stage
+$ scp drupal-site-cat-au-website_20121112-1_amd64.changes caldara:/repo-stage
+
+Now we put it on the staging server, in this case 'bordon'
+
+$ ssh bordon
+*** If this is your first time logging on to this machine/you have not reset your password
+This server then generates a gpg password file which we can use to get a onetime password for this session.
+Copy the contents of this file to our own machine 
+$ cat password.txt.gpg
+and grab everything e.g.:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+hQEMAzGI0LlowIRAAQf8DZfx4DeJld7cYpy/1mAbsFUnDuU6h1uvwV8bs8/jz1NX
+659cOLfRD0FfrouQswOcY8FkH+TMympjFkNPXz4I/nD2YWsw6Bcr2+FpOYfqGhRB
+sY6S3BXthnEsmKHRWICpuBDPt3qntIxL5XESu1Qy2OY4F2yh58vikXfA3sweShfg
+sERIAKteE56AOp3AlBfi+84Ksg+T5EghTNrCS0SBNHFzY/AIriVig1ghx5vmhiSV
+gnTVVN7v2PiTw3dsQDq6XMkdQACDKUE9d7MuDMwsMYWXclSdt37uMfG8oby22/om
+OJov3goKal7c8TIiszRNP8/BYKiQ4qpYzU438TjZ2tLABAFRQXj7Gd0VCTGVaJkp
+kM4IZv0316Btfq6XQxMSB7pfCGN2BlJrxAnyrxxYOdro59+SAcjCBLScIHUVNCyv
+BMdx66F49Hc8Fu+EJzCpDwWal9a/xmUsf6lVmAfdd2ndph5S2vGdC3h0QFUr51Cg
+XKiilCLWqAa2lyd2AGSJTxDCt7QHk/A8uE1gHsFM8utp/Z2tyFEVG+aRr85HfqhU
+eJkgnHL8jxyat0bk3Qs7vbiOnl0pHR1NrXB3JVp9KSKBkQrxzGk=
+=ydW7
+-----END PGP MESSAGE-----
+
+and save it in a local file (any name will do e.g. password_tmp.txt)
+Then:
+$ gpg -d password_tmp.txt
+Enter secret phrase and we now have a shell password to work on bordon.
+If we want to set something more permanentwe can use this to change our password for bordon via the command:
+$ passwd
+
+*** Otherwise...
+
+We then run 
+$ sudo apt-get update
+presumably so that we can see that the package is available from the staging area.
+
+This will automatically replace the old drupal-site-cat-au-website package with the new one.
+
+And then:
+$ apt-cache search cat-au
+to get the name
+$ sudo apt-get install drupal-site-cat-au-website 
+Just to be careful update the database:
+$ drush updatedb
+and clear the cache
+$ drush cc all
+
+To check it out (become root):
+$ sudo -s
+$ cd /var/www/drupal-site-cat-au-website/
+$ ls -lta
+
+There is a gpg thing which gi
+?? - Not sure what happened here
+
+** Production Deployment
+
+Again example is in terms of Catalyst-au website
+
+Not documented well but the host in this case is the load balanced server 'Flotsam' and 'Jetsam'
+So this time we 
+$ scp drupal-site-cat-au-website_20121112-1_all.deb caldara:/repo-prod
+$ scp drupal-site-cat-au-website_20121112-1_amd64.changes caldara:/repo-prod
+
+This puts the package on a server/repo that we can then deploy from/apt-get from on Flotsam & Jetsam
+
+Because there are two servers we use cssh instead of ssh
+$ cssh flotsam&jetsam
+(as sudo)
+$ apt-get install drupal-site-cat-au-website #install the package
+$ cd /var/www/drupal-site-cat-au-website # change to the doc root
+$ drush en -y environment_indicator #enable the module
+$ drush vset environment_indicator_enabled 2 #set the module to integrate with the environment module
+$ drush cc all #clear the cache for good measure
+set the permissions for access environment indicator for all roles see: http://s.catalyst-au.net/admin/user/permissions
+$ drush update-db
 * Below relates by example to the Catalyst Australian website: cat-au-website
 
 Site was "stored" in two parts - a git repository with the drupal code/directory structure: 
@@ -237,87 +478,6 @@ which removed:
 apache2-mpm-prefork
 may want to reverse this situation later.....
 
-
-* Drush & Drush Problems
-
-You should make sure you have the Catalyst version.
-The one from git is more recent than the one from the Catalyst stable/unstable repository
-
-If you get the error 
-"No valid version control or backup engine found (the --version-control option was set to "git")"
-Then you are probably not working in a git repository
- - if you didnt clone it somewhere then just 'git ini't
-
-* Drupal Deployment
-See here:
-https://wiki.wgtn.cat-it.co.nz/wiki/Catalyst_Australia_Pty_Ltd/Catalyst_Australia_Debian_repository
-
-Finish changes.
-Run drush dh-make-drupal
-This will make a package to install on the server and a changelist
-
-You then have to put this package AND the changelist in the staging environment
-$ scp drupal-site-cat-au-website_20121112-1_all.deb caldara:/repo-stage
-$ scp drupal-site-cat-au-website_20121112-1_amd64.changes caldara:/repo-stage
-
-Now we put it on the server, in this case 'bordon'
-
-$ ssh bordon
-This server then generates a gpg password file which we can use to get a onetime password for this session.
-Copy the contents of this file to our own machine 
-$ cat password.txt.gpg
-and grab everything e.g.:
-
------BEGIN PGP MESSAGE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
-
-hQEMAzGI0LlowIRAAQf8DZfx4DeJld7cYpy/1mAbsFUnDuU6h1uvwV8bs8/jz1NX
-659cOLfRD0FfrouQswOcY8FkH+TMympjFkNPXz4I/nD2YWsw6Bcr2+FpOYfqGhRB
-sY6S3BXthnEsmKHRWICpuBDPt3qntIxL5XESu1Qy2OY4F2yh58vikXfA3sweShfg
-sERIAKteE56AOp3AlBfi+84Ksg+T5EghTNrCS0SBNHFzY/AIriVig1ghx5vmhiSV
-gnTVVN7v2PiTw3dsQDq6XMkdQACDKUE9d7MuDMwsMYWXclSdt37uMfG8oby22/om
-OJov3goKal7c8TIiszRNP8/BYKiQ4qpYzU438TjZ2tLABAFRQXj7Gd0VCTGVaJkp
-kM4IZv0316Btfq6XQxMSB7pfCGN2BlJrxAnyrxxYOdro59+SAcjCBLScIHUVNCyv
-BMdx66F49Hc8Fu+EJzCpDwWal9a/xmUsf6lVmAfdd2ndph5S2vGdC3h0QFUr51Cg
-XKiilCLWqAa2lyd2AGSJTxDCt7QHk/A8uE1gHsFM8utp/Z2tyFEVG+aRr85HfqhU
-eJkgnHL8jxyat0bk3Qs7vbiOnl0pHR1NrXB3JVp9KSKBkQrxzGk=
-=ydW7
------END PGP MESSAGE-----
-
-and save it in a local file (any name will do e.g. password_tmp.txt)
-Then:
-$ gpg -d password_tmp.txt
-Enter secret phrase and we now have a shell password to work on bordon.
-If we want to set something more permanentwe can use this to change our password for bordon via the command:
-$ passwd
-We then run 
-$ sudo apt-get update
-presumably so that we can see that the package is available from the staging area.
-And then:
-$ dpkg -l | grep cat-au
-$ sudo apt-get install drupal-site-cat-au-website 
-Just to be careful update the database:
-$ drush updatedb
-and clear the cache
-$ drush cc all
-
-To check it out (become root):
-$ sudo -s
-$ cd /var/www/drupal-site-cat-au-website/
-$ ls -lta
-
-There is a gpg thing which gi
-
-
-* Logging into A Drupal Site as admin
-
-Go to
-
-domain-name/user/login
-
-and input the info gained as described in section
-\\do org-mode inner link here\\
-
 * Getting Important Passwords
 
 $ ssh turing
@@ -329,35 +489,63 @@ catalyst-au drupal site - email_address
 
 
 
-* Git commands
 
-List all files in a branch (recursively)
-git ls-tree -r branch
+* Editing files on remote machines from EMACS via TRAMP
 
-git ls-tree -r branch | wc -l
+Emacs will work the same on remote machines as when you are editing a file as root on the local machine.
+As long as the hostname is in /etc/hosts and the machine unnderstands the scpc protocol 
+(means you can do stuff without constantly using password as in scp) then you go
+C-x C-f /user@host:/path/to/file
 
-git diff --name-only updates_2012_11-core-upgrade upstream/6.x |wc -l
+*Important* - You will probably be asked for your passphrase as well as/instead of the password
+Make sure you dont muck this up too much as you wont get in!
 
-What bevan did:
-git branch updates_2012_11-core-upgrade
-git checkout updates_2012_11-core-upgrade
-git checkout upstream/catalyst-6.x
-git checkout -b catalyst-6.x
-git pull upstream catalyst-6.x
-git checkout updates_2012_11-core-upgrade
-git merge catalyst-6.x
+* The sudoers file
+root ALL=(ALL) ALL
+This line means: The root user can execute from ALL terminals, acting as ALL (any) users, and run ALL (any) command.
+hal     ALL=NOPASSWD: ALL
+Means you wont be asked for a password either....
+http://www.garron.me/linux/visudo-command-sudoers-file-sudo-default-editor.html
 
-What i did:
-git branch updates_2012_11-core-upgrade
-git checkout updates_2012_11-core-upgrade
-git merge upstream/catalyst-6.x
+* Editing files as root or another user on the local machine using TRAMP
 
+Slightly different syntax here
+C-x C-f /sudo:root@localhost:/path/to/whatever
 
+* scp doesn't work if your .bashrc_local or other files produce output
+You will have to remove any messages such as 
+echo "bash_profile called..."
+or anything that causes errors because a $TERM is not defined.
+Perhaps can put them in conditional blocks
 
-Querying Drupal node_type table
-SELECT type, name, module, has_title, title_label, has_body, body_label, custom, modified, locked, orig_type FROM node_type;
+See:
+http://www.unix.com/aix/136087-scp-not-working-while-ssh-works.html
+http://apple.stackexchange.com/questions/13802/why-does-echo-in-etc-bashrc-cause-scp-to-hang
+
+Might have to think more carefullly about what i put in each script - login/interactive etc
+
+* Dont Plug your iPhone into USB
+
+It would add weird connectors to ifconfig
+i.e. i had more than just eth0 and lo
+(which is what i should have)
+
+Daniel removed one via
+$ ifdown eth01
+
 
 * Things I learned Trying to Speed up KDE
+
+** How to restart kwin
+
+Press
+Alt+F2
+Type
+kwin --replace&
+cick run
+
+** How to restart Xorg (without logging out)
+$ sudo service gdm restart
 
 ** $ free -m
 total       used       free     shared    buffers     cached
@@ -438,6 +626,10 @@ I deleted the folder /var/tmp/kdecache-hal
  - maybe some change but pretty slight....
  xorg and kwin still churning
 
+** Pretty sure its the NVIDIA/ drivers that are behind it all
+
+http://forum.kde.org/viewtopic.php?f=66&t=94861
+
 From here:
 http://askubuntu.com/a/23238/how-can-i-find-what-video-driver-is-in-use-on-my-system
 $ jockey-text -l
@@ -470,24 +662,33 @@ ii  nvidia-common                          1:0.2.44.2                           
 ii  nvidia-current                         295.40-0ubuntu1.1                       NVIDIA binary Xorg driver, kernel module and VDPAU library
 ii  nvidia-settings                        295.33-0ubuntu1                         Tool of configuring the NVIDIA graphics driver
 
+** NVIDIA X Server Settings
+NVIDIA Driver Version: 295.40
+Server Version: 11.0
 
-** Can reset swap/memeory configuration at runtime
+Graphics Card/GPU: GeForce GT 440
+
+** Can reset swap/memory configuration at runtime
 using sysctl
 $ sysctl swappiness=10
 
-** Another Coool thread
+** Another Cool thread
 http://forum.kde.org/viewtopic.php?f=66&t=97736
 
 ** Other Stuff
 http://pthreads.blogspot.com.au/2011/12/swappiness-and-dropcaches.html
 To free pagecache:
-# echo 1 > /proc/sys/vm/drop_caches
-
+=code=
+echo 1 > /proc/sys/vm/drop_caches
+=code=
 To free dentries and inodes:
-# echo 2 > /proc/sys/vm/drop_caches
-
+=code=
+echo 2 > /proc/sys/vm/drop_caches
+=code=
 To free pagecache, dentries and inodes:
-# echo 3 > /proc/sys/vm/drop_caches
+=code=
+echo 3 > /proc/sys/vm/drop_caches
+=code=
 
 ** Arch_Linux on Performance
 https://wiki.archlinux.org/index.php/Maximizing_Performance
@@ -496,6 +697,22 @@ https://wiki.archlinux.org/index.php/Maximizing_Performance
 Its something for tuning Graphics Card Performance...
 "Enabling HyperZ can drastically improve performance"
 sudo apt-get driconf
+
+** Latest Attempts to improve NVIDIA
+I mucked around with nvidia-settings and nvidia-xconfig - didnt seem to do anything...
+I then aded the following to the end of my 
+/etc/X11/xorg.conf 
+#+BEGIN_SRC conf-mode
+Section "Module"
+    Load "dbe"
+    Load "extmod"
+    Load "type1"
+    Load "freetype"
+    Load "glx"
+EndSection
+#+END_SRC conf-mode
+based on advie from:
+# http://forum.kde.org/viewtopic.php?f=66&t=94861
 
 
 * Changing my machine name
@@ -509,12 +726,35 @@ also see
 man hostname
 for related info
 
-* checking my distro version
+* Checking my distro version
 $ cat /etc/issue
+
+* Checking Hardware Drivers etc
+** lshw
+_List Hardware_
+** jockey-text
+_Text version of the Program Jockey_
+sudo jockey-text -l 
+will list drivers and enabled/disabled status
+sudo jockey-text -e xorg:nvidia-185
+will enable the xorg:nvidia-185 driver
+** modinfo
+_Show info about a linux kernel module_
+Or look at /lib/modules
 
 * Adding my passphrase to my ssh shell settings
 used the command 
 ssh-add
+
+To make this work when you log into other machines
+I did ssh-add and then
+we created a file 
+~/.ssh/config
+that contained the following
+#+BEGIN_SRC 
+host *
+   2     forwardAgent yes
+#+END_SRC 
 
 
 * Setting up VirtualBox
@@ -523,8 +763,33 @@ Get an iso disk image of the requested distribution
 They were found on caldara:
 scp caldara:/home/shared/isos/ubuntu-10.04-server-amd64.iso .
 
+** Tried to copy from Daniel
+I reinitialized the mac adress - this meant that the virtual machine thought a new PCI Card had ben put in and so it reassigned it to eth2 or something
 
-* logging in from home
+*** fstab
+Used to setup the link to my physical machine i think - we mount a directory as a file system
+
+*** /etc/sudoer ?
+Something that gave me permission to do stuff
+hal ALL = NOPASSWD:ALL
+
+** Network stuff
+
+Add self to /etc/sudoers
+Will have to install openssh-server
+$ sudo apt-get install openssh-server
+
+Get your IP address from ifconfig
+Then you can scp from one machine to the other by
+$ scp file user@ipadress:path
+or by adding their ipaddress to the local machines /etc/hosts file
+with
+ipadress HAL9000
+$ scp /etc/sudoers hal@HAL9000:/home/hal/work/rails/hurricane/dans_machine_settings/etc/
+This works both ways: you get their ip through ifconfig and add it to your hosts file and you can
+scp the other way.
+
+* Logging in from home
 With the browser:
 FoxyProxy for Firefox or similar for Chrome
 
@@ -541,3 +806,9 @@ tks filename.tks
 will tell you problems without commmitting while:
 tks -c filename.tks
 will commit your file to the server.
+
+
+
+
+http://rubyenterpriseedition.googlecode.com/files/ruby-enterprise_1.8.7-2012.02_amd64_ubuntu10.04.deb
+http://rubyforge.org/frs/download.php/66163/ruby-enterprise_1.8.7-2009.10_amd64.deb

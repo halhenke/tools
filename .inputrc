@@ -34,4 +34,19 @@ $if mode=emacs
 "\eOH": beginning-of-line
 "\eOF": end-of-line
 
+# HAL mappings for Alt + Left and Right arrows in Konsole
+"\e[1;3C": forward-word
+"\e[1;3D": backward-word
+
+# HAL mappings for Meta + Left and Right arrows in Konsole
+"\e[1;1C": end-of-line
+"\e[1;1D": beginning-of-line
+
+# HAL going to try putting this stuff here instead of .bashrc_local M
+# Might help to avoid scp failing when i tried to scp in from an outside machine.
+# When run without a terminal bind commands give the error:
+# warning: line editing not enabled
+# The following depends on the bash-completion package being downloaded also....
+"\e[A": history-search-backward
+"\e[B": history-search-forward
 $endif

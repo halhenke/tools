@@ -1,11 +1,34 @@
-	drupal_add_css(drupal_get_path('module', 'formblock'). '/formblock.css', 'module', 'all');,V
-Get emails about Hurricane, reading wiki, setting up ,v
-201457 15:00-18:30 Get emails about Hurricane, reading wiki, setting up ,V
+',v
+bind ,v
+mappings for Meta + Left and Right arrows in Konsole,v
+# HAL mappings for Meta + Left and Right arrows in Konsole,V
+bind '"\e[A":history-search-backward'bind '"\e[B":history-search-forward',V
+danb,v
+<danb>    <danb>    <danb>    ,10
+ ,v
+,V
+Site Updates,v
+ -- Hal Henke <hal@catalyst-au.net>  Fri, 23 Nov 2012 13:04:51 +1100,V
+  * Critical update to ctools,V
+1,v
+drupal-site-cat-au-website (20121123-1) unstable; urgency=low,V
+  $options["dh-build-dir"] = '/tmp/drupal-site-cat-au-website';,V
+  $options["dh-bump-version"] = true;,V
+  $options["dh-project"] = 'cat-au-website';,V
+201457 	15:00-18:30 Clean up most of the module,V
 Implement form in block but with a pretty hackish solution,v
+Site Updates, deployment to staging,v
+98098 	09:15-18:30,V
+13:30-xx:xx	Look at Hurricane emails,V
+Adding template/theme/CSS to block   ,v
+98098 09:50-18:30 Adding template/theme/CSS to block   ,V
+98098 09:50-18:30    ,V
+Get emails about Hurricane, reading wiki, setting up ,v
+	drupal_add_css(drupal_get_path('module', 'formblock'). '/formblock.css', 'module', 'all');,V
+201457 15:00-18:30 Get emails about Hurricane, reading wiki, setting up ,V
 98098  09:30-14:00 Implement form in block but with a pretty hackish solution,V
 dw98098 ,v
 98098 -9:30-14:30,V
-1,v
 8,v
 6,v
 7,v
@@ -23,10 +46,8 @@ e,V
 " :bprevious<CR>,V
 g,v
 		Set-Up stuff ,v
-,V
 " :bnext<CR>,V
 n,v
- ,v
 ",v
 "  " ,V
 " " " " " " " " ,2

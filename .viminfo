@@ -18,14 +18,24 @@ $
 
 # Command Line History (newest to oldest):
 :q
-:'<,'>q
-:NERDTree
 :w
+:e ~/.inputrc
+:vsplit
+:sp
+:wq
+:e /etc/hosts
+:help indent
+:e /etc/apache2/sites-available/hurricane-dev
+:q!
+:!git blame %
+:e drushrc.php
+:e old/2012-11-05.tks
+:NERDTree
+:sh
 :e .
 :cd themes/garland/
 :pwd
 :wq!
-:q!
 :q!Q
 :e
 :source ~/.vim_runtime/vimrcs/hal.vim
@@ -36,10 +46,8 @@ $
 :e ~/.vim_runtime/vimrcs/
 :e ~/.vim_runtime/vimrcs/hal.vim
 :e ~/.vimrc
-:sp
 :e ~/.vim_runtime/
 :help shell
-:wq
 :Q
 :e ~/.bashrc_local
 :e ~/installed_packages.txt
@@ -53,7 +61,6 @@ $
 :ResetCtrlP
 :help :nnoremap
 :set showcmd
-:sh
 :set syntax=php
 :shell
 :e weekly_template.tks
@@ -62,6 +69,14 @@ $
 :s/-/\//
 :help replace
 :redo
+:.,.+850
+:'<,'>q
+:help split
+:hsplit
+:e 2012-11-12.tks
+:.,.+
+:nerdtree
+:w!
 
 # Search String History (newest to oldest):
 ?/number
@@ -79,104 +94,113 @@ $
 # Input Line History (newest to oldest):
 
 # Registers:
-""0	CHAR	0
-	Get emails about Hurricane, reading wiki, setting up 
-"1	LINE	0
-	e
+"0	LINE	0
+	# HAL mappings for Meta + Left and Right arrows in Konsole
+"1	BLOCK	9
+	<danb>    
+	<danb>    
+	<danb>    
 "2	LINE	0
-	" :bnext<CR>
+	
 "3	LINE	0
-	"  
-	" 
+	 -- Hal Henke <hal@catalyst-au.net>  Fri, 23 Nov 2012 13:04:51 +1100
 "4	LINE	0
-	 
-				TO mode						    ~
-				Normal	Visual	Select	Insert	  Replace   Cmd-line  Ex ~
-	FROM mod mode								 ~
-	Normal	al			v V ^V	  *4	 *1	   R gR     : / ? !   Q
-	Visual	al		 *2		  ^G	 c C	    --	      :       --
-	Select	ct		 *5	^O ^G		 *6	    --	      --      --
-	Insert	rt		 <Esc>	  --	  --		  <Insert>    --      --
-	Replace	ace		 <Esc>	  --	  --	<Insert>	      --      --
-	Command-and-line	 *3	  --	  --	 :start	    --		      --
-	Ex			 :vi	  --	  --	 --	    --	      --
+	  * Critical update to ctools
 "5	LINE	0
-	 " How to switch from mode to mode
-			TO mode						    ~
-			Normal	Visual	Select	Insert	  Replace   Cmd-line  Ex ~
-	FROM mode								 ~
-	Normal			v V ^V	  *4	 *1	   R gR     : / ? !   Q
-	Visual		 *2		  ^G	 c C	    --	      :       --
-	Select		 *5	^O ^G		 *6	    --	      --      --
-	Insert		 <Esc>	  --	  --		  <Insert>    --      --
-	Replace		 <Esc>	  --	  --	<Insert>	      --      --
-	Command-line	 *3	  --	  --	 :start	    --		      --
-	Ex		 :vi	  --	  --	 --	    --	      --
-	
+	drupal-site-cat-au-website (20121123-1) unstable; urgency=low
 "6	LINE	0
-	V
-	[Z
-	dddddddd
-			        
-	<
-	OB
-	
-	<
-"7	BLOCK	4
-	 620 
-	  621
-	   62
-"8	BLOCK	3
-	-11-
-	-11-
-	-11-
-	-11-
-	-11-
-"9	BLOCK	1
-	05
-	06
-	07
-	08
-	09
+	  $options["dh-build-dir"] = '/tmp/drupal-site-cat-au-website';
+"7	LINE	0
+	  $options["dh-bump-version"] = true;
+"8	LINE	0
+	  $options["dh-project"] = 'cat-au-website';
+"9	LINE	0
+	201457 	15:00-18:30 Clean up most of the module
 "q	CHAR	0
 	nn
-"-	CHAR	0
-	Get emails about Hurricane, reading wiki, setting up 
+""-	CHAR	0
+	'
 
 # File marks:
-'0  1  0  /etc/X11/xorg.conf
-'1  35  2  ~/work/cat-au-website/NERD_tree_3
-'2  9  45  ~/timesheets/2012_11_19.tks
-'3  5  46  ~/timesheets/2012_11_19.tks
-'4  3  0  ~/timesheets/2012-11-05.tks
-'5  6  0  ~/timesheets/weekly_template.tks
-'6  4  3  ~/.gitignore
-'7  16  0  ~/work/test-sites/standard-drupal-6/themes/garland/NERD_tree_2
-'8  397  0  ~/Documents/"linux mode help.txt"
-'9  2  5  /etc/hosts
+'0  8  21  ~/.gitignore
+'1  38  4  ~/.inputrc
+'2  12  1  ~/.bashrc_local
+'3  4  3  ~/.ssh/config
+'4  5  7  /etc/apache2/sites-available/hurricane-dev
+'5  1  0  /etc/apache2/httpd.conf
+'6  68  57  /etc/X11/xorg.conf
+'7  44  4  /etc/X11/xorg.conf
+'8  4  26  ~/timesheets/2012_11_26.tks
+'9  2  7  ~/work/cat-au-website/sites/all/modules/custom/comment_node_block/comment_node_block.module
 
 # Jumplist (newest first):
+-'  8  21  ~/.gitignore
+-'  4  3  ~/.gitignore
+-'  38  4  ~/.inputrc
+-'  49  0  ~/.inputrc
+-'  12  1  ~/.bashrc_local
+-'  10  0  ~/.bashrc_local
+-'  13  0  ~/.bashrc_local
+-'  21  0  ~/.bashrc_local
+-'  22  0  ~/.bashrc_local
+-'  24  0  ~/.bashrc_local
+-'  25  0  ~/.bashrc_local
+-'  26  0  ~/.bashrc_local
+-'  1  0  ~/.bashrc_local
+-'  4  3  ~/.ssh/config
+-'  1  0  ~/.ssh/config
+-'  5  7  /etc/apache2/sites-available/hurricane-dev
+-'  237  0  /etc/apache2/apache2.conf
+-'  1  0  /etc/apache2/apache2.conf
+-'  1  0  /etc/apache2/httpd.conf
+-'  68  57  /etc/X11/xorg.conf
+-'  44  4  /etc/X11/xorg.conf
 -'  1  0  /etc/X11/xorg.conf
--'  35  2  ~/work/cat-au-website/NERD_tree_3
--'  83  2  ~/work/cat-au-website/NERD_tree_3
--'  1  2  ~/work/cat-au-website/NERD_tree_3
--'  1  0  ~/work/cat-au-website/bump.sh
--'  16  0  ~/work/cat-au-website/NERD_tree_2
--'  33  2  ~/work/cat-au-website/NERD_tree_2
+-'  4  26  ~/timesheets/2012_11_26.tks
+-'  1  0  ~/timesheets/2012_11_26.tks
+-'  2  7  ~/work/cat-au-website/sites/all/modules/custom/comment_node_block/comment_node_block.module
+-'  1  0  ~/work/cat-au-website/sites/all/modules/custom/comment_node_block/comment_node_block.module
+-'  4  1  ~/work/cat-au-website/.git/NERD_tree_2
+-'  5  0  ~/work/cat-au-website/.git/NERD_tree_2
+-'  1  0  ~/work/cat-au-website/.git/NERD_tree_2
+-'  5  0  ~/work/cat-au-website/.git/NERD_tree_1
+-'  1  0  ~/work/cat-au-website/.git/NERD_tree_1
+-'  1  2  ~/work/cat-au-website/.git/info/exclude
+-'  4  1  ~/work/cat-au-website/NERD_tree_2
+-'  7  0  ~/work/cat-au-website/NERD_tree_2
 -'  1  0  ~/work/cat-au-website/NERD_tree_2
--'  33  2  ~/work/cat-au-website/NERD_tree_1
+-'  7  0  ~/work/cat-au-website/NERD_tree_1
 -'  1  0  ~/work/cat-au-website/NERD_tree_1
--'  9  45  ~/timesheets/2012_11_19.tks
--'  5  46  ~/timesheets/2012_11_19.tks
+-'  6  61  ~/work/cat-au-website/.debian/changelog
+-'  13  0  ~/work/cat-au-website/.debian/changelog
+-'  9  0  ~/work/cat-au-website/.debian/changelog
+-'  1  0  ~/work/cat-au-website/.debian/changelog
+-'  5  0  ~/work/cat-au-website/sites/all/modules/comment_node_block/comment_node_block.module
+-'  1  0  ~/work/cat-au-website/sites/all/modules/comment_node_block/comment_node_block.module
+-'  1  0  ~/work/cat-au-website/drushrc.php
+-'  6  0  ~/work/cat-au-website/drushrc.local.php
+-'  1  0  ~/work/cat-au-website/drushrc.local.php
+-'  16  10  ~/timesheets/2012_11_19.tks
+-'  15  5  ~/timesheets/2012_11_19.tks
+-'  21  46  ~/timesheets/2012_11_19.tks
+-'  7  0  ~/timesheets/NERD_tree_1
+-'  8  2  ~/timesheets/NERD_tree_1
+-'  1  0  ~/timesheets/NERD_tree_1
+-'  4  30  ~/timesheets/2012-11-12.tks
+-'  1  0  ~/timesheets/2012-11-12.tks
+-'  9  24  /etc/hosts
+-'  2  5  /etc/hosts
+-'  5  0  ~/timesheets/2012_11_19.tks
+-'  1  0  ~/timesheets/2012-11-19.tks
+-'  1  0  ~/timesheets/NERD_tree_2
+-'  10  2  ~/timesheets/NERD_tree_2
+-'  17  2  ~/timesheets/NERD_tree_1
 -'  1  0  ~/timesheets/2012_11_19.tks
 -'  3  0  ~/timesheets/2012-11-05.tks
 -'  6  0  ~/timesheets/weekly_template.tks
--'  5  0  ~/timesheets/NERD_tree_2
--'  7  2  ~/timesheets/NERD_tree_2
--'  1  0  ~/timesheets/NERD_tree_2
--'  7  2  ~/timesheets/NERD_tree_1
--'  1  0  ~/timesheets/NERD_tree_1
--'  4  3  ~/.gitignore
+-'  14  0  ~/timesheets/NERD_tree_2
+-'  16  2  ~/timesheets/NERD_tree_2
+-'  23  2  ~/timesheets/NERD_tree_1
 -'  1  0  ~/.gitignore
 -'  16  0  ~/work/test-sites/standard-drupal-6/themes/garland/NERD_tree_2
 -'  21  2  ~/work/test-sites/standard-drupal-6/themes/garland/NERD_tree_2
@@ -188,7 +212,6 @@ $
 -'  1  0  ~/work/test-sites/standard-drupal-6/themes/garland/block.tpl.php
 -'  397  0  ~/Documents/"linux mode help.txt"
 -'  346  0  ~/Documents/"linux mode help.txt"
--'  2  5  /etc/hosts
 -'  5  0  /etc/hosts
 -'  1  14  /etc/hostname
 -'  2  2  /etc/hostname
@@ -204,77 +227,305 @@ $
 -'  1  0  ~/work/block_node/example_modules/NERD_tree_1
 -'  1  0  ~/work/block_node/example_modules/node
 -'  9  0  ~/.vim_runtime/vimrcs/basic.vim
--'  16  0  ~/timesheets/NERD_tree_2
--'  22  2  ~/timesheets/NERD_tree_2
+-'  25  0  ~/timesheets/NERD_tree_2
+-'  31  2  ~/timesheets/NERD_tree_2
 -'  288  4  ~/.vim_runtime/README.md
--'  18  0  ~/timesheets/NERD_tree_1
+-'  34  0  ~/timesheets/NERD_tree_1
 -'  1  0  ~/.vimrc
 -'  7  0  ~/timesheets/weekly_template.tks
--'  1  0  ~/timesheets/weekly_template.tks
--'  16  0  ~/tools/.vimrc
--'  1  0  ~/tools/.vimrc
--'  1  0  ~/.viminfo
--'  259  0  ~/keymapping/enlightenment.xmodmap
--'  1  0  ~/keymapping/enlightenment.xmodmap
--'  77  0  ~/.emacs.d/init_files/unix_setup.el
--'  1  0  ~/.emacs.d/init_files/unix_setup.el
--'  108  0  ~/keymapping/current_setup
--'  1  0  ~/keymapping/current_setup
--'  15  24  ~/work/password_tmp.txt
--'  1  0  ~/work/password_tmp.txt
--'  211  0  ~/keymapping/xserver-xorg-core/xorg-server-1.11.4/xkb/xkbUtils.c
--'  1  0  ~/keymapping/xserver-xorg-core/xorg-server-1.11.4/xkb/xkbUtils.c
--'  345  34  ~/.drush/drushrc.php
--'  1  0  ~/.drush/drushrc.php
--'  344  0  ~/.drush/drushrc.php
--'  50  0  ~/.drush/drushrc.php
--'  20  46  ~/work/cat-au-website/sites/default/settings.php
--'  1  0  ~/work/cat-au-website/sites/default/settings.php
--'  1  0  ~/work/cat-au-website/sites/default/settings.
--'  1  0  /etc/postgresql/9.1/main/pg_hba.conf
--'  41  1  /etc/apache2/sites-enabled/000-default
--'  1  0  /etc/apache2/sites-enabled/000-default
--'  9  23  ~/Documents/"linux mode help.txt"
--'  1  0  ~/Documents/"linux mode help.txt"
--'  2  12  ~/Documents/"linux mode help.txt"
--'  1  0  ~/.bashrc_local
--'  67  0  ~/tools/.profile
--'  15  0  ~/tools
--'  1  0  ~/tools/.bash_profile
--'  35  2  ~/work/cat-au-website/NERD_tree_3
--'  83  2  ~/work/cat-au-website/NERD_tree_3
--'  1  2  ~/work/cat-au-website/NERD_tree_3
--'  1  0  ~/work/cat-au-website/bump.sh
--'  16  0  ~/work/cat-au-website/NERD_tree_2
--'  33  2  ~/work/cat-au-website/NERD_tree_2
--'  1  0  ~/work/cat-au-website/NERD_tree_2
--'  33  2  ~/work/cat-au-website/NERD_tree_1
--'  1  0  ~/work/cat-au-website/NERD_tree_1
--'  9  45  ~/timesheets/2012_11_19.tks
--'  5  46  ~/timesheets/2012_11_19.tks
--'  1  0  ~/timesheets/2012_11_19.tks
--'  3  0  ~/timesheets/2012-11-05.tks
--'  6  0  ~/timesheets/weekly_template.tks
 
 # Buffer list:
-%/etc/X11/xorg.conf	1	0
+%~/.gitignore	8	21
 
 # History of marks within files (newest to oldest):
 
-> /etc/X11/xorg.conf
+> ~/.gitignore
+	"	8	21
+	^	8	22
+	.	8	21
+	+	4	3
+	+	6	5
+	+	7	8
+	+	8	21
+
+> ~/.inputrc
+	"	38	4
+	^	49	80
+	.	49	3
+	+	50	0
+	+	45	76
+	+	46	81
+	+	46	2
+	+	46	80
+	+	48	34
+	+	50	0
+	+	51	0
+	+	50	0
+	+	51	0
+	+	50	29
+	+	51	28
+	+	50	7
+	+	51	7
+	+	49	3
+
+> ~/.bashrc_local
+	"	12	1
+	^	8	2
+	.	8	1
+	+	25	0
+	+	7	1
+	+	8	1
+
+> ~/.ssh/config
+	"	4	3
+	^	4	4
+	.	4	3
+	+	4	47
+	+	2	0
+	+	4	20
+	+	2	3
+	+	3	3
+	+	4	3
+	+	3	3
+	+	4	3
+
+> /etc/apache2/apache2.conf
+	"	237	0
+
+> /etc/apache2/sites-available/hurricane-dev
+	"	5	7
+	^	4	22
+	.	4	21
+	+	5	23
+	+	2	0
+	+	4	21
+
+> /usr/share/vim/vim73/doc/eval.txt
+	"	3726	20
+
+> /etc/hosts
+	"	2	9
+	^	5	12
+	.	1	10
+	+	3	16
+	+	9	24
+	+	4	11
+	+	5	11
+	+	4	11
+	+	5	11
+	+	3	10
+	+	2	10
+	+	1	10
+
+> /etc/apache2/httpd.conf
 	"	1	0
+
+> /etc/X11/xorg.conf
+	"	68	57
+	^	68	58
+	.	68	58
+	+	76	0
+	+	69	48
+	+	68	58
+
+> ~/timesheets/2012_11_26.tks
+	"	4	26
+	^	4	27
+	.	4	26
+	+	5	19
+	+	4	26
+
+> ~/work/cat-au-website/sites/all/modules/custom/comment_node_block/comment_node_block.module
+	"	2	7
+	^	2	8
+	.	2	7
+	+	2	7
+
+> ~/timesheets/NERD_tree_1
+	"	1	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/timesheets/NERD_tree_2
+	"	8	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/timesheets/2012_11_19.tks
+	"	31	0
+	^	26	14
+	.	26	13
+	+	10	19
+	+	4	13
+	+	6	13
+	+	4	17
+	+	6	6
+	+	4	6
+	+	7	0
+	+	6	17
+	+	7	6
+	+	7	71
+	+	6	48
+	+	10	199
+	+	4	16
+	+	5	46
+	+	26	31
+	+	27	42
+	+	28	0
+	+	24	5
+	+	23	12
+	+	24	68
+	+	25	11
+	+	26	13
+
+> ~/timesheets/NERD_tree_3
+	"	8	2
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/timesheets/2012-11-12.tks
+	"	4	0
+	^	9	24
+	.	10	14
+	+	16	16
+	+	13	17
+	+	2	9
+	+	5	8
+	+	8	9
+	+	11	9
+	+	14	9
+	+	17	9
+	+	18	10
+	+	20	9
+	+	5	0
+	+	7	0
+	+	10	0
+	+	7	0
+	+	4	30
+	+	7	53
+	+	10	105
+	+	7	4
+	+	2	0
+	+	7	82
+	+	13	37
+	+	16	17
+	+	13	77
+	+	16	102
+	+	4	4
+	+	10	14
+
+> /usr/share/vim/vim73/doc/windows.txt
+	"	2	0
+
+> ~/timesheets/old/2012-11-05.tks
+	"	12	0
+
+> /etc/host
+	"	1	0
+
+> ~/work/cat-au-website/.git/NERD_tree_1
+	"	1	0
+	.	1	0
+	+	1	0
+
+> ~/work/cat-au-website/.git/NERD_tree_2
+	"	4	1
+	.	1	0
+	+	1	0
+
+> ~/work/cat-au-website/.git/info/exclude
+	"	1	2
 
 > ~/work/cat-au-website/NERD_tree_1
 	"	1	0
 	.	1	0
 	+	1	0
 	+	1	0
+	+	1	0
 
 > ~/work/cat-au-website/NERD_tree_2
-	"	16	0
+	"	4	1
 	.	1	0
 	+	1	0
 	+	1	0
+	+	1	0
+
+> ~/work/cat-au-website/.debian/changelog
+	"	6	61
+	^	7	0
+	.	6	60
+	+	5	0
+	+	8	0
+	+	2	38
+	+	10	0
+	+	4	0
+	+	12	0
+	+	6	68
+	+	7	0
+	+	3	0
+	+	6	60
+
+> ~/work/cat-au-website/sites/all/modules/comment_node_block/comment_node_block.module
+	"	5	0
+
+> ~/work/cat-au-website/drushrc.local.php
+	"	6	0
+	.	6	0
+	+	6	0
+	+	6	1
+	+	6	0
+	+	6	0
+	+	5	0
+	+	6	0
+
+> ~/work/cat-au-website/drushrc.php
+	"	1	0
+
+> ~/timesheets/2012-11-19.tks
+	"	1	0
+
+> ~/work/block_node/example_modules/NERD_tree_1
+	"	1	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/work/block_node/example_modules/NERD_tree_2
+	"	5	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/work/block_node/example_modules/formblock/formblock.css
+	"	1	0
+
+> ~/work/block_node/example_modules/NERD_tree_3
+	"	8	4
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/work/block_node/example_modules/formblock/formblock.module
+	"	17	9
+	.	29	0
+	+	29	0
 
 > ~/work/cat-au-website/bump.sh
 	"	1	0
@@ -342,27 +593,6 @@ $
 > ~/work/test-sites/standard-drupal-6/modules/node/node.module
 	"	145	0
 
-> ~/timesheets/2012_11_19.tks
-	"	9	45
-	^	9	46
-	.	9	45
-	+	12	19
-	+	4	13
-	+	6	13
-	+	4	17
-	+	6	6
-	+	4	6
-	+	7	0
-	+	6	17
-	+	7	6
-	+	7	71
-	+	6	48
-	+	12	199
-	+	4	16
-	+	5	46
-	+	8	0
-	+	9	45
-
 > ~/timesheets/2012-11-05.tks
 	"	3	0
 	^	1	7
@@ -428,33 +658,8 @@ $
 	+	3	8
 	+	2	6
 
-> ~/timesheets/NERD_tree_1
-	"	1	0
-	.	1	0
-	+	1	0
-	+	1	0
-
-> ~/timesheets/NERD_tree_2
-	"	5	0
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/timesheets/NERD_tree_3
-	"	6	0
-	.	1	0
-	+	1	0
-	+	1	0
-
 > ~/timesheets/weekly_template.tks
 	"	6	0
-
-> ~/.gitignore
-	"	4	3
-	^	4	4
-	.	4	3
-	+	4	3
 
 > ~/work/test-sites/standard-drupal-6/themes/garland/page.tpl.php
 	"	13	6
@@ -473,43 +678,12 @@ $
 	+	348	0
 	+	346	23
 
-> /etc/hosts
-	"	2	5
-	^	3	17
-	.	3	16
-	+	3	16
-
 > /etc/hostname
 	"	1	14
 	^	2	3
 	.	2	2
 	+	1	17
 	+	2	2
-
-> ~/work/block_node/example_modules/NERD_tree_1
-	"	1	0
-	.	1	0
-	+	1	0
-	+	1	0
-
-> ~/work/block_node/example_modules/NERD_tree_2
-	"	7	0
-	.	1	0
-	+	1	0
-	+	1	0
-
-> ~/work/block_node/example_modules/formblock/formblock.module
-	"	82	2
-	.	29	0
-	+	29	0
-
-> ~/work/block_node/example_modules/NERD_tree_3
-	"	8	0
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
 
 > ~/work/block_node/example_modules/nodesinblock/nodesinblock.module
 	"	216	0
@@ -621,12 +795,6 @@ $
 > /usr/share/vim/vim73/doc/intro.txt
 	"	597	0
 
-> ~/work/cat-au-website/drushrc.local.php
-	"	1	0
-
-> ~/work/cat-au-website/drushrc.php
-	"	1	0
-
 > ~/.drush/drushrc.php
 	"	344	0
 	^	344	0
@@ -718,60 +886,3 @@ $
 
 > ~/work/cat-au-website/index.php
 	"	11	0
-
-> ~/work/cat-au-website/sites/default/settings.
-	"	1	0
-
-> /etc/apache2/sites-enabled/000-default
-	"	41	1
-
-> ~/installed_packages.txt
-	"	66	0
-
-> ~/tools/.profile
-	"	67	0
-
-> ~/tools/.bashrc
-	"	1	0
-
-> ~/tools/.bash_profile
-	"	1	0
-
-> ~/.bashrc_local
-	"	1	0
-
-> ~/Downloads/emacs-24.2/config.status
-	"	624	0
-
-> ~/Downloads/emacs-24.2/configure
-	"	1	0
-
-> ~/Downloads/emacs-24.2/make-dist
-	"	291	0
-
-> ~/Downloads/emacs-24.2/Makefile.in
-	"	96	46
-
-> ~/Downloads/emacs-24.2/README
-	"	76	0
-
-> ~/Downloads/emacs-24.2/Makefile
-	"	96	46
-
-> ~/Downloads/emacs-24.2/INSTALL
-	"	94	1
-
-> /etc/network/interfaces
-	"	5	19
-	^	5	20
-	.	5	20
-	+	3	0
-	+	5	20
-
-> ~/.ssh/id_rsa.pub
-	"	1	387
-	^	1	388
-	.	1	387
-	+	1	391
-	+	1	0
-	+	1	387
