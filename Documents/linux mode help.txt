@@ -190,12 +190,22 @@ which meant we dont have to provide passwords for local connections (in drush at
 
 * Git
 
-Show all files in a commit
+** Show all files in a commit
 $ git ls-tree --name-only -r 5ff6ef6dccd7f57d30c2bcc9c3fb203a25930e12
 
-Show all changes in a committ
+** Show all changes in a committ
 $ git diff-tree --name-only -r <commit-ish>
 
+** Merging from  a specific tag
+$ git merge tag
+
+** Show all branches that match a given pattern
+git branch --list pattern
+e.g.
+$ git branch --list *green*
+> * mdl19-greenmedicine
+** Show log on remote branch
+$ git log -2 origin/mdl19-greenmedicine
 ** Problems
 
 *** Git wont add files from a directory
@@ -210,14 +220,14 @@ or more properly
 $ git rm --cached  /path/to/directory
 * Git commands
 
-List all files in a branch (recursively)
+** List all files in a branch (recursively)
 git ls-tree -r branch
 
 git ls-tree -r branch | wc -l
 
 git diff --name-only updates_2012_11-core-upgrade upstream/6.x |wc -l
 
-What bevan did:
+** What bevan did:
 git branch updates_2012_11-core-upgrade
 git checkout updates_2012_11-core-upgrade
 git checkout upstream/catalyst-6.x
@@ -313,6 +323,7 @@ Then you are probably not working in a git repository
  - if you didnt clone it somewhere then just 'git ini't
 
 *** version number fuck up
+See also [internal link]
 Drush will ask you if you want to bump (and tag) the package
 Inside your site directory there will be a .debian directory with a changelog file
 i.e.
@@ -742,6 +753,8 @@ will enable the xorg:nvidia-185 driver
 _Show info about a linux kernel module_
 Or look at /lib/modules
 
+** lsmod
+_Show the status of modules/drivers_
 * Adding my passphrase to my ssh shell settings
 used the command 
 ssh-add
@@ -756,7 +769,7 @@ host *
    2     forwardAgent yes
 #+END_SRC 
 
-
+  
 * Setting up VirtualBox
 Get an iso disk image of the requested distribution
 
@@ -812,3 +825,37 @@ will commit your file to the server.
 
 http://rubyenterpriseedition.googlecode.com/files/ruby-enterprise_1.8.7-2012.02_amd64_ubuntu10.04.deb
 http://rubyforge.org/frs/download.php/66163/ruby-enterprise_1.8.7-2009.10_amd64.deb
+
+
+* Fucking annoying command line error in Konsole
+
+Sometimes when i go back through history via up arrow part of the command gets "stuck" on the command line e.g.
+scp  mynbcs-rails201
+git remote add publi
+
+interesting that its the same number of characters.
+Due to .inputrc?
+Fiddling with prompt in .bashrc_local?
+Changing key commands in Konsole shortcuts?
+
+Seems it had something to dow with my attempts to modify my prompt with colours and escape sequences 
+and shit that was probably not quite done properly
+
+* Removing a key from your known_hosts file
+e.g. for caldara:
+ssh-keygen -f "/home/hal/.ssh/known_hosts" -R caldara
+
+
+* Extract a password from a password_tmp.txt file
+$ gpg -d pasword_tmp.txt
+
+
+* Building a debian package
+** Fucking up the version number and having to fix it
+Just say the version number doesnt bump
+
+Then edit the debian/changelog file and manually change the version number e.g.
+from
+moodle-site-greenmedicine (1.9.19.20120702-1ubuntu1) precise; urgency=low
+to
+moodle-site-greenmedicine (1.9.20.20120702-1ubuntu1) precise; urgency=low

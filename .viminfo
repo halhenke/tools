@@ -17,12 +17,12 @@
 $
 
 # Command Line History (newest to oldest):
-:q
+:wq
 :w
+:q
 :e ~/.inputrc
 :vsplit
 :sp
-:wq
 :e /etc/hosts
 :help indent
 :e /etc/apache2/sites-available/hurricane-dev
@@ -79,12 +79,12 @@ $
 :w!
 
 # Search String History (newest to oldest):
+?/-///
 ?/number
 ?/usr
 ?/75
 ?/blocks
 ? -
-?/-///
 ?/block
 
 # Expression History (newest to oldest):
@@ -95,7 +95,7 @@ $
 
 # Registers:
 "0	LINE	0
-	# HAL mappings for Meta + Left and Right arrows in Konsole
+	#------------------------------------
 "1	BLOCK	9
 	<danb>    
 	<danb>    
@@ -119,21 +119,31 @@ $
 "q	CHAR	0
 	nn
 ""-	CHAR	0
-	'
+	Fix
 
 # File marks:
-'0  8  21  ~/.gitignore
-'1  38  4  ~/.inputrc
-'2  12  1  ~/.bashrc_local
-'3  4  3  ~/.ssh/config
-'4  5  7  /etc/apache2/sites-available/hurricane-dev
-'5  1  0  /etc/apache2/httpd.conf
-'6  68  57  /etc/X11/xorg.conf
-'7  44  4  /etc/X11/xorg.conf
-'8  4  26  ~/timesheets/2012_11_26.tks
-'9  2  7  ~/work/cat-au-website/sites/all/modules/custom/comment_node_block/comment_node_block.module
+'0  33  5  ~/timesheets/2012_11_26.tks
+'1  18  0  /etc/hosts
+'2  30  8  ~/timesheets/2012_11_26.tks
+'3  1  0  /etc/apt/sources.list
+'4  27  13  ~/timesheets/2012_11_26.tks
+'5  45  0  ~/timesheets/2012_11_26.tks
+'6  16  44  ~/timesheets/2012_11_26.tks
+'7  8  21  ~/.gitignore
+'8  38  4  ~/.inputrc
+'9  12  1  ~/.bashrc_local
 
 # Jumplist (newest first):
+-'  33  5  ~/timesheets/2012_11_26.tks
+-'  30  8  ~/timesheets/2012_11_26.tks
+-'  18  0  /etc/hosts
+-'  2  9  /etc/hosts
+-'  29  10  ~/timesheets/2012_11_26.tks
+-'  1  0  /etc/apt/sources.list
+-'  27  13  ~/timesheets/2012_11_26.tks
+-'  45  0  ~/timesheets/2012_11_26.tks
+-'  16  44  ~/timesheets/2012_11_26.tks
+-'  4  26  ~/timesheets/2012_11_26.tks
 -'  8  21  ~/.gitignore
 -'  4  3  ~/.gitignore
 -'  38  4  ~/.inputrc
@@ -156,7 +166,6 @@ $
 -'  68  57  /etc/X11/xorg.conf
 -'  44  4  /etc/X11/xorg.conf
 -'  1  0  /etc/X11/xorg.conf
--'  4  26  ~/timesheets/2012_11_26.tks
 -'  1  0  ~/timesheets/2012_11_26.tks
 -'  2  7  ~/work/cat-au-website/sites/all/modules/custom/comment_node_block/comment_node_block.module
 -'  1  0  ~/work/cat-au-website/sites/all/modules/custom/comment_node_block/comment_node_block.module
@@ -188,8 +197,7 @@ $
 -'  1  0  ~/timesheets/NERD_tree_1
 -'  4  30  ~/timesheets/2012-11-12.tks
 -'  1  0  ~/timesheets/2012-11-12.tks
--'  9  24  /etc/hosts
--'  2  5  /etc/hosts
+-'  10  24  /etc/hosts
 -'  5  0  ~/timesheets/2012_11_19.tks
 -'  1  0  ~/timesheets/2012-11-19.tks
 -'  1  0  ~/timesheets/NERD_tree_2
@@ -225,19 +233,154 @@ $
 -'  1  0  ~/work/block_node/example_modules/NERD_tree_2
 -'  8  2  ~/work/block_node/example_modules/NERD_tree_1
 -'  1  0  ~/work/block_node/example_modules/NERD_tree_1
--'  1  0  ~/work/block_node/example_modules/node
--'  9  0  ~/.vim_runtime/vimrcs/basic.vim
--'  25  0  ~/timesheets/NERD_tree_2
--'  31  2  ~/timesheets/NERD_tree_2
--'  288  4  ~/.vim_runtime/README.md
--'  34  0  ~/timesheets/NERD_tree_1
--'  1  0  ~/.vimrc
--'  7  0  ~/timesheets/weekly_template.tks
 
 # Buffer list:
-%~/.gitignore	8	21
+%~/timesheets/2012_11_26.tks	33	5
 
 # History of marks within files (newest to oldest):
+
+> ~/timesheets/2012_11_26.tks
+	"	33	5
+	^	33	6
+	.	33	5
+	+	5	19
+	+	4	26
+	+	17	5
+	+	18	0
+	+	19	0
+	+	20	0
+	+	24	31
+	+	21	5
+	+	17	6
+	+	18	6
+	+	19	6
+	+	20	6
+	+	21	6
+	+	20	6
+	+	19	6
+	+	18	6
+	+	15	0
+	+	22	6
+	+	24	6
+	+	23	115
+	+	19	20
+	+	18	19
+	+	17	20
+	+	14	57
+	+	15	20
+	+	16	44
+	+	47	0
+	+	27	13
+	+	28	0
+	+	29	10
+	+	30	34
+	+	27	0
+	+	29	8
+	+	33	4
+	+	32	7
+	+	37	10
+	+	34	11
+	+	35	27
+	+	28	6
+	+	27	7
+	+	30	49
+	+	31	17
+	+	32	1
+	+	37	11
+	+	38	5
+	+	37	87
+	+	36	10
+	+	33	10
+	+	28	6
+	+	27	16
+	+	28	65
+	+	29	38
+	+	30	19
+	+	31	19
+	+	30	59
+	+	38	39
+	+	36	14
+	+	34	33
+	+	33	22
+	+	36	77
+	+	33	65
+	+	38	0
+	+	37	6
+	+	36	6
+	+	35	5
+	+	34	6
+	+	33	5
+
+> ~/moodle/moodle-r2/debian/changelog
+	"	1	0
+	.	1	32
+	+	1	32
+
+> ~/.ssh/known_hosts
+	"	3	0
+	.	3	0
+	+	3	0
+	+	26	0
+	+	3	0
+
+> ~/.bash_logout
+	"	17	18
+	^	17	19
+	.	17	18
+	+	16	49
+	+	17	18
+
+> ~/.bashrc_local
+	"	14	20
+	^	14	21
+	.	14	20
+	+	27	0
+	+	7	1
+	+	8	1
+	+	59	1
+	+	57	1
+	+	41	0
+	+	42	0
+	+	43	0
+	+	44	0
+	+	33	0
+	+	31	0
+	+	22	26
+	+	20	0
+	+	22	6
+	+	20	102
+	+	13	24
+	+	14	20
+
+> ~/.bash_history
+	"	1973	0
+
+> ~/totara/totara/.git/config
+	"	16	48
+	.	16	48
+	+	16	48
+
+> /etc/hosts
+	"	18	0
+	^	18	0
+	.	17	0
+	+	3	16
+	+	10	24
+	+	4	11
+	+	5	11
+	+	4	11
+	+	5	11
+	+	3	10
+	+	2	10
+	+	1	10
+	+	13	43
+	+	11	29
+	+	7	36
+	+	16	0
+	+	17	0
+
+> /etc/apt/sources.list
+	"	1	0
 
 > ~/.gitignore
 	"	8	21
@@ -268,14 +411,6 @@ $
 	+	51	7
 	+	49	3
 
-> ~/.bashrc_local
-	"	12	1
-	^	8	2
-	.	8	1
-	+	25	0
-	+	7	1
-	+	8	1
-
 > ~/.ssh/config
 	"	4	3
 	^	4	4
@@ -303,20 +438,6 @@ $
 > /usr/share/vim/vim73/doc/eval.txt
 	"	3726	20
 
-> /etc/hosts
-	"	2	9
-	^	5	12
-	.	1	10
-	+	3	16
-	+	9	24
-	+	4	11
-	+	5	11
-	+	4	11
-	+	5	11
-	+	3	10
-	+	2	10
-	+	1	10
-
 > /etc/apache2/httpd.conf
 	"	1	0
 
@@ -327,13 +448,6 @@ $
 	+	76	0
 	+	69	48
 	+	68	58
-
-> ~/timesheets/2012_11_26.tks
-	"	4	26
-	^	4	27
-	.	4	26
-	+	5	19
-	+	4	26
 
 > ~/work/cat-au-website/sites/all/modules/custom/comment_node_block/comment_node_block.module
 	"	2	7
@@ -855,34 +969,3 @@ $
 
 > ~/keymapping/enlightenment.xmodmap
 	"	259	0
-
-> ~/.emacs.d/init_files/unix_setup.el
-	"	77	0
-
-> ~/keymapping/current_setup
-	"	108	0
-
-> ~/work/password_tmp.txt
-	"	15	24
-	^	15	25
-	.	16	0
-	+	16	0
-
-> ~/keymapping/xserver-xorg-core/xorg-server-1.11.4/xkb/xkbUtils.c
-	"	211	0
-
-> /etc/postgresql/9.1/main/pg_hba.conf
-	"	97	24
-	^	93	69
-	.	93	68
-	+	85	0
-	+	86	0
-	+	85	0
-	+	86	68
-	+	92	0
-	+	91	0
-	+	92	68
-	+	93	68
-
-> ~/work/cat-au-website/index.php
-	"	11	0

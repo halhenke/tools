@@ -13,3 +13,5 @@ case "`tty`" in
     /dev/tty[0-9]) clear
 esac
 
+# HAL - kill ssh-agent (helps to persist ssh-add)
+kill $SSH_AGENT_PID
