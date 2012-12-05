@@ -1,0 +1,59 @@
+# echo "inputrc called..."
+
+# This is also currently set in bash_profile
+## arrow up
+"\e[A":history-search-backward
+## arrow down
+"\e[B":history-search-forward
+
+set completion-ignore-case on
+
+# LETS TRY GETTING SOME OTHER STUFF HAPPENING
+# "\C-w": unix-word-rubout
+"\C-W": kill-region
+# This is the equivalent of copy - we want to bind it to "s-C" if possible
+"^[m": copy-region-as-kill
+# "\M-W": copy-region-as-kill
+
+## TRYING TO GET SUPER/COMMAND KEY WORKING
+# set output-meta off
+# set convert-meta on
+# set input-meta off
+# set meta-flag off
+
+
+#-----------------------------------------------------------------------
+# bind -V output
+# convert-meta is set to `off'
+# input-meta is set to `on'
+# output-meta is set to `on'
+# meta-flag is set to `on'
+#-----------------------------------------------------------------------
+# OTHER INFO
+# don't strip characters to 7 bits when reading
+# set input-meta on
+
+# allow iso-latin1 characters to be inserted rather
+# than converted to prefix-meta sequences
+# set convert-meta off
+
+# display characters with the eighth bit set directly
+# rather than as meta-prefixed characters
+# set output-meta on
+#-----------------------------------------------------------------------
+# output of iTerm2
+# $ bind -V | grep meta
+# convert-meta is set to `off'
+# enable-meta-key is set to `on'
+# input-meta is set to `on'
+# meta-flag is set to `on'
+# output-meta is set to `on'
+
+# output of Terminal
+# bind -V|grep meta
+# convert-meta is set to `on'
+# enable-meta-key is set to `on'
+# input-meta is set to `off'
+# meta-flag is set to `off'
+# output-meta is set to `off'
+#-----------------------------------------------------------------------
