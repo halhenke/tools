@@ -1,0 +1,21 @@
+commit 0e88f0216f6410ba037fb40f5c4c375f3e82c042
+Author: Bryce Harrington <bryce@canonical.com>
+Date:   Mon Apr 30 14:18:49 2012 -0700
+
+    latin: Add dead_hook and dead_horn to J key level 3, 4
+    
+    Signed-off-by: Bryce Harrington <bryce@canonical.com>
+
+diff --git a/symbols/latin b/symbols/latin
+index 77b99d4..424768e 100644
+--- a/symbols/latin
++++ b/symbols/latin
+@@ -35,7 +35,7 @@ xkb_symbols "basic" {
+     key <AC04>	{ [         f,          F,      dstroke,  ordfeminine ]	};
+     key <AC05>	{ [         g,          G,          eng,          ENG ]	};
+     key <AC06>	{ [         h,          H,      hstroke,      Hstroke ]	};
+-    key <AC07>	{ [         j,          J,            j,            J ]	};
++    key <AC07>	{ [         j,          J,    dead_hook,    dead_horn ] };
+     key <AC08>	{ [         k,          K,          kra,    ampersand ]	};
+     key <AC09>	{ [         l,          L,      lstroke,      Lstroke ]	};
+     key <AC10>	{ [ semicolon,    colon, dead_acute, dead_doubleacute ]	};

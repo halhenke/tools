@@ -1,0 +1,22 @@
+commit 518c769df2e9ce70cb721769a08b81504f243b2a
+Author: Sergey V. Udaltsov <svu@gnome.org>
+Date:   Sat Mar 24 22:16:47 2012 +0000
+
+    For fr(oss), some application can't handle space caracter properly
+    
+    https://bugs.freedesktop.org/show_bug.cgi?id=15804
+
+diff --git a/symbols/fr b/symbols/fr
+index c58eb0d..0bf0be2 100644
+--- a/symbols/fr
++++ b/symbols/fr
+@@ -125,7 +125,8 @@ xkb_symbols "oss" {
+ 
+     include "latin"
+     include "level3(ralt_switch)"
+-    include "nbsp(level4nl)"
++    include "nbsp(level4n)"
++    include "level5(rctrl_switch)"
+     include "keypad(oss)"
+ 
+     name[Group1]="French (alternative)";

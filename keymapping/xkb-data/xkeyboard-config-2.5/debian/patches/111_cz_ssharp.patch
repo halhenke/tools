@@ -1,0 +1,21 @@
+commit 8640e24c91e80675016458d50d7a1ad8546e32ff
+Author: Sergey V. Udaltsov <svu@gnome.org>
+Date:   Sun Apr 8 05:41:11 2012 +0100
+
+    Czech (qwerty) layout has " instead of ß in the 4th level
+    
+    https://bugs.freedesktop.org/show_bug.cgi?id=48252
+
+diff --git a/symbols/cz b/symbols/cz
+index 25fd54a..db3dd48 100644
+--- a/symbols/cz
++++ b/symbols/cz
+@@ -90,7 +90,7 @@ xkb_symbols "qwerty" {
+ 
+     key <AB01>	{ [         z,          Z,       degree,         NoSymbol ] };
+     key <AC10>	{ [     uring,   quotedbl,    semicolon,            colon ] };
+-    key <AC11>	{ [   section,     exclam,   apostrophe,         quotedbl ] };
++    key <AC11>	{ [   section,     exclam,   apostrophe,           ssharp ] };
+     key <AD06>	{ [         y,          Y,     NoSymbol,         NoSymbol ] };
+     key <AD11>	{ [    uacute,      slash,  bracketleft,        braceleft ] };
+     key <AD12>	{ [parenright,  parenleft, bracketright,       braceright ] };

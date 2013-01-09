@@ -1,0 +1,18 @@
+commit a76516530698afb567230f367c04b804ebda044b
+Author: Sergey V. Udaltsov <svu@gnome.org>
+Date:   Tue May 1 00:37:26 2012 +0100
+
+    Added missing tilde to dk(dvorak)
+    
+    https://bugs.freedesktop.org/show_bug.cgi?id=49312
+
+diff --git a/symbols/dk b/symbols/dk
+index 1187a99..1deea28 100644
+--- a/symbols/dk
++++ b/symbols/dk
+@@ -69,4 +69,5 @@ xkb_symbols "dvorak" {
+     include "no(dvorak)"
+ 
+     name[Group1]= "Danish (Dvorak)";
++    key <AD12> { [  asciitilde, asciicircum, dead_diaeresis, dead_tilde ] };
+ };

@@ -33,6 +33,9 @@
 ;; Enables a mode where when a region is highlighted/active and text is entered that region is deleted/killed rather than deselected
 ;; see also pc-selection-model
 (delete-selection-mode 1)
+
+;; Lets have lines wrap at the edge of the screen at word boundaries by default....
+(global-visual-line-mode  1)
 ;; ;; If this is true then we will never have to type out full "yes" or "no" to confirm changes
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;; OR
@@ -42,6 +45,8 @@
 ;; (set 'scroll-preserve-screen-position nil)
 ;; Enable Line numbers in margins of all buffers
 (global-linum-mode 1)
+;; Enable column number
+(column-number-mode 1)
 ;; Web derived theme stuff.
 ;; This is now defined in OS-specific setup ~/.emacs.d/init_files
 
@@ -112,16 +117,77 @@
 ;----------------------------------------------------------------------
 
 
+
+
+;=========================
+;; GETTING/REQUIRING PACKAGES
+;=========================
 ;----------------------------------------------------------------------
+;; SELF-INSTALLED PACKAGE DIRECTORY
 ;; Attempting to set up my own official location for 
 ;; self installed packages and code
 ;----------------------------------------------------------------------
 (add-to-list 'load-path "~/.emacs.d/packages/") 
+;----------------------------------------------------------------------
+;----------------------------------------------------------------------
+;;  EL-GET
+;; Information on recipe structure can be found (annoyingly) by 
+;; C-h v el-get-sources
+;----------------------------------------------------------------------
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+;; If we dont have el-get - install it. Pretty neat
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+;----------------------------------------------------------------------
+;; RECIPES
+;----------------------------------------------------------------------
+;; Attempting to create recipes for my stuff - either set el-get-sources or in recipe directory...i think
+;; Might be able to set arbitrary list name if you explicitly call it with el-get....Cant remember
+(setq 
+ el-get-sources 
+ '((:name org-mode-experiment
+	  ;; Commit b63f5333e7bbab900b134584d07e158aeba14844 has the EXPERIMENTAL/org-export.el file with the org-export-set-backend function that we need in org-mediawiki
+	  ;; Later versions do not have this - org-export.el is now in contrib/lisp but does not have the org-export-set-backend function
+	  ;; The code for this package seems to have changed considerably....
+	  :description "Experimental stuff for org-mode - necessary to get org-mode to media-wiki export going..."
+	  :type git
+	  :url "git://repo.or.cz/org-mode.git"
+	  :checkout "b63f5333e7bbab900b134584d07e158aeba14844"
+	  ;; :post-init (add-to-list 'load-path "~/.emacs.d/el-get/org-mode-experiment/EXPERIMENTAL")
+	  ;; :load-path ("EXPERIMENTAL") ;; Equivalent to above :post-init instruction
+	  ;; :load-path ("./contrib/lisp" "./lisp")
+	  )
+   (:name org-media-wiki	  
+	  :description "Export/convert from org-mode to media-wiki format - NOTE this dependds on an outdated version of org-mode and as such seems to be way more trouble than its worth"
+	  :depends org-mode-experiment
+	  :type http
+	  :url "http://lumiere.ens.fr/~guerry/u/org-mediawiki.el"
+	  ;; :features org-mediawiki
+	  )))
+(el-get 'sync)
+;----------------------------------------------------------------------
+;; Org-Media-Wiki
+;----------------------------------------------------------------------
+;; (add-to-list 'load-path "~/.emacs.d/el-get/org-mode-experiment/EXPERIMENTAL")
+;; (load "org-mediawiki")
+;----------------------------------------------------------------------
+;;  Revert All Buffers
+;----------------------------------------------------------------------
 ;; This package provides revbufs command to automatically and safely revert all buffers e.g. after git checkout branch
 (require 'revbufs)
-
 ;----------------------------------------------------------------------
-
+;;  Web Mode
+;----------------------------------------------------------------------
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 ;----------------------------------------------------------------------
 ; Setting up SLIME LISP interactive editing
 ;----------------------------------------------------------------------
@@ -131,15 +197,12 @@
 (require 'slime)
 (slime-setup)
 ;----------------------------------------------------------------------
-
-;----------------------------------------------------------------------
 ; Setting up nxHTML for mixed mode HTML editing (ruby/rails etc)
 ;----------------------------------------------------------------------
-(load "~/.emacs.d/nxhtml/autostart.el")
+;; Yeah i kind of hate this mode
+;; (load "~/.emacs.d/nxhtml/autostart.el")
 ;----------------------------------------------------------------------
-
-;----------------------------------------------------------------------
-; Adding stuff to the list of where we can install packages from
+; Adding sources to the list of where we can install packages from
 ;----------------------------------------------------------------------
 ;; Add the original Emacs Lisp Package Archive
 (require 'package)
@@ -148,6 +211,8 @@
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives
              '("elpa" . "http://tromey.com/elpa/"))
+;----------------------------------------------------------------------
+
 ;----------------------------------------------------------------------
 ;; Wrapping Search
 ;----------------------------------------------------------------------
@@ -178,8 +243,10 @@
 ;;     (ad-enable-advice 'isearch-forward 'after 'isearch-forward-no-fail)
 ;;     (ad-activate 'isearch-forward)))
 ;----------------------------------------------------------------------
-; Hals Custom Key Bindings
-; 
+
+;=========================
+; HALS CUSTOM KEY BINDINGS
+;=========================
 ;; A quick note about binding formats to use: 
 ;; WARNING - when doing keybindings either do (kbd "s-r") or <s-r> but DONT do "<s-r>" - this ended up binding <, <s, <s- and <s-r to prefix commands in my keymap! 
 ; Also dont do (kbd "<s-[>") unless you have to put <> round thee sequence - it will bind something that wont be triggered when you press 
@@ -193,7 +260,6 @@
 ;; [8388617]
 ;; (kbd "<s>-TAB")
 ;; [s 45 84 65 66]
-
 ;----------------------------------------------------------------------
 ;; MAC OSX SPECIFIC BINDINGS
 ;----------------------------------------------------------------------
@@ -452,8 +518,60 @@ should turn the current window into 4 new windows."
 ;----------------------------------------------------------------------
 
 
-;----------------------------------------------------------------------
+;=========================
 ;; MODE SPECIFIC BINDINGS, COMMANDS, AND SETTINGGS
+;=========================
+;----------------------------------------------------------------------
+;;  Outline Minor Mode
+;----------------------------------------------------------------------
+;; Try to get some nicer behaviour in outline minor mode for code folding...
+;----------------------------------------------------------------------
+;; For now - this bit is disabled - the keybindings seemed to not go away after 
+;; outline-minor-mode was disabled - at least in the same buffer - weird...
+;; Actually no - it adds the keybindings to PHP-mode rather than outline-minor-mode. Stupid.
+;; Even doing
+;; (setq php-mode-user-hook nil)
+;; doesnt restore php-mode key bindings to normal
+
+
+;;     (defun show-onelevel ()
+;;       "show entry and children in outline mode"
+;;       (interactive)
+;;       (show-entry)
+;;       (show-children))
+;; ;; Some better/more useful  bindings
+;;     (defun cjm-outline-bindings ()
+;;       "sets shortcut bindings for outline minor mode"
+;;       (interactive)
+;;       (local-set-key [?\C-,] 'hide-sublevels)
+;;       (local-set-key [?\C-.] 'show-all)
+;;       (local-set-key [C-up] 'outline-previous-visible-heading)
+;;       (local-set-key [C-down] 'outline-next-visible-heading)
+;;       (local-set-key [C-left] 'hide-subtree)
+;;       (local-set-key [C-right] 'show-onelevel)
+;;       (local-set-key [M-up] 'outline-backward-same-level)
+;;       (local-set-key [M-down] 'outline-forward-same-level)
+;;       (local-set-key [M-left] 'hide-subtree)
+;;       (local-set-key [M-right] 'show-subtree))
+;; (add-hook 'outline-minor-mode-hook
+;;               'cjm-outline-bindings) 
+;; Better for PHP mode
+(add-hook 'php-mode-user-hook
+	  '(lambda ()
+	     (outline-minor-mode)
+	     (setq outline-regexp " *\\(private funct\\|public funct\\|funct\\|class\\|#head\\)")
+	     (hide-sublevels 1)))
+;; Better for Python mode
+(add-hook 'python-mode-hook
+	  '(lambda ()
+	     (outline-minor-mode)
+	     (setq outline-regexp " *\\(def \\|clas\\|#hea\\)")
+	     (hide-sublevels 1)))
+;----------------------------------------------------------------------
+;;  Org Mode
+;----------------------------------------------------------------------
+(set 'org-support-shift-select 1)
+(set 'org-replace-disputed-keys 1)
 ;----------------------------------------------------------------------
 ;;* ELISP Mode 
 ;----------------------------------------------------------------------
@@ -613,15 +731,16 @@ Basically so I can quickly grab the contents of a buffer and chuck it into jsFid
        ;; (require 'ido)
        ;;(ido-mode t) ; I really think I hate this mode....
      
-       ;; Rinari
-       (add-to-list 'load-path "~/.emacs.d/elpa/rinari-2.9")
-       (add-to-list 'load-path "~/.emacs.d/elpa/inf-ruby-2.2.3")
-       (add-to-list 'load-path "~/.emacs.d/elpa/ruby-mode-1.1")
-       (add-to-list 'load-path "~/.emacs.d/elpa/ruby-compilation-0.8")
-       (add-to-list 'load-path "~/.emacs.d/elpa/jump-2.1")
-       (add-to-list 'load-path "~/.emacs.d/elpa/findr-0.7")
-       (add-to-list 'load-path "~/.emacs.d/elpa/inflections-1.0")
-       (require 'rinari)
+;; BURY IT
+       ;; ;; Rinari
+       ;; (add-to-list 'load-path "~/.emacs.d/elpa/rinari-2.9")
+       ;; (add-to-list 'load-path "~/.emacs.d/elpa/inf-ruby-2.2.3")
+       ;; (add-to-list 'load-path "~/.emacs.d/elpa/ruby-mode-1.1")
+       ;; (add-to-list 'load-path "~/.emacs.d/elpa/ruby-compilation-0.8")
+       ;; (add-to-list 'load-path "~/.emacs.d/elpa/jump-2.1")
+       ;; (add-to-list 'load-path "~/.emacs.d/elpa/findr-0.7")
+       ;; (add-to-list 'load-path "~/.emacs.d/elpa/inflections-1.0")
+       ;; (require 'rinari)
 ;----------------------------------------------------------------------
 
 
@@ -674,15 +793,6 @@ Basically so I can quickly grab the contents of a buffer and chuck it into jsFid
 ;; C-u M-x shell will let you open multiple shells
 ;; All the lisp files for the current installation of emacs are in:
  ;; /Applications/Emacs.app/Contents/Resources/lisp:
-;; hotgirlsforall.com
-;; veryniceteens.com
-;; fallenteenangels.com
-;; kittyangels.com
-;; gallerysex.net
-;; themilf.net
-;; karupsdb.com/tgp.php
-;; http://wildteenfuck.com/
-;; http://www.dinathumbs.com/
 ;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------

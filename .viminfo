@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/-
+~MSle0~/vim
 
 # Last Substitute Search Pattern:
 ~MSle0&-
@@ -17,24 +17,39 @@
 $
 
 # Command Line History (newest to oldest):
-:wq
-:w
 :q
+:w
+:wq
+:.,.+1200
+:e .
+:e 2012-12-31.tks
+:e 2012-12-24.tks
+:.,.+13
+:e 2012-12-17.tks
+:e 2012-12-10.tks
+:e 2012-12-03.tks
+:e ./2012-12-17.tks
+:.,.+1330
+:cd ..
+:NERDTree
+:pwd
+:set lines
+:e .vim_runtime/
+:.,.+910
+:q!
+:.,.+1430-
+:Q
 :e ~/.inputrc
 :vsplit
 :sp
 :e /etc/hosts
 :help indent
 :e /etc/apache2/sites-available/hurricane-dev
-:q!
 :!git blame %
 :e drushrc.php
 :e old/2012-11-05.tks
-:NERDTree
 :sh
-:e .
 :cd themes/garland/
-:pwd
 :wq!
 :q!Q
 :e
@@ -48,7 +63,6 @@ $
 :e ~/.vimrc
 :e ~/.vim_runtime/
 :help shell
-:Q
 :e ~/.bashrc_local
 :e ~/installed_packages.txt
 :comclear
@@ -77,15 +91,32 @@ $
 :.,.+
 :nerdtree
 :w!
+:wQ!
+:e .gi
+:e ~/.git/COMMIT_EDI
+:host
+:e .gconf/
+:e drupal_name_plugin_reversed-diff.patch
 
 # Search String History (newest to oldest):
+?/  
+?/vim
+? \<202066\>
 ?/-///
+?/work request - leave
+? \<15\>
 ?/number
 ?/usr
 ?/75
 ?/blocks
 ? -
 ?/block
+?/from
+?/Learning about deployment with dh-make vs
+?/| 
+?/Page Down ^[[6~
+? \V#\%#
+?/fullname/
 
 # Expression History (newest to oldest):
 
@@ -95,221 +126,1408 @@ $
 
 # Registers:
 "0	LINE	0
-	#------------------------------------
-"1	BLOCK	9
-	<danb>    
-	<danb>    
-	<danb>    
-"2	LINE	0
+	16:45-16:55 - Block is set up
+"1	CHAR	0
+	Investigate Twitter API
+	
+"2	CHAR	0
+	Investigate Twitter API
 	
 "3	LINE	0
-	 -- Hal Henke <hal@catalyst-au.net>  Fri, 23 Nov 2012 13:04:51 +1100
+	2016111 10:00-10:20
 "4	LINE	0
-	  * Critical update to ctools
+	
+	[QUOTE=14119490][i]Originally posted by Damborgson [/i]
+	[B]Yep I knew about those and figured they would come up sooner or later. 
+	
+	Thankfully, the scene includes more than just the " " to back up the ko theory. Otherwise those scans would pretty much put an end to it.
+	[/QUOTE]
+	
+	I dont really see anything else to indicate he was KOed myself.
+	
+	[QUOTE]
+	497
+<the moments you put up, all were around a large flash, explosion of some sort. In my opinion, it was like saying the sound was drowned out. In Nuls case, like in galactus' case, there was no such thing at the moment of the " " to suggest the drowning out of the sound. Yeah they're in space, but one being powered by asgardian magic and the other one being...Galactus ends that theory right there. So while yes of course the " " can simply be done for a big moment effect, I think there's still
+	enough evidence around for it to easily be considered a flash ko under the circumstances. [/B][/QUOTE] 
+	
+	493
+<I think the main thing here is that the argument is now very different.  We now have no examples to my knowledge, of Fraction using the empty speech bubble to represent unconsciousness. The Galactus example is a bit different as he has the "..." rather than the empty speech bubble. That may be splitting hairs or it may be significant. But what we do have is several examples of the speech form being used to denote what could be interpreted as speech being drowned out by a large noise or
+	as characters reacting to a huge event.
+	
+	273
+<Speaking for myself i dont really subscribe to the "sound not being audible in space theory". For me the scene depicts Nul looking down at the Earth after finding himself in orbit and his reaction to that. But if anything the speech bubble clearly denotes consciousness.
 "5	LINE	0
-	drupal-site-cat-au-website (20121123-1) unstable; urgency=low
+	
 "6	LINE	0
-	  $options["dh-build-dir"] = '/tmp/drupal-site-cat-au-website';
+	192.168.124.131 hurricane-dev
 "7	LINE	0
-	  $options["dh-bump-version"] = true;
+	19:40-xx:xx - 
 "8	LINE	0
-	  $options["dh-project"] = 'cat-au-website';
+	# Nathan's Foxy Proxy Settings:
+	# IP: 172.18.162.39 Port: 8080
 "9	LINE	0
-	201457 	15:00-18:30 Clean up most of the module
+	    DynamicForward 0.0.0.0:9345
+"a	CHAR	0
+	€kl€kr€kr€kl€kr€kl
 "q	CHAR	0
 	nn
 ""-	CHAR	0
-	Fix
+	 Block is set up
 
 # File marks:
-'0  33  5  ~/timesheets/2012_11_26.tks
-'1  18  0  /etc/hosts
-'2  30  8  ~/timesheets/2012_11_26.tks
-'3  1  0  /etc/apt/sources.list
-'4  27  13  ~/timesheets/2012_11_26.tks
-'5  45  0  ~/timesheets/2012_11_26.tks
-'6  16  44  ~/timesheets/2012_11_26.tks
-'7  8  21  ~/.gitignore
-'8  38  4  ~/.inputrc
-'9  12  1  ~/.bashrc_local
+'0  4  8  ~/.gitignore
+'1  41  12  ~/timesheets/2013-01-07.tks
+'2  38  49  ~/timesheets/2013-01-07.tks
+'3  28  37  ~/timesheets/2013-01-07.tks
+'4  35  53  ~/timesheets/2012-12-31.tks
+'5  50  7  ~/timesheets/2012-12-31.tks
+'6  14  27  ~/timesheets/2013-01-07.tks
+'7  55  0  /etc/apache2/sites-enabled/my-moodle-23.conf
+'8  1  16  /etc/apache2/sites-enabled/my-moodle-23.conf
+'9  3  32  /etc/apache2/sites-enabled/drupal-cat-au-website.conf
 
 # Jumplist (newest first):
--'  33  5  ~/timesheets/2012_11_26.tks
--'  30  8  ~/timesheets/2012_11_26.tks
--'  18  0  /etc/hosts
--'  2  9  /etc/hosts
--'  29  10  ~/timesheets/2012_11_26.tks
--'  1  0  /etc/apt/sources.list
--'  27  13  ~/timesheets/2012_11_26.tks
--'  45  0  ~/timesheets/2012_11_26.tks
--'  16  44  ~/timesheets/2012_11_26.tks
--'  4  26  ~/timesheets/2012_11_26.tks
--'  8  21  ~/.gitignore
--'  4  3  ~/.gitignore
--'  38  4  ~/.inputrc
--'  49  0  ~/.inputrc
--'  12  1  ~/.bashrc_local
--'  10  0  ~/.bashrc_local
--'  13  0  ~/.bashrc_local
--'  21  0  ~/.bashrc_local
--'  22  0  ~/.bashrc_local
--'  24  0  ~/.bashrc_local
--'  25  0  ~/.bashrc_local
--'  26  0  ~/.bashrc_local
--'  1  0  ~/.bashrc_local
--'  4  3  ~/.ssh/config
--'  1  0  ~/.ssh/config
--'  5  7  /etc/apache2/sites-available/hurricane-dev
--'  237  0  /etc/apache2/apache2.conf
--'  1  0  /etc/apache2/apache2.conf
--'  1  0  /etc/apache2/httpd.conf
--'  68  57  /etc/X11/xorg.conf
--'  44  4  /etc/X11/xorg.conf
--'  1  0  /etc/X11/xorg.conf
--'  1  0  ~/timesheets/2012_11_26.tks
--'  2  7  ~/work/cat-au-website/sites/all/modules/custom/comment_node_block/comment_node_block.module
--'  1  0  ~/work/cat-au-website/sites/all/modules/custom/comment_node_block/comment_node_block.module
--'  4  1  ~/work/cat-au-website/.git/NERD_tree_2
--'  5  0  ~/work/cat-au-website/.git/NERD_tree_2
--'  1  0  ~/work/cat-au-website/.git/NERD_tree_2
--'  5  0  ~/work/cat-au-website/.git/NERD_tree_1
--'  1  0  ~/work/cat-au-website/.git/NERD_tree_1
--'  1  2  ~/work/cat-au-website/.git/info/exclude
--'  4  1  ~/work/cat-au-website/NERD_tree_2
--'  7  0  ~/work/cat-au-website/NERD_tree_2
--'  1  0  ~/work/cat-au-website/NERD_tree_2
--'  7  0  ~/work/cat-au-website/NERD_tree_1
--'  1  0  ~/work/cat-au-website/NERD_tree_1
--'  6  61  ~/work/cat-au-website/.debian/changelog
--'  13  0  ~/work/cat-au-website/.debian/changelog
--'  9  0  ~/work/cat-au-website/.debian/changelog
--'  1  0  ~/work/cat-au-website/.debian/changelog
--'  5  0  ~/work/cat-au-website/sites/all/modules/comment_node_block/comment_node_block.module
--'  1  0  ~/work/cat-au-website/sites/all/modules/comment_node_block/comment_node_block.module
--'  1  0  ~/work/cat-au-website/drushrc.php
--'  6  0  ~/work/cat-au-website/drushrc.local.php
--'  1  0  ~/work/cat-au-website/drushrc.local.php
--'  16  10  ~/timesheets/2012_11_19.tks
--'  15  5  ~/timesheets/2012_11_19.tks
--'  21  46  ~/timesheets/2012_11_19.tks
--'  7  0  ~/timesheets/NERD_tree_1
--'  8  2  ~/timesheets/NERD_tree_1
--'  1  0  ~/timesheets/NERD_tree_1
--'  4  30  ~/timesheets/2012-11-12.tks
--'  1  0  ~/timesheets/2012-11-12.tks
--'  10  24  /etc/hosts
--'  5  0  ~/timesheets/2012_11_19.tks
--'  1  0  ~/timesheets/2012-11-19.tks
--'  1  0  ~/timesheets/NERD_tree_2
--'  10  2  ~/timesheets/NERD_tree_2
--'  17  2  ~/timesheets/NERD_tree_1
--'  1  0  ~/timesheets/2012_11_19.tks
--'  3  0  ~/timesheets/2012-11-05.tks
--'  6  0  ~/timesheets/weekly_template.tks
--'  14  0  ~/timesheets/NERD_tree_2
--'  16  2  ~/timesheets/NERD_tree_2
--'  23  2  ~/timesheets/NERD_tree_1
--'  1  0  ~/.gitignore
--'  16  0  ~/work/test-sites/standard-drupal-6/themes/garland/NERD_tree_2
--'  21  2  ~/work/test-sites/standard-drupal-6/themes/garland/NERD_tree_2
--'  1  0  ~/work/test-sites/standard-drupal-6/themes/garland/NERD_tree_2
--'  94  0  ~/work/test-sites/standard-drupal-6/themes/garland/page.tpl.php
--'  16  0  ~/work/test-sites/standard-drupal-6/themes/garland/NERD_tree_1
--'  21  2  ~/work/test-sites/standard-drupal-6/themes/garland/NERD_tree_1
--'  1  0  ~/work/test-sites/standard-drupal-6/themes/garland/NERD_tree_1
--'  1  0  ~/work/test-sites/standard-drupal-6/themes/garland/block.tpl.php
--'  397  0  ~/Documents/"linux mode help.txt"
--'  346  0  ~/Documents/"linux mode help.txt"
--'  5  0  /etc/hosts
--'  1  14  /etc/hostname
--'  2  2  /etc/hostname
--'  1  0  /etc/hosts
--'  8  0  ~/work/block_node/example_modules/NERD_tree_3
--'  12  0  ~/work/block_node/example_modules/NERD_tree_3
--'  1  0  ~/work/block_node/example_modules/NERD_tree_3
--'  88  6  ~/work/block_node/example_modules/formblock/formblock.module
--'  7  0  ~/work/block_node/example_modules/NERD_tree_2
--'  8  2  ~/work/block_node/example_modules/NERD_tree_2
--'  1  0  ~/work/block_node/example_modules/NERD_tree_2
--'  8  2  ~/work/block_node/example_modules/NERD_tree_1
--'  1  0  ~/work/block_node/example_modules/NERD_tree_1
+-'  4  8  ~/.gitignore
+-'  5  0  ~/.gitignore
+-'  41  12  ~/timesheets/2013-01-07.tks
+-'  38  49  ~/timesheets/2013-01-07.tks
+-'  28  37  ~/timesheets/2013-01-07.tks
+-'  26  48  ~/timesheets/2013-01-07.tks
+-'  35  53  ~/timesheets/2012-12-31.tks
+-'  28  13  ~/timesheets/2012-12-31.tks
+-'  50  7  ~/timesheets/2012-12-31.tks
+-'  14  27  ~/timesheets/2013-01-07.tks
+-'  1  0  ~/timesheets/2013-01-07.tks
+-'  55  0  /etc/apache2/sites-enabled/my-moodle-23.conf
+-'  1  0  /etc/apache2/sites-enabled/my-moodle-23.conf
+-'  10  17  /etc/apache2/sites-enabled/my-moodle-23.conf
+-'  8  16  /etc/apache2/sites-enabled/my-moodle-23.conf
+-'  18  0  /etc/apache2/sites-enabled/my-moodle-23.conf
+-'  3  32  /etc/apache2/sites-enabled/drupal-cat-au-website.conf
+-'  1  0  /etc/apache2/sites-enabled/drupal-cat-au-website.conf
+-'  34  3  /etc/apache2/sites-enabled/000-default
+-'  13  0  /etc/apache2/sites-enabled/000-default
+-'  46  3  /etc/apache2/sites-enabled/000-default
+-'  48  21  /etc/apache2/sites-enabled/000-default
+-'  1  0  /etc/apache2/sites-enabled/totara-ducere.conf
+-'  1  0  /etc/apache2/sites-enabled/drupal-6-test.conf
+-'  38  0  /etc/apache2/sites-enabled/my-moodle-23.conf
+-'  16  0  ~/NERD_tree_1
+-'  27  2  ~/NERD_tree_1
+-'  1  0  ~/NERD_tree_1
+-'  47  3  /etc/apache2/sites-enabled/000-default
+-'  8  0  ~/NERD_tree_2
+-'  9  2  ~/NERD_tree_2
+-'  1  0  ~/NERD_tree_2
+-'  35  2  ~/NERD_tree_1
+-'  1  0  /etc/apache2/sites-enabled/000-default
+-'  16  0  ~/work/test-sites/my-moodle-23/auth/saml/moodle_auth_saml.txt
+-'  5  0  ~/work/test-sites/my-moodle-23/auth/saml/moodle_auth_saml.txt
+-'  1  0  ~/work/test-sites/my-moodle-23/auth/saml/moodle_auth_saml.txt
+-'  39  17  ~/timesheets/2012-12-31.tks
+-'  34  5  ~/timesheets/2012-12-31.tks
+-'  58  0  ~/work/rails/hurricane/rails-sis/config/environment.rb
+-'  117  12  ~/work/rails/hurricane/rails-sis/config/environment.rb
+-'  93  37  ~/work/rails/hurricane/rails-sis/config/environment.rb
+-'  1  0  ~/work/rails/hurricane/rails-sis/config/environment.rb
+-'  25  13  ~/timesheets/2012-12-31.tks
+-'  19  26  ~/timesheets/2012-12-31.tks
+-'  12  33  ~/timesheets/2012-12-31.tks
+-'  80  0  ~/timesheets/2012-12-17.tks
+-'  67  21  ~/timesheets/2012-12-17.tks
+-'  34  40  ~/timesheets/2012-12-17.tks
+-'  12  0  ~/timesheets/2012-12-24.tks
+-'  10  0  ~/timesheets/2012-12-31.tks
+-'  20  0  ~/timesheets/2012-12-24.tks
+-'  5  0  ~/timesheets/2012-12-31.tks
+-'  3  0  ~/timesheets/2012-12-31.tks
+-'  1  0  ~/timesheets/2012-12-31.tks
+-'  63  52  ~/timesheets/2012-12-17.tks
+-'  85  17  ~/timesheets/2012-12-17.tks
+-'  92  0  ~/timesheets/2012-12-17.tks
+-'  49  33  ~/timesheets/2012-12-17.tks
+-'  50  50  ~/timesheets/2012-12-17.tks
+-'  51  0  ~/timesheets/2012-12-17.tks
+-'  91  32  ~/timesheets/2012-12-17.tks
+-'  75  45  ~/timesheets/2012-12-17.tks
+-'  66  1  ~/timesheets/2012-12-17.tks
+-'  69  19  ~/timesheets/2012-12-17.tks
+-'  68  0  ~/timesheets/2012-12-17.tks
+-'  65  6  ~/timesheets/2012-12-17.tks
+-'  59  17  ~/timesheets/2012-12-17.tks
+-'  44  0  ~/timesheets/2012-12-17.tks
+-'  54  19  ~/timesheets/2012-12-17.tks
+-'  1  0  ~/timesheets/2012-12-17.tks
+-'  230  0  ~/Documents/Ruby Rails notes & tips.org
+-'  154  0  ~/Documents/Ruby Rails notes & tips.org
+-'  1  0  ~/Documents/Ruby Rails notes & tips.org
+-'  76  0  ~/.bashrc_local
+-'  14  20  ~/.bashrc_local
+-'  42  0  ~/work/totara/ducere/config-dist.php
+-'  1  0  ~/work/totara/ducere/config-dist.php
+-'  1  0  ~/work/totara/2012-12-17.tks
+-'  15  40  ~/timesheets/2012-12-17.tks
+-'  11  51  ~/timesheets/2012-12-17.tks
+-'  8  17  ~/timesheets/2012-12-17.tks
+-'  36  1  ~/timesheets/2012-12-10.tks
+-'  5  49  ~/timesheets/2012-12-17.tks
+-'  5  0  ~/timesheets/2012-12-10.tks
+-'  127  6  ~/timesheets/2012-12-03.tks
+-'  88  0  ~/timesheets/2012-12-10.tks
+-'  4  6  ~/timesheets/2012-12-17.tks
+-'  91  75  ~/timesheets/2012-12-10.tks
+-'  86  30  ~/timesheets/2012-12-10.tks
+-'  80  5  ~/timesheets/2012-12-10.tks
+-'  16  4  ~/moodle/moodle-r2/NERD_tree_2
+-'  31  4  ~/moodle/moodle-r2/NERD_tree_2
+-'  1  6  ~/moodle/moodle-r2/NERD_tree_2
+-'  1  6  ~/moodle/staged_packages/moodle-site-kincoppal_2.3.3.20121130-1ubuntu1_amd64.changes
+-'  12  0  ~/moodle/moodle-r2/NERD_tree_1
+-'  55  4  ~/moodle/moodle-r2/NERD_tree_1
+-'  1  0  ~/moodle/moodle-r2/NERD_tree_1
+-'  17  0  ~/moodle/unstaged/moodle-site-kincoppal_2.3.3.20121203-2ubuntu2_amd64.changes
+-'  1  0  ~/moodle/unstaged/moodle-site-kincoppal_2.3.3.20121203-2ubuntu2_amd64.changes
 
 # Buffer list:
-%~/timesheets/2012_11_26.tks	33	5
+%~/.gitignore	4	8
 
 # History of marks within files (newest to oldest):
 
-> ~/timesheets/2012_11_26.tks
-	"	33	5
-	^	33	6
-	.	33	5
-	+	5	19
-	+	4	26
-	+	17	5
-	+	18	0
-	+	19	0
-	+	20	0
-	+	24	31
-	+	21	5
-	+	17	6
+> ~/.gitignore
+	"	4	8
+	^	4	9
+	.	4	8
+	+	1	3
+	+	2	5
+	+	3	8
+	+	5	21
+	+	1	0
+	+	4	8
+
+> ~/timesheets/2013-01-07.tks
+	"	41	12
+	^	41	13
+	.	41	12
+	+	4	12
+	+	5	50
+	+	6	9
+	+	8	5
+	+	8	5
+	+	6	10
+	+	7	12
+	+	6	13
+	+	7	28
+	+	6	40
+	+	11	31
+	+	10	47
+	+	9	62
+	+	11	72
+	+	12	56
+	+	12	56
+	+	14	27
+	+	15	10
+	+	14	10
+	+	15	9
+	+	17	7
+	+	16	1
+	+	17	60
+	+	19	13
+	+	20	6
+	+	19	6
+	+	16	6
+	+	12	56
+	+	15	0
+	+	12	6
+	+	5	6
+	+	6	6
+	+	7	0
+	+	8	6
+	+	11	6
+	+	10	6
+	+	9	5
+	+	21	21
+	+	17	61
+	+	18	59
+	+	22	6
 	+	18	6
+	+	17	6
+	+	14	6
+	+	13	12
+	+	4	56
+	+	25	35
+	+	26	48
+	+	27	10
+	+	26	17
+	+	25	17
+	+	27	36
+	+	28	5
+	+	29	33
+	+	30	1
+	+	31	30
+	+	32	21
+	+	33	10
+	+	31	6
+	+	32	6
+	+	34	48
+	+	35	34
+	+	36	24
+	+	37	4
+	+	36	10
+	+	37	28
+	+	38	49
+	+	41	12
+
+> ~/timesheets/2012-12-31.tks
+	"	37	1
+	^	45	0
+	.	42	0
+	+	16	40
+	+	17	68
+	+	18	13
+	+	19	26
+	+	24	8
+	+	25	5
+	+	18	10
+	+	17	9
+	+	18	0
+	+	20	31
+	+	22	102
+	+	19	27
+	+	20	0
+	+	19	50
+	+	23	4
+	+	22	64
+	+	25	13
+	+	29	32
+	+	31	7
+	+	32	6
+	+	33	5
+	+	32	127
+	+	31	64
+	+	28	10
+	+	34	5
+	+	40	17
+	+	41	21
+	+	39	48
+	+	38	23
+	+	34	38
+	+	42	28
+	+	43	13
+	+	42	13
+	+	44	18
+	+	45	13
+	+	46	34
+	+	48	30
+	+	49	83
+	+	45	10
+	+	49	0
+	+	50	4
+	+	24	6
+	+	50	5
+	+	14	6
+	+	15	6
+	+	16	6
+	+	17	6
+	+	14	66
+	+	19	26
+	+	41	6
+	+	44	1
+	+	46	10
+	+	22	52
+	+	23	83
+	+	28	24
+	+	50	63
+	+	29	20
+	+	28	10
+	+	29	5
+	+	28	13
+	+	29	14
+	+	31	0
+	+	29	14
+	+	28	37
+	+	29	83
+	+	31	99
+	+	33	13
+	+	34	53
+	+	32	53
+	+	33	26
+	+	40	6
+	+	45	47
+	+	46	49
+	+	49	67
+	+	34	7
+	+	35	53
 	+	19	6
 	+	20	6
 	+	21	6
-	+	20	6
-	+	19	6
-	+	18	6
-	+	15	0
 	+	22	6
-	+	24	6
-	+	23	115
-	+	19	20
-	+	18	19
-	+	17	20
-	+	14	57
-	+	15	20
-	+	16	44
+	+	23	31
+	+	35	6
+	+	39	6
+	+	33	6
+	+	31	6
+	+	29	53
+	+	28	6
+	+	29	6
+	+	28	69
+	+	43	6
+	+	45	0
+	+	46	0
 	+	47	0
-	+	27	13
-	+	28	0
-	+	29	10
-	+	30	34
-	+	27	0
-	+	29	8
-	+	33	4
-	+	32	7
-	+	37	10
-	+	34	11
-	+	35	27
-	+	28	6
+	+	48	0
+	+	49	0
+	+	50	0
+	+	34	0
+	+	32	0
+	+	25	0
+	+	42	0
+
+> /etc/apache2/sites-enabled/my-moodle-23.conf
+	"	55	0
+	^	1	17
+	.	1	16
+	+	1	16
+
+> /etc/apache2/sites-enabled/drupal-cat-au-website.conf
+	"	3	32
+
+> /etc/apache2/sites-enabled/000-default
+	"	34	3
+	^	13	0
+	.	13	0
+	+	49	4
+	+	47	4
+	+	48	21
+	+	47	3
+	+	14	3
+	+	13	0
+	+	14	0
+	+	13	0
+
+> /etc/apache2/sites-enabled/totara-ducere.conf
+	"	1	0
+
+> /etc/apache2/sites-enabled/drupal-6-test.conf
+	"	1	0
+
+> ~/NERD_tree_1
+	"	16	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/NERD_tree_2
+	"	8	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> /var/www/index.html
+	"	4	9
+	^	4	10
+	.	4	9
+	+	5	0
+	+	4	9
+
+> ~/work/test-sites/my-moodle-23/auth/saml/moodle_auth_saml.txt
+	"	16	0
+
+> ~/work/rails/hurricane/rails-sis/config/environment.rb
+	"	58	0
+
+> /usr/share/X11/xorg.conf.d/50-wacom.conf
+	"	1	0
+
+> ~/work/Moodle_Stuff/moodle-site-oua/NERD_tree_1
+	"	1	0
+	.	1	0
+	+	1	0
+
+> ~/work/Moodle_Stuff/moodle-site-oua/NERD_tree_2
+	"	108	6
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/work/Moodle_Stuff/moodle-site-oua/local/drupal_name/db/install.php
+	"	14	2
+	.	9	0
+	+	6	0
+	+	9	78
+	+	9	78
+	+	16	0
+	+	9	0
+	+	6	0
+	+	19	0
+	+	16	0
+	+	9	0
+
+> ~/work/Moodle_Stuff/moodle-site-oua/local/drupal_name/db/uninstall.php
+	"	16	0
+	.	6	0
+	+	9	78
+	+	14	77
+	+	9	0
+	+	14	0
+	+	6	0
+
+> ~/work/Moodle_Stuff/moodle-site-oua/NERD_tree_3
+	"	198	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/work/Moodle_Stuff/moodle-site-oua/local/drupal_name/db/upgrade.php
+	"	12	15
+	.	12	0
+	+	12	0
+
+> ~/work/Moodle_Stuff/moodle-site-oua/local/drupal_name/version.php
+	"	10	0
+	.	11	0
+	+	11	0
+
+> ~/work/Moodle_Stuff/moodle-site-oua/lib/moodlelib.php
+	"	3545	40
+	^	3545	41
+	.	3546	40
+	+	3544	40
+	+	3546	40
+	+	3544	40
+	+	3546	40
+
+> ~/work/Moodle_Stuff/moodle-drupalname-plugin/drupal_name_plugin.patch
+	"	1	0
+
+> ~/work/Moodle_Stuff/moodle-drupalname-plugin/drupal_name_plugin_reversed-diff.patch
+	"	54	0
+
+> ~/timesheets/2012-12-17.tks
+	"	80	0
+	^	34	41
+	.	34	40
+	+	43	49
+	+	44	34
+	+	48	56
+	+	49	19
+	+	50	10
+	+	49	32
+	+	51	10
+	+	52	3
+	+	51	22
+	+	49	10
+	+	50	7
+	+	52	14
+	+	53	28
+	+	54	19
+	+	55	29
+	+	56	41
+	+	45	6
+	+	56	6
+	+	55	6
+	+	59	23
+	+	49	0
+	+	48	6
+	+	47	6
+	+	42	7
+	+	51	1
+	+	53	6
+	+	54	6
+	+	50	6
+	+	52	6
+	+	42	18
+	+	43	6
+	+	48	42
+	+	50	24
+	+	44	6
+	+	42	6
+	+	52	34
+	+	32	4
+	+	36	5
+	+	37	5
+	+	36	44
+	+	39	5
+	+	27	5
+	+	55	19
+	+	56	73
+	+	59	17
+	+	23	7
 	+	27	7
-	+	30	49
-	+	31	17
-	+	32	1
-	+	37	11
-	+	38	5
-	+	37	87
-	+	36	10
-	+	33	10
+	+	34	28
+	+	60	45
+	+	61	5
+	+	60	5
+	+	61	20
+	+	60	22
+	+	61	28
+	+	62	6
+	+	63	25
+	+	64	0
+	+	63	17
+	+	65	20
+	+	63	58
+	+	65	45
+	+	66	27
+	+	67	13
+	+	68	21
+	+	67	6
+	+	67	6
+	+	68	17
+	+	69	19
+	+	70	5
+	+	69	1
+	+	66	1
+	+	73	17
+	+	74	0
+	+	73	2
+	+	70	2
+	+	74	5
+	+	73	50
+	+	74	77
+	+	75	6
+	+	76	96
+	+	86	0
+	+	76	0
+	+	77	32
+	+	79	17
+	+	78	6
+	+	79	41
+	+	80	18
+	+	81	56
+	+	82	20
+	+	83	13
+	+	85	30
+	+	83	16
+	+	84	45
+	+	85	17
+	+	61	17
+	+	62	17
+	+	70	72
+	+	67	62
+	+	63	53
+	+	34	40
+
+> /etc/hosts
+	"	16	18
+	.	13	0
+	+	3	16
+	+	10	24
+	+	4	11
+	+	5	11
+	+	4	11
+	+	5	11
+	+	3	10
+	+	2	10
+	+	1	10
+	+	15	43
+	+	11	29
+	+	7	36
+	+	18	0
+	+	19	0
+	+	18	0
+	+	18	27
+	+	17	25
+	+	18	0
+	+	13	0
+
+> ~/timesheets/2012-12-24.tks
+	"	12	0
+	^	16	18
+	.	4	0
+	+	5	17
+	+	16	0
+	+	17	0
+	+	21	0
+	+	21	0
+	+	10	0
+	+	8	0
+	+	14	5
+	+	8	0
+	+	14	0
+	+	8	28
+	+	14	0
+	+	12	0
+	+	5	0
+	+	17	0
+	+	21	0
+	+	16	18
+	+	20	0
+	+	4	0
+
+> ~/timesheets/2012-12-03.tks
+	"	1	0
+	^	129	0
+	.	118	0
+	+	98	6
+	+	97	31
+	+	98	26
+	+	105	0
+	+	99	68
+	+	100	41
+	+	101	7
+	+	103	23
+	+	101	41
+	+	102	18
+	+	104	3
+	+	103	10
+	+	104	38
+	+	105	42
+	+	89	6
+	+	96	14
+	+	91	0
+	+	92	0
+	+	93	0
+	+	94	0
+	+	95	0
+	+	96	0
+	+	97	0
+	+	97	12
+	+	98	0
+	+	99	0
+	+	100	0
+	+	101	0
+	+	102	0
+	+	103	0
+	+	104	0
+	+	105	0
+	+	88	17
+	+	89	10
+	+	109	17
+	+	95	6
+	+	96	6
+	+	91	3
+	+	93	6
+	+	94	6
+	+	85	4
+	+	97	6
+	+	99	6
+	+	100	6
+	+	101	6
+	+	104	11
+	+	103	6
+	+	105	6
+	+	103	82
+	+	109	116
+	+	91	17
+	+	109	16
+	+	110	25
+	+	111	17
+	+	112	17
+	+	113	17
+	+	112	20
+	+	113	49
+	+	114	0
+	+	113	5
+	+	114	0
+	+	112	0
+	+	114	0
+	+	115	61
+	+	116	0
+	+	118	0
+	+	116	17
+	+	117	39
+	+	119	10
+	+	118	13
+	+	119	32
+	+	118	24
+	+	120	56
+	+	121	6
+	+	122	0
+	+	121	21
+	+	122	21
+	+	123	0
+	+	98	10
+	+	99	0
+	+	98	6
+	+	92	6
+	+	84	5
+	+	85	3
+	+	84	41
+	+	74	55
+	+	34	5
+	+	35	5
+	+	16	5
+	+	122	17
+	+	114	14
+	+	118	6
+	+	120	5
+	+	119	6
+	+	120	5
+	+	129	6
+	+	123	0
+	+	39	0
+	+	57	0
+	+	118	0
+
+> ~/timesheets/2012-12-10.tks
+	"	69	21
+	^	10	31
+	.	10	30
+	+	69	6
+	+	73	6
+	+	74	6
+	+	53	6
+	+	54	6
+	+	58	17
+	+	57	10
+	+	21	6
+	+	22	1
+	+	23	6
+	+	24	6
+	+	25	6
+	+	26	1
+	+	27	6
 	+	28	6
-	+	27	16
-	+	28	65
-	+	29	38
-	+	30	19
-	+	31	19
-	+	30	59
-	+	38	39
-	+	36	14
-	+	34	33
-	+	33	22
-	+	36	77
-	+	33	65
-	+	38	0
-	+	37	6
-	+	36	6
+	+	29	6
+	+	31	1
+	+	33	6
+	+	34	6
+	+	35	10
+	+	38	6
+	+	39	6
+	+	38	5
+	+	40	6
+	+	36	31
+	+	6	14
+	+	12	21
+	+	8	13
+	+	20	36
+	+	28	42
+	+	32	2
+	+	30	2
+	+	30	11
+	+	35	2
+	+	37	1
+	+	20	28
+	+	45	5
+	+	71	2
+	+	79	1
+	+	80	1
+	+	81	1
+	+	83	2
+	+	84	1
+	+	86	1
+	+	87	1
+	+	88	1
+	+	9	1
+	+	15	5
+	+	14	6
+	+	20	7
+	+	32	46
+	+	37	30
+	+	31	0
+	+	30	5
+	+	35	7
+	+	49	10
+	+	50	10
+	+	51	6
+	+	52	6
+	+	50	6
+	+	49	6
+	+	48	13
+	+	56	33
+	+	57	6
+	+	56	6
+	+	72	6
+	+	80	7
+	+	81	7
+	+	83	7
+	+	84	7
+	+	87	5
+	+	89	11
+	+	88	7
+	+	87	7
+	+	79	40
+	+	80	0
+	+	79	45
+	+	81	48
+	+	86	0
+	+	71	38
+	+	66	34
+	+	48	17
+	+	46	12
+	+	48	1
+	+	46	6
+	+	43	46
+	+	7	6
+	+	11	1
+	+	12	6
+	+	13	6
+	+	16	6
+	+	73	0
+	+	88	90
+	+	84	17
+	+	83	75
+	+	44	6
+	+	35	80
+	+	8	36
+	+	6	6
+	+	10	30
+
+> ~/work/test-sites/my-moodle-23/local/drupal_name/db/upgrade.php
+	"	3	51
+	.	3	51
+	+	14	0
+	+	15	25
+	+	17	25
+	+	16	25
+	+	25	25
+	+	26	0
+	+	26	0
+	+	3	51
+
+> ~/work/test-sites/my-moodle-23/config.php
+	"	11	0
+	^	8	4
+	.	10	0
+	+	27	30
+	+	28	0
+	+	50	0
+	+	29	41
+	+	30	75
+	+	31	0
+	+	48	12
+	+	32	0
+	+	47	12
+	+	33	0
+	+	46	12
+	+	33	35
+	+	35	0
+	+	46	0
+	+	35	37
+	+	36	59
+	+	37	66
+	+	38	66
+	+	39	57
+	+	40	83
+	+	42	0
+	+	46	0
+	+	42	89
+	+	43	118
+	+	44	93
+	+	45	127
+	+	45	126
+	+	45	117
+	+	45	135
+	+	45	0
+	+	11	51
+	+	7	0
+	+	10	0
+
+> ~/work/test-sites/my-moodle-23/NERD_tree_1
+	"	28	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/work/test-sites/my-moodle-23/local/drupal_name/version.php
+	"	5	30
+	^	5	31
+	.	5	30
+	+	5	30
+
+> ~/work/test-sites/my-moodle-23/local/drupal_name/db/install.php
+	"	23	0
+
+> ~/work/test-sites/my-moodle-23/local/drupal_name/db/install.xml
+	"	1	0
+
+> ~/work/test-sites/my-moodle-23/local/drupal_name/db/install.
+	"	1	0
+
+> ~/.inputrc
+	"	46	57
+	^	46	58
+	.	46	57
+	+	55	0
+	+	50	76
+	+	51	81
+	+	51	2
+	+	51	80
+	+	53	34
+	+	55	0
+	+	56	0
+	+	55	0
+	+	56	0
+	+	55	29
+	+	56	28
+	+	55	7
+	+	56	7
+	+	54	3
+	+	44	0
+	+	45	39
+	+	47	8
+	+	48	16
+	+	47	10
+	+	48	12
+	+	47	10
+	+	48	0
+	+	48	12
+	+	49	0
+	+	46	57
+
+> ~/Documents/Ruby Rails notes & tips.org
+	"	230	0
+
+> ~/.bashrc_local
+	"	76	0
+	^	24	29
+	.	76	0
+	+	27	0
+	+	7	1
+	+	8	1
+	+	59	1
+	+	57	1
+	+	41	0
+	+	42	0
+	+	43	0
+	+	44	0
+	+	33	0
+	+	31	0
+	+	22	26
+	+	20	0
+	+	22	6
+	+	20	102
+	+	13	24
+	+	14	20
+	+	75	38
+	+	74	28
+	+	75	36
+	+	71	0
+	+	72	28
+	+	76	0
+
+> /etc/apt/sources.list.d/elearning.list
+	"	1	0
+	^	2	58
+	.	2	48
+	+	2	48
+
+> ~/work/totara/ducere/NERD_tree_1
+	"	3	0
+	.	1	0
+	+	1	0
+
+> ~/Documents/VIM notes.org
+	"	1	32
+	^	1	33
+	.	2	0
+	+	4	0
+	+	14	0
+	+	21	0
+	+	23	0
+	+	25	0
+	+	29	0
+	+	31	0
+	+	33	0
+	+	37	0
+	+	39	0
+	+	42	0
+	+	44	12
+	+	35	12
+	+	27	12
+	+	2	81
+	+	3	1
+	+	16	0
+	+	20	0
+	+	21	0
+	+	16	0
+	+	18	1
+	+	19	1
+	+	36	1
+	+	41	1
+	+	45	1
+	+	46	0
+	+	17	12
+	+	18	14
+	+	17	14
+	+	19	16
+	+	19	56
+	+	19	56
+	+	19	81
+	+	2	28
+	+	2	0
+
+> /etc/apt/sources.list
+	"	55	0
+
+> ~/work/totara/ducere/config-dist.php
+	"	42	0
+
+> ~/work/totara/2012-12-17.tks
+	"	1	0
+
+> ~/moodle-upgrades/moodle-r2/2012-12-17.tks
+	"	1	0
+
+> ~/moodle/unstaged/moodle-site-kincoppal_2.3.3.20121203-2ubuntu2_amd64.changes
+	"	17	0
+
+> ~/moodle/moodle-r2/NERD_tree_1
+	"	12	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/moodle/staged_packages/moodle-site-kincoppal_2.3.3.20121130-1ubuntu1_amd64.changes
+	"	1	6
+
+> ~/moodle/moodle-r2/NERD_tree_2
+	"	16	4
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/moodle/unstaged/moodle-site-kincoppal_2.3.3.20121203-2ubuntu2_all.deb
+	"	1	0
+
+> /etc/cups/client.conf
+	"	1	0
+
+> ~/rails-sis/NERD_tree_1
+	"	1	0
+	.	1	0
+	+	1	0
+	+	1	0
+
+> ~/rails-sis/NERD_tree_2
+	"	15	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/rails-sis/lib/email_validator.rb
+	"	1	0
+
+> ~/rails-sis/NERD_tree_3
+	"	22	1
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/rails-sis/lib/logins.rb
+	"	5	0
+
+> ~/rails-sis/lib/sort_utils.rb
+	"	1	0
+
+> ~/rails-sis/lib/tasks/delayed_job_status.rake
+	"	25	0
+
+> ~/rails-sis/lib/tasks/rspec.rake
+	"	106	0
+
+> ~/rails-sis/lib/tasks/cucumber.rake
+	"	14	0
+
+> ~/rails-sis/management_scripts/generate_report_csv.rb
+	"	37	0
+
+> ~/rails-sis/management_scripts/run_hurrimoodle.rb
+	"	5	0
+
+> ~/rails-sis/management_scripts/TimeChart.rb
+	"	167	0
+
+> ~/rails-sis/features/manage_stories.feature
+	"	9	0
+
+> ~/rails-sis/doc/design/diagrams/hurricane_case_management.dia
+	"	3	12
+
+> ~/rails-sis/doc/README_FOR_APP
+	"	1	0
+
+> ~/.vimrc
+	"	7	31
+	^	7	32
+	.	8	0
+	+	7	32
+	+	8	0
+
+> ~/.vim_runtime/vimrcs/hal.vim
+	"	47	0
+	^	8	1
+	.	8	1
+	+	10	2
+	+	3	66
+	+	10	0
+	+	1	129
+	+	7	128
+	+	6	30
+	+	4	1
+	+	5	25
+	+	10	0
+	+	9	9
+	+	8	1
+
+> ~/Documents/NERD_tree_1
+	"	1	0
+	.	1	0
+	+	1	0
+
+> ~/Documents/NERD_tree_2
+	"	13	0
+	.	1	0
+	+	1	0
+
+> ~/Documents/linux mode help.txt
+	"	1	0
+
+> ~/Documents/My\ Hurricane\\Rails\ Notes.org
+	"	31	0
+
+> ~/.gitignore_global
+	"	4	1
+	.	5	0
+	+	5	0
+
+> ~/NERD_tree_3
+	"	4	0
+	.	1	0
+	+	1	0
+
+> ~/.gitconfig
+	"	5	34
+	^	5	35
+	.	5	34
+	+	5	34
+
+> ~/.ssh/config
+	"	23	0
+	^	22	4
+	.	12	0
+	+	25	47
+	+	23	0
+	+	25	20
+	+	23	3
+	+	24	3
+	+	25	3
+	+	24	3
+	+	25	3
+	+	26	0
+	+	18	0
+	+	1	35
+	+	2	20
+	+	4	30
+	+	19	1
+	+	23	3
+	+	4	0
+	+	3	4
+	+	4	0
+	+	3	4
+	+	12	12
+	+	13	45
+	+	18	0
+	+	12	0
+	+	15	12
+	+	17	45
+	+	16	22
+	+	4	0
+	+	6	36
+	+	12	0
+	+	6	0
+	+	12	0
+	+	5	0
+	+	7	0
+	+	8	0
+	+	4	0
+	+	12	5
+	+	12	9
+	+	1	0
+	+	2	0
+	+	3	0
+	+	4	0
+	+	5	1
+	+	6	1
+	+	7	1
+	+	8	1
+	+	12	0
+	+	23	0
+	+	22	3
+	+	12	0
+
+> ~/timesheets/2012_11_26.tks
+	"	65	2
+	^	5	3
+	.	5	2
 	+	35	5
 	+	34	6
 	+	33	5
+	+	42	24
+	+	43	56
+	+	44	6
+	+	45	10
+	+	44	41
+	+	46	51
+	+	48	5
+	+	28	4
+	+	41	0
+	+	42	0
+	+	43	0
+	+	44	0
+	+	45	0
+	+	46	0
+	+	48	0
+	+	50	39
+	+	49	61
+	+	48	12
+	+	51	31
+	+	42	1
+	+	41	0
+	+	50	6
+	+	49	6
+	+	45	6
+	+	47	5
+	+	46	60
+	+	47	0
+	+	46	47
+	+	47	40
+	+	42	6
+	+	43	6
+	+	41	11
+	+	51	6
+	+	41	0
+	+	44	0
+	+	48	0
+	+	54	27
+	+	56	4
+	+	60	0
+	+	56	30
+	+	55	59
+	+	58	36
+	+	59	29
+	+	60	45
+	+	61	10
+	+	62	74
+	+	59	14
+	+	62	10
+	+	63	32
+	+	41	0
+	+	40	0
+	+	41	56
+	+	48	0
+	+	58	6
+	+	59	6
+	+	60	6
+	+	62	0
+	+	63	6
+	+	61	6
+	+	58	5
+	+	56	39
+	+	57	71
+	+	58	39
+	+	55	18
+	+	62	11
+	+	48	66
+	+	50	17
+	+	61	9
+	+	58	19
+	+	54	6
+	+	55	6
+	+	58	23
+	+	4	19
+	+	5	20
+	+	6	19
+	+	7	21
+	+	8	20
+	+	9	20
+	+	10	20
+	+	11	20
+	+	5	20
+	+	6	19
+	+	7	21
+	+	8	20
+	+	9	20
+	+	10	20
+	+	11	20
+	+	5	20
+	+	7	20
+	+	8	20
+	+	7	20
+	+	9	20
+	+	10	20
+	+	11	20
+	+	8	24
+	+	5	4
+	+	5	2
+
+> ~/work/rails/hurricane/user_hannah/NERD_tree_1
+	"	1	0
+	.	1	0
+	+	1	0
+
+> ~/work/rails/hurricane/user_hannah/NERD_tree_2
+	"	6	0
+	.	1	0
+	+	1	0
+
+> ~/work/rails/hurricane/user_hannah/Hannah_user_17970_on_epahphrus
+	"	1	2
+
+> ~/work/rails/hurricane/user_hannah/Hannah_user_17970_on_rails_box
+	"	1	2
+
+> ~/moodle/moodle-r2/mod/hotpot/restorelib.php
+	"	330	24
+
+> ~/totara/totara/.git/config
+	"	19	12
+	^	19	23
+	.	19	7
+	+	16	48
+	+	19	7
 
 > ~/moodle/moodle-r2/debian/changelog
 	"	1	0
@@ -330,99 +1548,8 @@ $
 	+	16	49
 	+	17	18
 
-> ~/.bashrc_local
-	"	14	20
-	^	14	21
-	.	14	20
-	+	27	0
-	+	7	1
-	+	8	1
-	+	59	1
-	+	57	1
-	+	41	0
-	+	42	0
-	+	43	0
-	+	44	0
-	+	33	0
-	+	31	0
-	+	22	26
-	+	20	0
-	+	22	6
-	+	20	102
-	+	13	24
-	+	14	20
-
 > ~/.bash_history
 	"	1973	0
-
-> ~/totara/totara/.git/config
-	"	16	48
-	.	16	48
-	+	16	48
-
-> /etc/hosts
-	"	18	0
-	^	18	0
-	.	17	0
-	+	3	16
-	+	10	24
-	+	4	11
-	+	5	11
-	+	4	11
-	+	5	11
-	+	3	10
-	+	2	10
-	+	1	10
-	+	13	43
-	+	11	29
-	+	7	36
-	+	16	0
-	+	17	0
-
-> /etc/apt/sources.list
-	"	1	0
-
-> ~/.gitignore
-	"	8	21
-	^	8	22
-	.	8	21
-	+	4	3
-	+	6	5
-	+	7	8
-	+	8	21
-
-> ~/.inputrc
-	"	38	4
-	^	49	80
-	.	49	3
-	+	50	0
-	+	45	76
-	+	46	81
-	+	46	2
-	+	46	80
-	+	48	34
-	+	50	0
-	+	51	0
-	+	50	0
-	+	51	0
-	+	50	29
-	+	51	28
-	+	50	7
-	+	51	7
-	+	49	3
-
-> ~/.ssh/config
-	"	4	3
-	^	4	4
-	.	4	3
-	+	4	47
-	+	2	0
-	+	4	20
-	+	2	3
-	+	3	3
-	+	4	3
-	+	3	3
-	+	4	3
 
 > /etc/apache2/apache2.conf
 	"	237	0
@@ -541,431 +1668,3 @@ $
 
 > /usr/share/vim/vim73/doc/windows.txt
 	"	2	0
-
-> ~/timesheets/old/2012-11-05.tks
-	"	12	0
-
-> /etc/host
-	"	1	0
-
-> ~/work/cat-au-website/.git/NERD_tree_1
-	"	1	0
-	.	1	0
-	+	1	0
-
-> ~/work/cat-au-website/.git/NERD_tree_2
-	"	4	1
-	.	1	0
-	+	1	0
-
-> ~/work/cat-au-website/.git/info/exclude
-	"	1	2
-
-> ~/work/cat-au-website/NERD_tree_1
-	"	1	0
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/work/cat-au-website/NERD_tree_2
-	"	4	1
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/work/cat-au-website/.debian/changelog
-	"	6	61
-	^	7	0
-	.	6	60
-	+	5	0
-	+	8	0
-	+	2	38
-	+	10	0
-	+	4	0
-	+	12	0
-	+	6	68
-	+	7	0
-	+	3	0
-	+	6	60
-
-> ~/work/cat-au-website/sites/all/modules/comment_node_block/comment_node_block.module
-	"	5	0
-
-> ~/work/cat-au-website/drushrc.local.php
-	"	6	0
-	.	6	0
-	+	6	0
-	+	6	1
-	+	6	0
-	+	6	0
-	+	5	0
-	+	6	0
-
-> ~/work/cat-au-website/drushrc.php
-	"	1	0
-
-> ~/timesheets/2012-11-19.tks
-	"	1	0
-
-> ~/work/block_node/example_modules/NERD_tree_1
-	"	1	0
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/work/block_node/example_modules/NERD_tree_2
-	"	5	0
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/work/block_node/example_modules/formblock/formblock.css
-	"	1	0
-
-> ~/work/block_node/example_modules/NERD_tree_3
-	"	8	4
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/work/block_node/example_modules/formblock/formblock.module
-	"	17	9
-	.	29	0
-	+	29	0
-
-> ~/work/cat-au-website/bump.sh
-	"	1	0
-
-> ~/work/cat-au-website/NERD_tree_3
-	"	35	2
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/work/cat-au-website/sites/all/themes/catalyst/catalyst.info
-	"	101	0
-
-> ~/work/cat-au-website/sites/all/themes/catalyst/templates/page.tpl.php
-	"	58	0
-
-> ~/work/test-sites/standard-drupal-6/themes/garland/NERD_tree_1
-	"	1	0
-	.	1	0
-	+	1	0
-	+	1	0
-
-> ~/work/test-sites/standard-drupal-6/themes/garland/NERD_tree_2
-	"	37	0
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/work/test-sites/standard-drupal-6/themes/garland/garland.info
-	"	1	0
-
-> ~/work/test-sites/standard-drupal-6/themes/garland/NERD_tree_3
-	"	29	6
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/work/test-sites/standard-drupal-6/themes/garland/block.tpl.php
-	"	4	0
-
-> ~/work/test-sites/standard-drupal-6/themes/garland/fix-ie.css
-	"	1	0
-
-> ~/work/test-sites/standard-drupal-6/themes/garland/template.php
-	"	21	2
-
-> ~/work/test-sites/standard-drupal-6/themes/garland/style.css
-	"	901	1
-
-> ~/work/test-sites/standard-drupal-6/modules/node/node.admin.inc
-	"	604	0
-
-> ~/work/test-sites/standard-drupal-6/modules/node/node.module
-	"	145	0
-
-> ~/timesheets/2012-11-05.tks
-	"	3	0
-	^	1	7
-	.	2	6
-	+	1	18
-	+	1	0
-	+	4	0
-	+	7	0
-	+	9	0
-	+	1	9
-	+	4	9
-	+	7	9
-	+	9	9
-	+	1	16
-	+	4	19
-	+	7	17
-	+	9	15
-	+	1	17
-	+	4	0
-	+	4	0
-	+	13	0
-	+	1	0
-	+	1	0
-	+	4	0
-	+	7	0
-	+	9	0
-	+	13	0
-	+	1	0
-	+	1	0
-	+	2	100
-	+	2	6
-	+	2	82
-	+	13	0
-	+	3	13
-	+	6	14
-	+	8	14
-	+	5	29
-	+	2	31
-	+	5	61
-	+	9	19
-	+	1	0
-	+	11	14
-	+	13	0
-	+	2	13
-	+	3	13
-	+	2	31
-	+	3	20
-	+	11	15
-	+	10	37
-	+	6	36
-	+	8	39
-	+	2	5
-	+	3	5
-	+	5	5
-	+	6	5
-	+	8	5
-	+	10	5
-	+	11	8
-	+	10	7
-	+	8	7
-	+	6	7
-	+	5	6
-	+	3	8
-	+	2	6
-
-> ~/timesheets/weekly_template.tks
-	"	6	0
-
-> ~/work/test-sites/standard-drupal-6/themes/garland/page.tpl.php
-	"	13	6
-
-> ~/Documents/"linux mode help.txt"
-	"	397	0
-	^	346	25
-	.	346	23
-	+	10	0
-	+	2	0
-	+	3	1
-	+	2	3
-	+	7	2
-	+	5	6
-	+	9	23
-	+	348	0
-	+	346	23
-
-> /etc/hostname
-	"	1	14
-	^	2	3
-	.	2	2
-	+	1	17
-	+	2	2
-
-> ~/work/block_node/example_modules/nodesinblock/nodesinblock.module
-	"	216	0
-
-> ~/work/block_node/example_modules/nodeblock/nodeblock.module
-	"	22	0
-
-> ~/work/block_node/example_modules/node
-	"	1	0
-
-> ~/.vimrc
-	"	7	31
-	^	7	32
-	.	8	0
-	+	7	32
-	+	8	0
-
-> ~/.vim_runtime/README.md
-	"	288	4
-
-> ~/.vim_runtime/vimrcs/basic.vim
-	"	9	0
-
-> ~/.vim_runtime/vimrcs/hal.vim
-	"	1	0
-	^	8	1
-	.	8	1
-	+	10	2
-	+	3	66
-	+	10	0
-	+	1	129
-	+	7	128
-	+	6	30
-	+	4	1
-	+	5	25
-	+	10	0
-	+	9	9
-	+	8	1
-
-> /usr/share/vim/vim73/doc/if_tcl.txt
-	"	302	1
-
-> ~/work/block_node/NERD_tree_1
-	"	1	0
-	.	1	0
-	+	1	0
-
-> ~/work/block_node/NERD_tree_2
-	"	1	0
-	.	1	0
-	+	1	0
-
-> ~/work/block_node/NERD_tree_3
-	"	27	4
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/work/block_node/job_app/modules/infinity/infinity.module
-	"	18	0
-
-> ~/work/block_node/example_modules/formblock/formblock.info
-	"	6	0
-
-> ~/work/block_node/example_modules/nodesinblock/nodesinblock.info
-	"	10	0
-	.	10	0
-	+	8	0
-	+	10	0
-
-> ~/work/block_node/example_modules/nodesinblock/nodesinblock.install
-	"	77	0
-	.	101	0
-	+	101	0
-
-> ~/work/block_node/example_modules/nodesinblock/nodesinblock.test
-	"	3	0
-
-> ~/work/block_node/example_modules/nodesinblock/README.txt
-	"	1	0
-
-> ~/work/block_node/example_modules/nodeblock/nodeblock.info
-	"	8	0
-
-> ~/work/block_node/example_modules/nodeblock/node-nodeblock-default.tpl.php
-	"	1	0
-
-> ~/work/block_node/example_modules/nodeblock/README.txt
-	"	5	0
-
-> ~/work/block_node/example_modules/nodequeue/nodequeue.module
-	"	1	0
-
-> ~/.kde/share/config/kglobalshortcutsrc
-	"	1	0
-
-> ~/.kde/share/config/khotkeysrc
-	"	288	0
-
-> /usr/share/vim/vim73/doc/change.txt
-	"	606	0
-
-> /usr/share/vim/vim73/doc/intro.txt
-	"	597	0
-
-> ~/.drush/drushrc.php
-	"	344	0
-	^	344	0
-	.	345	35
-	+	347	34
-	+	345	35
-
-> ~/work/test-sites/standard-drupal-6/NERD_tree_1
-	"	1	0
-	.	1	0
-	+	1	0
-	+	1	0
-
-> ~/work/test-sites/standard-drupal-6/NERD_tree_2
-	"	6	0
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/keymapping/mod_script.sh
-	"	14	6
-
-> /var/log/sitelogs/standard-drupal-6/error.log
-	"	28	0
-
-> ~/work/cat-au-website/sites/default/settings.common.php
-	"	1	0
-
-> ~/work/cat-au-website/sites/default/default.settings.php
-	"	47	1
-
-> ~/work/cat-au-website/sites/default/settings.php
-	"	20	46
-	^	20	51
-	.	20	46
-	+	20	0
-	+	19	1
-	+	20	46
-
-> ~/work/test-sites/standard-drupal-6/sites/default/settings.php
-	"	3	0
-
-> ~/work/test-sites/standard-drupal-6/sites/default/default.settings.php
-	"	18	1
-
-> ~/tools/.vimrc
-	"	646	0
-
-> /usr/share/vim/vim73/doc/map.txt
-	"	97	0
-
-> ~/.viminfo
-	"	1	0
-
-> /usr/share/vim/vim73/doc/various.txt
-	"	214	13
-
-> ~/keymapping/enlightenment.xmodmap
-	"	259	0

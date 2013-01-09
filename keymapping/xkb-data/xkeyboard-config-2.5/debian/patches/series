@@ -1,0 +1,9 @@
+docs.diff
+revert-goodmap-badmap-for-apple.diff
+105_intelligent_keyboard.patch
+108_fix_intltool_make_check.diff
+#109_fr_oss_space_char.patch
+110_dead_hook_horn.patch
+111_cz_ssharp.patch
+112_dk_dvorak_tilde.patch
+113_ossmath_is_five_levels.patch

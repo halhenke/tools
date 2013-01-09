@@ -1,0 +1,54 @@
+## Patches with a number < 100 are applied in debian.
+## Ubuntu patches start with 100.
+001_fedora_extramodes.patch
+02_Add-libnettle-as-option-for-sha1.diff
+07-xfree86-fix-build-with-xv-disabled.diff
+#13_debian_add_xkbpath_env_variable.diff
+15-nouveau.diff
+
+# Ubuntu patches
+100_rethrow_signals.patch
+105_nvidia_fglrx_autodetect.patch
+111_armel-drv-fallbacks.patch
+122_xext_fix_card32_overflow_in_xauth.patch
+157_check_null_modes.patch
+162_null_crtc_in_rotation.patch
+165_man_xorg_conf_no_device_ident.patch
+166_nullptr_xinerama_keyrepeat.patch
+167_nullptr_xisbread.patch
+168_glibc_trace_to_stderr.patch
+172_cwgetbackingpicture_nullptr_check.patch
+188_default_primary_to_first_busid.patch
+190_cache-xkbcomp_output_for_fast_start_up.patch
+191-Xorg-add-an-extra-module-path.patch
+198_nohwaccess.patch
+200_randr-null.patch
+#201_report-real-dpi.patch
+208_switch_on_release.diff
+209_add_legacy_bgnone_option.patch
+224_return_BadWindow_not_BadMatch.diff
+225_non-root_config_paths.patch
+226_fall_back_to_autoconfiguration.patch
+227_null_ptr_midispcur.patch
+228_log-format-fix.patch
+229_randr_first_check_pScrPriv_before_using_the_pointer.patch
+230_randr_catch_two_more_potential_unset_rrScrPriv_uses.patch
+
+## Input Stack Patches (from xserver 1.12) ##
+500_pointer_barrier_thresholds.diff
+505_query_pointer_touchscreen.patch
+506_touchscreen_pointer_emulation_checks.patch
+507_touchscreen_fixes.patch
+# Patch 508 attempted to fix LP: #968845, but caused regression
+# crash bug #1009629.  Patches 510-515 attempted to fix that
+# regression, but this led to the severe crash bug #1021517.
+# So, disabling the patch set until this can be studied better.
+#508_device_off_release_buttons.patch
+#510-dix-return-early-from-DisableDevice-if-the-device-is.patch
+#511-dix-move-freeing-the-sprite-into-a-function.patch
+#512-dix-free-the-sprite-when-disabling-the-device.patch
+#513-dix-disable-non-sprite-owners-first-when-disabling-p.patch
+#514-Xi-drop-forced-unpairing-when-changing-the-hierarchy.patch
+#515-dix-disable-all-devices-before-shutdown.patch
+516-dix-dont-emulate-scroll-events-for-non-existing-axes.patch
+

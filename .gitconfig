@@ -1,0 +1,5 @@
+[user]
+	name = Hal Henke
+	email = hal@catalyst-au.net
+[core]
+	excludesfile = ~/.gitignore_global

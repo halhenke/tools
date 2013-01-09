@@ -1,0 +1,19 @@
+Author: Christopher Halse Rogers <christopher.halse.rogers@canonical.com>
+Description: Make ‘make check’ pass in the presence of patches.
+
+make check in po/ will check for files with translatable strings that are not
+listed in POTFILES.in, which is broadly useful to ensure any patches that we
+add are translatable.
+
+However, it picks up quilt's temporary files in .pc, which obviously aren't
+listed as translatable.  Add this directory to POTFILES.skip so that 
+make check doesn't get grumpy.
+Index: xkb-data/po/POTFILES.skip
+===================================================================
+--- xkb-data.orig/po/POTFILES.skip	2011-05-24 13:03:26.986079531 +1000
++++ xkb-data/po/POTFILES.skip	2011-05-24 13:03:38.846553179 +1000
+@@ -1,2 +1,3 @@
+ rules/evdev.xml.in
+ rules/evdev.extras.xml.in
++.pc
+

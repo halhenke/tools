@@ -42,6 +42,11 @@ $if mode=emacs
 "\e[1;1C": end-of-line
 "\e[1;1D": beginning-of-line
 
+# HAL mappings for Page Up and Page Down in Konsole
+# Actually this is better done in Konsole User Settings...
+# Page Up "^[[5~"
+# Page Down "^[[6~"
+
 # HAL going to try putting this stuff here instead of .bashrc_local M
 # Might help to avoid scp failing when i tried to scp in from an outside machine.
 # When run without a terminal bind commands give the error:

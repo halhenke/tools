@@ -76,6 +76,7 @@
 (global-set-key (kbd "s-x") 'kill-region)
 (global-set-key (kbd "s-z") 'undo)
 (global-set-key (kbd "s-f") 'isearch-forward)
+(global-set-key (kbd "s-F") 'search-forward)
 ;; isearch-repeat DOES NOT SEEM TO EXIST ON LINUX!!!
 ;; (global-set-key (kbd "s-g") 'isearch-repeat)
 ;; (global-set-key (kbd "s-o") 'execute-extended-command)
