@@ -1,0 +1,88 @@
+.CFUserTextEncoding
+.Xauthority
+.android/
+.bash_history
+# .bash_profile
+.bash_profile.macports-saved_2012-11-17_at_22:42:07
+.cabal/
+.cache
+#======================================================================
+# EMACS STUFF
+#======================================================================
+# .emacs
+# In my .emacs.d directory i only really want my "packages" directory where i have hand installed stuff for
+# whatever reason, and my OS dependent install directory 
+# .emacs.d/
+# .emacs.d/Noches.el
+.emacs.d/history
+.emacs.d/auto-save-list/
+.emacs.d/url/
+.emacs.d/nxhtml/
+# Stores the info on packages and different repos
+.emacs.d/elpa/
+.emacs.d/el-get/
+.emacs.d/tramp
+.emacs.desktop
+.emacs.desktop.lock
+#======================================================================
+.fontconfig/
+.gdb_history
+.gem/
+.gforth-history
+.ghc/
+#======================================================================
+# GIT STUFF
+#======================================================================
+# I think i need to ignore gitconfig - it has a hardcoded expanded home directory path
+# .gitconfig
+# .gitignore
+# .gitignore_global
+#======================================================================
+.hals_macport_links/
+.heroku/
+.ido.last
+# .inputrc
+.irb-history
+.irb_history
+.lesshst
+.local/
+.netrc
+.passenger/
+.pip/
+.psql_history
+.rvm/
+.serverauth*
+.sh_history
+.slime/
+.sqlite_history
+.ssh/
+.tramp_history
+#======================================================================
+# VIM STUFF
+#======================================================================
+.vim/
+.viminfo
+.vim_mru_files
+# Basically i want to ignore everything in .vim_runtime except a file like
+# ~/.vim_runtime/my_configs.vim
+# this has my personal stuff whereas this:
+# ~/.vim_runtime/vimrcs
+# only has stuff installed by the vimrc config ditro I installed
+# If I keep to the default naming conventions of "my_configs.vim" then the 
+# auto-generated .vimrc now doesnt have anything personal in it anymore either:
+# .vimrc
+#======================================================================
+.virtualenvs/
+Comics/
+Desktop/
+Documents/
+Downloads/
+Google\ Drive
+Library/
+Movies/
+Music/
+Pictures/
+Public/
+Samsung/
+code/
+tools/

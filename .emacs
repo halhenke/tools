@@ -13,8 +13,6 @@
 ;;   (otherwise "Window System/Environment unknown!"))
 
 
-
-
 ;----------------------------------------------------------------------
 ; Some nice global emacs settings
 ;----------------------------------------------------------------------
@@ -24,6 +22,8 @@
 ; Save entire emacs session - can be done manually to load/save different setups to/from different locations
 (if window-system
     (desktop-save-mode 1))
+;; Lets have lines wrap at the edge of the screen at word boundaries by default....
+(global-visual-line-mode  1)
 ;; Enables a mode where when a region is highlighted/active and text is entered that region is deleted/killed rather than deselected
 ;; see also pc-selection-model
 (delete-selection-mode 1)
@@ -97,8 +97,77 @@
 ;; (smooth-scroll-mode)
 ;----------------------------------------------------------------------
 
+;======================================================================
+; PACKAGE MANAGEMENT
+;======================================================================
+; - EL-GET
 ;----------------------------------------------------------------------
-; SELF INSTALLED PACKAGE MANAGEMENT
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+;; Installs el-get if we dont already have it
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+;; Attempting to create packages for my stuff - either set el-get-sources or in recipe directory...i think
+;; Might be able to set arbitrary list name if you explicitly call it with el-get....Cant remember
+(setq 
+ el-get-sources 
+ '((:name org-mode-experimental
+	  ;; Commit b63f5333e7bbab900b134584d07e158aeba14844 has the EXPERIMENTAL/org-export.el file with the org-export-set-backend function that we need in org-mediawiki
+	  ;; Later versions do not have this - org-export.el is now in contrib/lisp but does not have the org-export-set-backend function
+	  ;; The code for this package seems to have changed considerably....
+	  :description "Experimental stuff for org-mode - necessary to get org-mode to media-wiki export going..."
+	  :type git
+	  :url "git://repo.or.cz/org-mode.git"
+	  ;; :checkout "b63f5333e7bbab900b134584d07e158aeba14844"
+	  ;; :post-init (add-to-list 'load-path "~/.emacs.d/el-get/org-mode-experiment/EXPERIMENTAL")
+	  ;; :load-path ("EXPERIMENTAL") ;; Equivalent to above :post-init instruction
+	  ;; :load-path ("./contrib/lisp" "./lisp")
+	  )
+   (:name org-media-wiki	  
+	  :description "Export/convert from org-mode to media-wiki format - NOTE this dependds on an outdated version of org-mode and as such seems to be way more trouble than its worth"
+	  :depends org-mode-experimental
+	  :type http
+	  :url "http://lumiere.ens.fr/~guerry/u/org-mediawiki.el"
+	  ;; :features org-mediawiki
+	  )
+   (:name evernote-mode
+	  :description "Mode for the editing of evernote documents. 
+This is a fork from the package available on package-management that requires Ruby 1.9.3 etc rather than Ruby 1.8.7
+This needs something called gdbm 'sudo port install gdbm ruby' and you have to run a ruby script after installation i think..."
+	  :type git
+	  ;; :url "git@github.com:rubbish/evernote-mode.git"
+	  :url "https://github.com/rubbish/evernote-mode.git"
+	  ;; either prepare or post-init
+	  :post-init (setq evernote-ruby-command "/Users/Hal/.hals_macport_links/ruby") 
+	  :features evernote-mode
+	  )
+   ))
+;; Ordinary sync - uses el-get-sources package list
+;; (el-get 'sync)
+;; ................................................................................
+;; INSTRUCTIONS FOR ABOVE
+;; once we set a recipe in the el-get-sources list it becomes available for installation
+;; we can check it is known to el-get by running "el-get-list-packages" and using tab completion
+;; on the value of :name
+;; Then to install it you just eval "el-get-install" on the packagename
+;; ................................................................................
+;; (setq my:el-get-packages ())
+;; (setq my:el-get-packages
+;;       (append
+;;        my:el-get-packages
+;;        (loop for src in el-get-sources collect (el-get-source-name src))))
+;; (el-get 'sync my:el-get-packages)
+;; Call this on a list of package names and el-get will install them if they are not already installed
+;; e.g. 
+;; (setq packlist '(p1 p2 p3))
+;; (el-get 'sync packlist)
+;----------------------------------------------------------------------
+
+;----------------------------------------------------------------------
+; - SELF-INSTALLED
 ;----------------------------------------------------------------------
 ;; Attempting to set up my own official location for 
 ;; self installed packages and code
@@ -115,24 +184,41 @@
 (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+;; EVERNOTE MODE
+;; This is installed by el-get but for now goes here...
+;; (setq evernote-username "haroldpark") ; optional: you can use this username as default.
+(setq evernote-enml-formatter-command '("w3m" "-dump" "-I" "UTF8" "-O" "UTF8")) ; option
+;; (global-set-key "\C-cec" 'evernote-create-note)
+;; (global-set-key "\C-ceo" 'evernote-open-note)
+;; (global-set-key "\C-ces" 'evernote-search-notes)
+;; (global-set-key "\C-ceS" 'evernote-do-saved-search)
+;; (global-set-key "\C-cew" 'evernote-write-note)
+;; (global-set-key "\C-cep" 'evernote-post-region)
+;; (global-set-key "\C-ceb" 'evernote-browser)
 ;----------------------------------------------------------------------
 
+;----------------------------------------------------------------------
+;; Org-Media-Wiki
+;----------------------------------------------------------------------
+;; (add-to-list 'load-path "~/.emacs.d/el-get/org-mode-experiment/EXPERIMENTAL")
+;; (load "org-mediawiki")
 ;----------------------------------------------------------------------
 ; Setting up SLIME LISP interactive editing
 ;----------------------------------------------------------------------
 ;(setq inferior-lisp-program "/usr/local/bin/sbcl") ; your Lisp system
-;(setq inferior-lisp-program "/opt/local/bin/clisp") ; your Lisp system
+(setq inferior-lisp-program "/opt/local/bin/clisp") ; your Lisp system
 ;(add-to-list 'load-path "~/.emacs.d/slime/") ; your SLIME directory
-(setq inferior-lisp-program "/usr/homebrew/bin/sbcl") ; your Lisp system
-(add-to-list 'load-path "/Users/Hal/Code/Packages/slime") ; your SLIME directory
-(require 'slime)
-(slime-setup)
+;; (setq inferior-lisp-program "/usr/homebrew/bin/sbcl") ; your Lisp system
+;; (add-to-list 'load-path "/Users/Hal/Code/Packages/slime") ; your SLIME directory
+;; (require 'slime)
+;; (slime-setup)
 ;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------
 ; Setting up nxHTML for mixed mode HTML editing (ruby/rails etc)
+;; NO this mode sucks!
 ;----------------------------------------------------------------------
-(load "~/.emacs.d/nxhtml/autostart.el")
+;; (load "~/.emacs.d/nxhtml/autostart.el")
 ;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------
@@ -286,14 +372,14 @@ are 'touched' by a particular region."
 ;; http://stackoverflow.com/questions/91071/emacs-switch-active-window
 ;; Windows Cycling
 (setq windmove-wrap-around t)
-(global-set-key (kbd "<prior>") 'windmove-up)
-(global-set-key (kbd "<next>") 'windmove-down)
-(global-set-key (kbd "<end>") 'windmove-right)
-(global-set-key (kbd "<home>") 'windmove-left)
-;; (global-unset-key (kbd "<C-s-up>"))
-;; (global-unset-key (kbd "<C-s-down>"))
-;; (global-unset-key (kbd "<C-s-right>"))
-;; (global-unset-key (kbd "<C-s-left>"))
+;; (global-set-key (kbd "<prior>") 'windmove-up)
+;; (global-set-key (kbd "<next>") 'windmove-down)
+;; (global-set-key (kbd "<end>") 'windmove-right)
+;; (global-set-key (kbd "<home>") 'windmove-left)
+(global-set-key (kbd "<C-s-up>") 'windmove-up)
+(global-set-key (kbd "<C-s-down>") 'windmove-down)
+(global-set-key (kbd "<C-s-right>") 'windmove-right)
+(global-set-key (kbd "<C-s-left>") 'windmove-left)
 ;; Again from the web
 (defun win-bck()
   "Step sequentially forwards from one window in current frame to the next."
@@ -421,7 +507,7 @@ should turn the current window into 4 new windows."
 ;Still more from versions the web - This one is heaps better - you can use Shift to grab text as you go now
 (defun sfp-page-down (&optional arg)
   (interactive "^P")
-  (setq this-command 'next-line)a
+  (setq this-command 'next-line)
   (next-line
    (- (window-text-height)
       next-screen-context-lines)))
@@ -462,11 +548,12 @@ should turn the current window into 4 new windows."
 ;----------------------------------------------------------------------
 ;; MODE SPECIFIC BINDINGS
 ;----------------------------------------------------------------------
-;;* ELISP Mode 
-;----------------------------------------------------------------------
 ;;* ORG Mode 
 ;----------------------------------------------------------------------
+(set 'org-support-shift-select 1)
 (set 'org-replace-disputed-keys 1)
+;----------------------------------------------------------------------
+;;* ELISP Mode 
 ;----------------------------------------------------------------------
 ; we can eval an s-expression with Command-r now (may have to use a mode hook if this gets overwritten...)
 (define-key lisp-interaction-mode-map (kbd "s-r") 'eval-print-last-sexp)
@@ -524,6 +611,15 @@ should turn the current window into 4 new windows."
 						     (setq this-command 'comint-next-matching-input-from-input)) ;This function checks last-command to see if it was the last command called
 						   (next-line n))))))
 ;; (forward-line n))))))
+
+;================================================================================
+;; Associate filetypes with modes
+;================================================================================
+(add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.gitignore\\'" . shell-script-mode))
+;; (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+
+;================================================================================
 
 ;----------------------------------------------------------------------
 ;; Ruby Mode
@@ -619,14 +715,14 @@ should turn the current window into 4 new windows."
        ;;(ido-mode t) ; I really think I hate this mode....
      
        ;; Rinari
-       (add-to-list 'load-path "~/.emacs.d/elpa/rinari-2.9")
-       (add-to-list 'load-path "~/.emacs.d/elpa/inf-ruby-2.2.3")
-       (add-to-list 'load-path "~/.emacs.d/elpa/ruby-mode-1.1")
-       (add-to-list 'load-path "~/.emacs.d/elpa/ruby-compilation-0.8")
-       (add-to-list 'load-path "~/.emacs.d/elpa/jump-2.1")
-       (add-to-list 'load-path "~/.emacs.d/elpa/findr-0.7")
-       (add-to-list 'load-path "~/.emacs.d/elpa/inflections-1.0")
-       (require 'rinari)
+       ;; (add-to-list 'load-path "~/.emacs.d/elpa/rinari-2.9")
+       ;; (add-to-list 'load-path "~/.emacs.d/elpa/inf-ruby-2.2.3")
+       ;; (add-to-list 'load-path "~/.emacs.d/elpa/ruby-mode-1.1")
+       ;; (add-to-list 'load-path "~/.emacs.d/elpa/ruby-compilation-0.8")
+       ;; (add-to-list 'load-path "~/.emacs.d/elpa/jump-2.1")
+       ;; (add-to-list 'load-path "~/.emacs.d/elpa/findr-0.7")
+       ;; (add-to-list 'load-path "~/.emacs.d/elpa/inflections-1.0")
+       ;; (require 'rinari)
 ;----------------------------------------------------------------------
 
 
