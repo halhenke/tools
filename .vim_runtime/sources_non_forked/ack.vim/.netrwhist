@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/Users/Hal/code/catalyst/fake_gem'
-let g:netrw_dirhist_2='/Users/Hal/code/catalyst/hurricane/.git'
-let g:netrw_dirhist_3='/Users/Hal/code/hunome/hunome-dev/db/migrate'
-let g:netrw_dirhist_4='/Users/Hal/.emacs.d/el-get'
-let g:netrw_dirhist_5='/Users/Hal/.emacs.d/el-get/org-mode-experimental'

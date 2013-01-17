@@ -1,8 +1,0 @@
-keycode range supported by kernel:           1 - 255
-max number of actions bindable to a key:         256
-number of keymaps in actual use:                 128
-of which 121 dynamically allocated
-ranges of action codes supported by kernel:
-number of function keys supported by kernel: 256
-max nr of compose definitions: 256
-nr of compose definitions in actual use: 68
