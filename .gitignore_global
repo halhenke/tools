@@ -1,8 +1,8 @@
-# Apple Files
+# OS X System Files
 .DS_Store
-
+# Emacs temp files
+.#*
+\#*#
 #Vim files
 *.*~
 
-# Emacs files
-\#*#

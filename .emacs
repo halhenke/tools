@@ -97,6 +97,7 @@
 ;; (smooth-scroll-mode)
 ;----------------------------------------------------------------------
 
+
 ;======================================================================
 ; PACKAGE MANAGEMENT
 ;======================================================================
@@ -177,6 +178,7 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 (require 'revbufs)
 ;; A major mode for editing javascript Handlebars templates
 (require 'handlebars-mode)
+
 ;; WEB MODE
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
@@ -202,6 +204,7 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 ;----------------------------------------------------------------------
 ;; (add-to-list 'load-path "~/.emacs.d/el-get/org-mode-experiment/EXPERIMENTAL")
 ;; (load "org-mediawiki")
+
 ;----------------------------------------------------------------------
 ; Setting up SLIME LISP interactive editing
 ;----------------------------------------------------------------------
@@ -277,6 +280,12 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 ;; [s 45 84 65 66]
 
 ;----------------------------------------------------------------------
+
+;; All Platforms
+;----------------------------------------------------------------------
+(global-set-key (kbd "s-d") 'dired) ; Have this setup in Unix also
+;----------------------------------------------------------------------
+
 ;; MAC OSX SPECIFIC BINDINGS
 ;----------------------------------------------------------------------
 ; Comment Bindings
@@ -372,6 +381,7 @@ are 'touched' by a particular region."
 ;; http://stackoverflow.com/questions/91071/emacs-switch-active-window
 ;; Windows Cycling
 (setq windmove-wrap-around t)
+
 ;; (global-set-key (kbd "<prior>") 'windmove-up)
 ;; (global-set-key (kbd "<next>") 'windmove-down)
 ;; (global-set-key (kbd "<end>") 'windmove-right)
@@ -380,6 +390,7 @@ are 'touched' by a particular region."
 (global-set-key (kbd "<C-s-down>") 'windmove-down)
 (global-set-key (kbd "<C-s-right>") 'windmove-right)
 (global-set-key (kbd "<C-s-left>") 'windmove-left)
+
 ;; Again from the web
 (defun win-bck()
   "Step sequentially forwards from one window in current frame to the next."
@@ -548,11 +559,13 @@ should turn the current window into 4 new windows."
 ;----------------------------------------------------------------------
 ;; MODE SPECIFIC BINDINGS
 ;----------------------------------------------------------------------
+
 ;;* ORG Mode 
 ;----------------------------------------------------------------------
 (set 'org-support-shift-select 1)
 (set 'org-replace-disputed-keys 1)
 ;----------------------------------------------------------------------
+
 ;;* ELISP Mode 
 ;----------------------------------------------------------------------
 ; we can eval an s-expression with Command-r now (may have to use a mode hook if this gets overwritten...)
