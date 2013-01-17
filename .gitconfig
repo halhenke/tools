@@ -1,0 +1,7 @@
+[core]
+	excludesfile = /Users/Hal/.gitignore_global
+[user]
+	name = Hal Henke
+	email = halhenke@gmail.com
+# [push]
+# 	default = simple

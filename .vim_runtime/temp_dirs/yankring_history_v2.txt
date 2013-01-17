@@ -1,0 +1,29 @@
+a,v
+org-mediawiki,v
+:features ,v
+ ,v
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,2
+;;;;;;;;;;;;;;,2
+,V
+;; (require 'org-mediawiki),V
+"  Newer Stuff,V
+"   Newer Stuff,V
+"--------------------------------------------,V
+              ,2
+      49 ,V
+54 ,v
+              ,v
+53 ,v
+            ,v
+52 ,v
+          ,v
+51 ,v
+        ,v
+50 ,v
+      ,v
+48 ,v
+  ,v
+7,v
+4,v
+",v
+/opt/local/bin/bash,V
