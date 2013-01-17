@@ -7,6 +7,9 @@ source ~/.vim_runtime/vimrcs/extended.vim
 
 try
 " source ~/.vim_runtime/my_configs.vim
+" source ~/.vim_runtime/vimrcs/hal.vim
 source ~/.hals_vim_config_file.vim
+
+
 catch
 endtry
