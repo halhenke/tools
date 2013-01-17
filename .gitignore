@@ -63,14 +63,9 @@
 .vim/
 .viminfo
 .vim_mru_files
-# Basically i want to ignore everything in .vim_runtime except a file like
-# ~/.vim_runtime/my_configs.vim
-# this has my personal stuff whereas this:
-# ~/.vim_runtime/vimrcs
-# only has stuff installed by the vimrc config ditro I installed
-# If I keep to the default naming conventions of "my_configs.vim" then the 
-# auto-generated .vimrc now doesnt have anything personal in it anymore either:
-# .vimrc
+.vim_runtime
+# ~/.vim_runtime/ is a git repo installed by the Amix Ultimate vimrc Configuration 
+# Its loaded by .vimrc but i keep my own customisations in my home directory
 #======================================================================
 .virtualenvs/
 Comics/
