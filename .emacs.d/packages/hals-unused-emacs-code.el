@@ -139,3 +139,29 @@ Basically so I can quickly grab the contents of a buffer and chuck it into jsFid
 ;; 		       )
 ;; 		  )
 ;----------------------------------------------------------------------
+
+
+;; --------------------------------------------------
+;; A function to put arrow driven history completion in the minibuffer
+;; --------------------------------------------------
+;; Should use stuff like:
+ ;; -- Command: previous-matching-history-element pattern n
+ ;;     This command replaces the minibuffer contents with the value of the
+ ;;     Nth previous (older) history element that matches PATTERN (a
+ ;;     regular expression).
+
+ ;; -- Command: next-matching-history-element pattern n
+ ;;     This command replaces the minibuffer contents with the value of the
+ ;;     Nth next (newer) history element that matches PATTERN (a regular
+ ;;     expression).
+
+ ;; -- Command: previous-complete-history-element n
+ ;;     This command replaces the minibuffer contents with the value of the
+ ;;     Nth previous (older) history element that completes the current
+ ;;     contents of the minibuffer before the point.
+
+ ;; -- Command: next-complete-history-element n
+ ;;     This command replaces the minibuffer contents with the value of the
+ ;;     Nth next (newer) history element that completes the current
+ ;;     contents of the minibuffer before the point.
+

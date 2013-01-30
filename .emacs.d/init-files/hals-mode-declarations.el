@@ -1,6 +1,8 @@
 ;****************************************
-;; IN this file are my attempts to create/modify my own modes for syntax highlighting etc
-
+;; In this file are my attempts to create/modify my own modes for syntax highlighting etc
+;;----------------------------------------
+(provide 'hals-mode-declarations)
+;;----------------------------------------
 ;; For instructions see:
 ;; http://ergoemacs.org/emacs/elisp_syntax_coloring.html
 ;;****************************************
@@ -113,6 +115,10 @@
 ;; If you want to change any of these variables after definition you have to use setq
 (defvar comic-quotes-regexp (regexp-opt comic-quotes))
 (defvar comic-markup-regexp (regexp-opt comic-markup))
+;; (defvar comic-italic "<\\(i\\|I\\)>\\(.*?\\)</\\(i\\|I\\)>")
+;; (defvar comic-bold "<\\(b\\|B\\)>\\(.*?\\)</\\(b\\|B\\)>")
+(defvar comic-italic "<\\(i\\|I\\)>\\(.*?\\)</\\1>")
+(defvar comic-bold "<\\(b\\|B\\)>\\(.*?\\)</\\1>")
 (defvar comic-image-regexp (regexp-opt comic-image))
 
 ;; Order is important here - a word will be matched once and then wont be available for other modes
@@ -120,6 +126,8 @@
       `(
 	(,comic-quotes-regexp . font-lock-type-face)
 	(,comic-markup-regexp . font-lock-constant-face)
+	(,comic-bold 2 'bold)
+	(,comic-italic 2 'italic)
 	(,comic-image-regexp . font-lock-function-name-face)
 	))
 
@@ -227,6 +235,4 @@
 ;;----------------------------------------
 
 
-;;----------------------------------------
-(provide 'hals-mode-declarations)
-;;----------------------------------------
+

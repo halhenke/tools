@@ -1,4 +1,7 @@
-(provide 'unix_setup)
+;=================================================
+; UNIX/LINUX SPECIFIC BINDINGS, COMMANDS, AND SETTINGS
+;=================================================
+(provide 'unix-setup)
 
 ;; Menlo font not available on linux
 (set-frame-font "DejaVu Serif-10" nil t)

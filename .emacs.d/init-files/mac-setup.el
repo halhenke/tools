@@ -1,4 +1,7 @@
-(provide 'mac_setup)
+;=================================================
+; OS X SPECIFIC BINDINGS, COMMANDS, AND SETTINGS
+;=================================================
+(provide 'mac-setup)
 
 ;; Menlo font not available on linux
 (set-frame-font "Menlo-16" nil t)

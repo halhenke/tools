@@ -14,6 +14,7 @@
 # whatever reason, and my OS dependent install directory 
 # .emacs.d/
 # .emacs.d/Noches.el
+.emacs.d/eshell/
 .emacs.d/history
 .emacs.d/auto-save-list/
 .emacs.d/url/
@@ -34,7 +35,8 @@
 # GIT STUFF
 #======================================================================
 # I think i need to ignore gitconfig - it has a hardcoded expanded home directory path
-# .gitconfig
+.gitconfig
+.gitk
 # .gitignore
 # .gitignore_global
 #======================================================================
@@ -46,10 +48,12 @@
 .irb_history
 .lesshst
 .local/
+.mysql_history
 .netrc
 .passenger/
 .pip/
 .psql_history
+.rnd
 .rvm/
 .serverauth*
 .sh_history
