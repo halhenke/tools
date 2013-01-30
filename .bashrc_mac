@@ -7,6 +7,15 @@ echo ".bashrc_mac called..."
 # /opt/local/bin/bash
 echo "Your shell is $SHELL and you are running version $BASH_VERSION"
 
+
+# ----------------------------------------------------------------------
+# SETTING COMMAND HISTORY
+# ----------------------------------------------------------------------
+export HISTCONTROL=ignoredups
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+# export HISTFILE=.....
+
 # ----------------------------------------------------------------------
 # SETTING UP THE PROMPT
 # ----------------------------------------------------------------------
@@ -101,17 +110,17 @@ echo "doing Macports stuff - modifying your PATH..."
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 # Finished adapting your PATH environment variable for use with MacPorts.
 
-# Enable the bash-completion port
+# # Enable the bash-completion port
 echo "enabling bash_completion..."
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
     . /opt/local/etc/profile.d/bash_completion.sh
 fi
-# This is currently duplicated in .inputrc - fix
-bind '"\e[A":history-search-backward'
-bind '"\e[B":history-search-forward'
+# # This is currently duplicated in .inputrc - fix
+# bind '"\e[A":history-search-backward'
+# bind '"\e[B":history-search-forward'
 
 
-# POSTGRES
+# POSTGRES 
 echo "hackish way to get Postgres commands available with MacPorts - modifying your PATH..."
 export PATH=/opt/local/lib/postgresql92/bin/:$PATH
 

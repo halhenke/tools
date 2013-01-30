@@ -20,6 +20,7 @@
 
 ;; Different search forward command on OS X/Linux
 (global-set-key (kbd "s-g") 'isearch-repeat-forward)
+(global-set-key (kbd "s-G") 'isearch-repeat-backward)
 (global-set-key (kbd "s-d") 'dired) ; Fuck the default binding to isearch-repeat-backward
 
 

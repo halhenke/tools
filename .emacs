@@ -1,7 +1,3 @@
-;(defvar emacs-directory "~/.emacs.d/") "The directory containing the emacs configuration files."
-;; Define the load-path
-;(pushnew (expand-file-name emacs-directory) load-path)
-
 ;----------------------------------------------------------------------
 ; Customise for different environments
 ;----------------------------------------------------------------------
@@ -52,9 +48,8 @@
 ;; Web Derived Theme Stuff 
 ;; now defined in OS-specific setup ~/.emacs.d/init_files
 (load-theme 'wheatgrass) 
-;----------------------------------------------------------------------
-
 ;; (load-theme 'tango) ;bit hard to read....
+;----------------------------------------------------------------------
 ;; Should really make this so it only goes on in lisp mode...
 (show-paren-mode 1)
 (setq show-paren-style 'expression)
@@ -92,24 +87,39 @@
 ;; A major mode for editing javascript Handlebars templates
 (require 'handlebars-mode)
 ;----------------------------------------------------------------------
-; - EL-GET
+; ELPA
+;----------------------------------------------------------------------
+; Adding sources to the list of where we can install packages from
+;----------------------------------------------------------------------
+;; Add the original Emacs Lisp Package Archive
+(require 'package)
+;; Add the user-contributed repository
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives
+             '("elpa" . "http://tromey.com/elpa/"))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;----------------------------------------------------------------------
+; EL-GET
 ;----------------------------------------------------------------------
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 ;; Install el-get if we dont already have it
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
-      (url-retrieve-synchronously
+      (url-retrieve-synchronously 
        "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
     (goto-char (point-max))
     (eval-print-last-sexp)))
 ;----------------------------------------------------------------------
-;; RECIPES
+; - RECIPES
+;   Chuck this stuff in its own directory eventually
 ;----------------------------------------------------------------------
 ;; Attempting to create recipes for my stuff - either set el-get-sources or in recipe directory...i think
 ;; Might be able to set arbitrary list name if you explicitly call it with el-get....Cant remember
 (setq 
  el-get-sources 
- '((:name org-mode-experiment
+ '((:name org-mode-experimental
 	  ;; Commit b63f5333e7bbab900b134584d07e158aeba14844 has the EXPERIMENTAL/org-export.el file with the org-export-set-backend function that we need in org-mediawiki
 	  ;; Later versions do not have this - org-export.el is now in contrib/lisp but does not have the org-export-set-backend function
 	  ;; The code for this package seems to have changed considerably....
@@ -140,7 +150,8 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 	  :features evernote-mode
 	  )
    ))
-;; Ordinary sync - uses el-get-sources package list
+;; Check our packages are installed and initialized properly
+;; syn/asyn determines if its a synchronous operation or not
 (el-get 'sync)
 ;----------------------------------------------------------------------
 
@@ -185,17 +196,8 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 ;----------------------------------------------------------------------
 ;; Yeah i kind of hate this mode
 ;; (load "~/.emacs.d/nxhtml/autostart.el")
-;----------------------------------------------------------------------
-; Adding sources to the list of where we can install packages from
-;----------------------------------------------------------------------
-;; Add the original Emacs Lisp Package Archive
-(require 'package)
-;; Add the user-contributed repository
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives
-             '("elpa" . "http://tromey.com/elpa/"))
-;----------------------------------------------------------------------
+
+
 ;=========================
 ; HALS CUSTOM KEY BINDINGS
 ;=========================
@@ -215,11 +217,14 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 
 
 ;----------------------------------------------------------------------
-;; All Platforms
+; All Platforms
 ;----------------------------------------------------------------------
 (global-set-key (kbd "s-d") 'dired) ; Have this setup in the Mac/Unix files also
 ;----------------------------------------------------------------------
-;; MAC OSX SPECIFIC BINDINGS
+; MAC OSX SPECIFIC BINDINGS
+; See the ~/.emacs.d/init_files/mac_init.el
+; LINUX SPECIFIC BINDINGS
+; See the ~/.emacs.d/init_files/unix_init.el
 ;----------------------------------------------------------------------
 ; Comment Bindings
 ;----------------------------------------------------------------------
@@ -357,9 +362,7 @@ should turn the current window into 4 new windows."
 		  (windmove-right)
 		  (split-window-below)
 		  (windmove-left)))
-
-;----------------------------------------------------------------------
-;; Rotating windows - an interactive version from emacswiki
+;; Rotate Windows - from emacswiki
 (defun rotate-windows ()
   "Rotate your windows"
   (interactive)
@@ -368,20 +371,47 @@ should turn the current window into 4 new windows."
     (message "You can't rotate a single window!"))
    (t
     (let ((i 1)
-          (num-windows (count-windows)))
+	  (num-windows (count-windows)))
       (while  (< i num-windows)
-        (let* ((w1 (elt (window-list) i))
-               (w2 (elt (window-list) (+ (% i num-windows) 1)))
-               (b1 (window-buffer w1))
-               (b2 (window-buffer w2))
-               (s1 (window-start w1))
-               (s2 (window-start w2)))
-          (set-window-buffer w1 b2)
-          (set-window-buffer w2 b1)
-          (set-window-start w1 s2)
-          (set-window-start w2 s1)
-          (setq i (1+ i))))))))
+	(let* ((w1 (elt (window-list) i))
+	       (w2 (elt (window-list) (+ (% i num-windows) 1)))
+	       (b1 (window-buffer w1))
+	       (b2 (window-buffer w2))
+	       (s1 (window-start w1))
+	       (s2 (window-start w2)))
+	  (set-window-buffer w1 b2)
+	  (set-window-buffer w2 b1)
+	  (set-window-start w1 s2)
+	  (set-window-start w2 s1)
+	  (setq i (1+ i))))))))
 (global-set-key (kbd "s-5") 'rotate-windows)
+;; Toggle Window Split - from emacswiki
+(defun toggle-window-split ()
+  "If you have two vertically open windows switch to two horizontally open windows and vice versa."
+  (interactive)
+  (if (= (count-windows) 2)
+      (let* ((this-win-buffer (window-buffer))
+	     (next-win-buffer (window-buffer (next-window)))
+	     (this-win-edges (window-edges (selected-window)))
+	     (next-win-edges (window-edges (next-window)))
+	     (this-win-2nd (not (and (<= (car this-win-edges)
+					 (car next-win-edges))
+				     (<= (cadr this-win-edges)
+					 (cadr next-win-edges)))))
+	     (splitter
+	      (if (= (car this-win-edges)
+		     (car (window-edges (next-window))))
+		  'split-window-horizontally}
+		'split-window-vertically)))
+	(delete-other-windows)
+	(let ((first-win (selected-window)))
+	  (funcall splitter)
+	  (if this-win-2nd (other-window 1))
+	  (set-window-buffer (selected-window) this-win-buffer)
+	  (set-window-buffer (next-window) next-win-buffer)
+	  (select-window first-win)
+	  (if this-win-2nd (other-window 1))))))
+(global-set-key (kbd "s-6") 'toggle-window-split)
 ;----------------------------------------------------------------------
 ;; Ask before closing other windows
 ;; (defun ask-before-closing-windows ()
@@ -474,12 +504,68 @@ should turn the current window into 4 new windows."
 
 
 ;=================================================
-;; MODE SPECIFIC BINDINGS, COMMANDS, AND SETTINGGS
+; MODE SPECIFIC BINDINGS, COMMANDS, AND SETTINGS
 ;=================================================
+;================================================================================
+; Associating filetypes with modes
+;================================================================================
+(add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.gitignore\\'" . shell-script-mode))
+(add-to-list 'auto-mode-alist '("\\.inputrc" . shell-script-mode))
+(add-to-list 'auto-mode-alist '("\\.bash.*" . shell-script-mode))
+;; (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+
 ;----------------------------------------------------------------------
-;;  Outline Minor Mode
+;  Shell Mode
 ;----------------------------------------------------------------------
-;; Try to get some nicer behaviour in outline minor mode for code folding...
+          ;----------------------------------------------------------------------
+          ;  Bash Completion - GIT
+          ;  - a basic bit of bash completion
+          ;----------------------------------------------------------------------
+;; (defconst pcmpl-git-commands
+;;   '("add" "bisect" "branch" "checkout" "clone"
+;;     "commit" "diff" "fetch" "grep"
+;;     "init" "log" "merge" "mv" "pull" "push" "rebase"
+;;     "reset" "rm" "show" "status" "tag" )
+;;   "List of `git' commands")
+
+(defconst pcmpl-git-commands
+  '("add" "merge-one-file" "merge-ours" "am" "merge-recursive" "annotate" "merge-resolve" "apply" "merge-subtree" "archimport" "merge-tree" "archive" "mergetool" "bisect" "mktag" "mktree" "blame" "mv" "branch" "name-rev" "bundle" "notes" "cat-file" "p4" "check-attr" "pack-objects" "check-ref-format" "pack-redundant" "checkout" "pack-refs" "checkout-index" "patch-id" "cherry" "peek-remote" "cherry-pick" "prune" "citool" "prune-packed" "clean" "pull" "clone" "push" "column" "quiltimport" "commit" "read-tree" "commit-tree" "rebase" "config" "receive-pack" "count-objects" "reflog" "credential" "relink" "credential-cache" "remote" "remote-ext" "credential-store" "remote-fd" "cvsexportcommit" "remote-ftp" "cvsimport" "remote-ftps" "cvsserver" "remote-http" "daemon" "remote-https" "describe" "remote-testgit" "diff" "remote-testsvn" "diff-files" "repack" "diff-index" "replace" "diff-tree" "repo-config" "difftool" "request-pull" "rerere" "fast-export" "reset" "fast-import" "rev-list" "fetch" "rev-parse" "fetch-pack" "revert" "filter-branch" "rm" "fmt-merge-msg" "send-email" "for-each-ref" "send-pack" "format-patch" "fsck" "shell" "fsck-objects" "shortlog" "gc" "show" "get-tar-commit-id" "show-branch" "grep" "show-index" "gui" "show-ref" "stage" "hash-object" "stash" "help" "status" "http-backend" "stripspace" "http-fetch" "submodule" "http-push" "subtree" "imap-send" "symbolic-ref" "index-pack" "tag" "init" "tar-tree" "init-db" "unpack-file" "instaweb" "unpack-objects" "log" "update-index" "lost-found" "update-ref" "ls-files" "update-server-info" "ls-remote" "upload-archive" "ls-tree" "upload-pack" "mailinfo" "var" "mailsplit" "verify-pack" "merge" "verify-tag" "merge-base" "merge-file" "whatchanged" "merge-index" "write-tree" "merge-octopus" "credential-osxkeychain")
+  "List of `git' commands")
+
+
+(defvar pcmpl-git-ref-list-cmd "git for-each-ref refs/ --format='%(refname)'"
+  "The `git' command to run to get a list of refs")
+ 
+(defun pcmpl-git-get-refs (type)
+  "Return a list of `git' refs filtered by TYPE"
+  (with-temp-buffer
+    (insert (shell-command-to-string pcmpl-git-ref-list-cmd))
+    (goto-char (point-min))
+    (let ((ref-list))
+      (while (re-search-forward (concat "^refs/" type "/\\(.+\\)$") nil t)
+        (add-to-list 'ref-list (match-string 1)))
+      ref-list)))
+ 
+(defun pcomplete/git ()
+  "Completion for `git'"
+  ;; Completion for the command argument.
+  (pcomplete-here* pcmpl-git-commands)  
+  ;; complete files/dirs forever if the command is `add' or `rm'
+  (cond
+   ((pcomplete-match (regexp-opt '("add" "rm")) 1)
+    (while (pcomplete-here (pcomplete-entries))))
+   ;; provide branch completion for the command `checkout'.
+   ;; ((pcomplete-match "checkout" 1)
+   ((pcomplete-match (regexp-opt '("checkout" "show") 1))
+    (pcomplete-here* (pcmpl-git-get-refs "heads")))))
+
+
+;----------------------------------------------------------------------
+;  Outline Minor Mode
+;----------------------------------------------------------------------
+; Try to get some nicer behaviour in outline minor mode for code folding...
 ;----------------------------------------------------------------------
 ;; For now - this bit is disabled - the keybindings seemed to not go away after 
 ;; outline-minor-mode was disabled - at least in the same buffer - weird...
@@ -527,9 +613,66 @@ should turn the current window into 4 new windows."
 ;----------------------------------------------------------------------
 (set 'org-support-shift-select 1)
 (set 'org-replace-disputed-keys 1)
-;----------------------------------------------------------------------
-;;* ELISP Mode 
-;----------------------------------------------------------------------
+(defun insert-BEGIN ()
+ "Trying to get an org-mode helper"
+  (interactive)
+  (let (beg end 
+	    (beg-string "\n#+BEGIN_VERSE\n")
+	    (end-string "\n#+END_VERSE\n"))
+    (if (region-active-p)
+	(progn
+	  (setq beg (region-beginning) end (region-end))
+	  (set-window-point (selected-window) beg)
+	  ;; (beginning-of-line)
+	  (insert "\n#+BEGIN_VERSE\n")
+	  (set-window-point (selected-window) (+ end (length "\n#+BEGIN_VERSE\n")))
+	  ;; (end-of-line)
+	  (insert "\n#+END_VERSE\n")
+	  ;; (next-line)
+	  )
+      ;; (setq end (line-end-position)))
+      ;; (
+      ;;  (insert "#+BEGIN_VERSE\n")
+      ;;  (insert "#+END_VERSE")
+      ;; )
+    )
+  ))
+(global-set-key (kbd "M-P") 'insert-BEGIN)
+
+
+
+;; Insert 
+;; #+BEGIN_VERSE
+;; the
+;; arguments, either strings or characters, at point.
+;; Point and before-insertion markers move forward to end up
+;;  after the inserted text.
+;; Any other markers at the 
+;; #+END_VERSE
+;; point of insertion rem#+END_VERSEain before the text.
+
+
+
+
+
+;; (insert-BEGIN)
+;; (read-key )function-b is:
+;; 98 (#o142, #x62)
+;; (defun block-verse-region-or-line (beg end)
+;;   ;; (set temp-left comment-start)
+;;   ;; (set comment-start ": ")
+;;   (comment-or-uncomment-region-or-line)
+;;   ;; (set comment-start temp-left)
+;;   )
+;; (define-key org-mode-map [98] (block-verse-region-or-line ())) ;; function-b
+
+;; (add-hook 'org-mode-hook 'block-verse-region-or-line)
+
+
+;;----------------------------------------------------------------------
+;; * ELISP Mode 
+;; - And also lisp interactive mode
+;;----------------------------------------------------------------------
 ; we can eval an s-expression with Command-r now (may have to use a mode hook if this gets overwritten...)
 (define-key lisp-interaction-mode-map (kbd "s-r") 'eval-print-last-sexp)
 ;; Select region and it will evaluate s-expressions - 
@@ -541,12 +684,6 @@ should turn the current window into 4 new windows."
 ;; (eval-after-load 'lisp-interaction-mode-map
 ;;                      '(define-key lisp-interaction-mode-map (kbd "s-r") 'eval-print-last-sexp))
 
-; Heres what some other guy has to remap Command key to Meta etc - might change these keys later 
-; i.e. Caps Lock become Control or something....
-;; (setq mac-option-key-is-meta nil)
-;; (setq mac-command-key-is-meta t)
-;; (setq mac-command-modifier 'meta)
-;; (setq mac-option-modifier nil)
 
 ;; From StackOverflow - how to set show-paren-mode to be non-global - only in elsip mode
 ;; (show-paren-mode)                       ;; activate the needed timer
@@ -586,25 +723,80 @@ should turn the current window into 4 new windows."
 						     (setq this-command 'comint-next-matching-input-from-input)) ;This function checks last-command to see if it was the last command called
 						   (next-line n))))))
 ;; (forward-line n))))))
-;================================================================================
-;; Associate filetypes with modes
-;================================================================================
-(add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.gitignore\\'" . shell-script-mode))
-;; (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+
 
 ;================================================================================
 
-;----------------------------------------------------------------------
+;;----------------------------------------------------------------------
 ;; Ruby Mode
-;----------------------------------------------------------------------
-;;; enables outlining for ruby by default
-;;; You may also want to bind hide-body, hide-subtree, show-substree,
-;;; show-all, show-children, ... to some keys easy folding and unfolding
+;;----------------------------------------------------------------------
+;; enables outlining for ruby by default
+;; You may also want to bind hide-body, hide-subtree, show-substree,
+;; show-all, show-children, ... to some keys easy folding and unfolding
 (add-hook 'ruby-mode-hook
               '(lambda ()
                  (outline-minor-mode)
                  (setq outline-regexp " *\\(def \\|class\\|module\\)")))
+
+;;----------------------------------------------------------------------
+;; Haml Mode
+;;----------------------------------------------------------------------
+;; Haml-modes default indentation sucks - I want to be able to control 
+;; the indentation myself by moving it forward or backwards without cycling 
+;; through all possibilities.
+;; Rewriting a high level method may be too time consuming so i might just 
+;; have a function that moves a line in or out by multiples of two
+
+;; (defun hals-haml-indent-line ()
+;;   "Indent the current line.
+;; If called with no argument then indent to the maximum sensible indentation.
+;; Otherwise move forward by n indentations. 
+;; In practice this is intended to be bound to positive and negative values."
+;;   )
+  ;; The first time this command is used, the line will be indented to the
+  ;; maximum sensible indentation.  Each immediately subsequent usage will
+  ;; back-dent the line by `haml-indent-offset' spaces.  On reaching column
+  ;; 0, it will cycle back to the maximum sensible indentation."
+  ;; (interactive "*")
+  ;; (let ((ci (current-indentation))
+  ;;       (cc (current-column)))
+  ;;   (destructuring-bind (need strict) (haml-compute-indentation)
+  ;;     (save-excursion
+  ;;       (beginning-of-line)
+  ;;       (delete-horizontal-space)
+  ;;       (if (and (not strict) (equal last-command this-command) (/= ci 0))
+  ;;           (indent-to (* (/ (1- ci) haml-indent-offset) haml-indent-offset))
+  ;;         (indent-to need))))
+  ;;   (when (< (current-column) (current-indentation))
+  ;;     (forward-to-indentation 0))))
+(defun hal-haml-indent-small ()
+  "Just trying to do a simple method to move a line one level more or less indented"
+  (interactive "*")
+  (let ((ci (current-indentation))
+        (cc (current-column)))      ;; Current line position
+    (save-excursion  ;; Do stuff and then return to the same spot in buffer
+      ;; Go to beginning of line and delete all tabs and spaces
+      (beginning-of-line)               
+      (delete-horizontal-space)
+      ;; (indent-to (* (/ (1- ci) haml-indent-offset) haml-indent-offset))
+      (indent-to (- ci 2))
+      )))
+hal-haml-indent-small
+
+hal-haml-indent-small
+
+	  hal-haml-indent-small
+
+
+;; (global-set-key (kbd "<home>") (hal-haml-indent-small 14))
+;; (global-unset-key (kbd "<home>"))
+
+(add-hook 'haml-mode-hook
+               (lambda ()
+                 (setq indent-tabs-mode nil)
+                 (define-key haml-mode-map "\C-m" 'newline-and-indent)))
+;;----------------------------------------------------------------------
+
 ;----------------------------------------------------------------------
 ;; Ruby/Rails Specific Stuff
 ;; http://viget.com/extend/emacs-24-rails-development-environment-from-scratch-to-productive-in-5-minu
@@ -625,43 +817,7 @@ should turn the current window into 4 new windows."
 ;----------------------------------------------------------------------
 ;; My Own Modes!
 ;----------------------------------------------------------------------
-(define-generic-mode 
-    'alvaro-mode                         ;; name of the mode to create
-  nil                           ;; comments start with '!!'
-  '("<.*>" "[.*]")                          ;; some keywords
-  '(("=" . 'font-lock-operator)     ;; a list of other options
-    )     
-  nil                      ;; files for which to activate this mode 
-  nil                              ;; other functions to call
-  "A mode for Battlebaord text editing peculiar to comicboards.com"            ;; doc string for this mode
-  )
 
-
-;; Two small edits.
-;; First is to put an extra set of parens () around the list
-;; which is the format that font-lock-defaults wants
-;; Second, you used ' (quote) at the outermost level where you wanted ` (backquote)
-;; you were very close
-(defvar hero-keywords nil)
-(defvar hero-events nil)
-
-(defvar hero-font-lock-defaults
-  `((
-     ;; stuff between "
-     ("\"\\.\\*\\?" . font-lock-string-face)
-     ;; ; : , ; { } =>  @ $ = are all special elements
-     (":\\|,\\|;\\|{\\|}\\|=>\\|@\\|$\\|=" . font-lock-keyword-face)
-     ( ,(regexp-opt hero-keywords 'words) . font-lock-builtin-face)
-     ( ,(regexp-opt hero-events 'words) . font-lock-constant-face)
-     )))
-
-(define-derived-mode hero-mode text-mode "Battleboard Text"
-  "text mode with string and basic markup highlighting."
-  ;;register keywords
-  (setq rich-text-font-lock-keywords
-        '(("\"\\(\\(?:.\\|\n\\)*?[^\\]\\)\"" 0 font-lock-string-face)))
-  (setq font-lock-defaults rich-text-font-lock-keywords)
-  (font-lock-mode 1))
 ;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------

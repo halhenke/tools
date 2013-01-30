@@ -1,4 +1,10 @@
 ;----------------------------------------------------------------------
+;; Setup our init/customization directory
+;----------------------------------------------------------------------
+;(defvar emacs-directory "~/.emacs.d/") "The directory containing the emacs configuration files."
+;; Define the load-path
+;(pushnew (expand-file-name emacs-directory) load-path)
+;----------------------------------------------------------------------
 ;; (require 'cl)
 ;; (case (window-system) 
 ;;   ('ns "We are on a mac")
@@ -7,6 +13,14 @@
 ;;   (otherwise "Window System/Environment unknown!"))
 ;----------------------------------------------------------------------
 
+;----------------------------------------------------------------------
+; Heres what some other guy has to remap Command key to Meta etc - might change these keys later 
+; i.e. Caps Lock become Control or something....
+;; (setq mac-option-key-is-meta nil)
+;; (setq mac-command-key-is-meta t)
+;; (setq mac-command-modifier 'meta)
+;; (setq mac-option-modifier nil)
+;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------
 ;; Javascript useful stuff
@@ -109,4 +123,19 @@ Basically so I can quickly grab the contents of a buffer and chuck it into jsFid
 
 ;; (require 'smooth-scroll)
 ;; (smooth-scroll-mode)
+;----------------------------------------------------------------------
+
+
+;----------------------------------------------------------------------
+;; Trying to write a function to go from a vert-split window to a horizontal-split window and vice versa
+
+;; 		(lambda () (interactive)
+;; 		  "If we are in a frame with two windows that is split vertically then 'rotate' frame so that the split is horizontal.
+;; If, on the other hand we are in a frame with two windows that is split horizontally then 'rotate' frame so that the split is vertical."
+;; 		  ;; check we have two windows in current frame - if not, error message
+;; 		  ;; get buffer names		  
+;; 		  (let (b1 )(b2)
+;; 		       ()
+;; 		       )
+;; 		  )
 ;----------------------------------------------------------------------

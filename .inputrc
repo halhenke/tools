@@ -1,42 +1,47 @@
-echo ".inputrc called..."
+# HAL - DONT HAVE OUTPUT LIKE 'echo "la la la' IN YOUR INPUTRC FILE - it caused the MySQL CLI to fuck up for one thing
 
 # HAL - below is taken from Catalyst .inputrc
 
 # ~/.inputrc for Andrew McMillan <andrew@catalyst.net.nz> to enable
 # things like Ctrl+Left etc in readline.
 
-# Be 8 bit clean.
-set input-meta on
-set output-meta on
+#********************************************************************************
+# Commenting out below here for now to the next line of asterisks
 
-# Allow 8-bit characters to be input because we like that
-set convert-meta off
+# # Be 8 bit clean.
+# set input-meta on
+# set output-meta on
 
-# We're only modifying the emacs mode
-$if mode=emacs
+# # Allow 8-bit characters to be input because we like that
+# set convert-meta off
 
-"\e[1~": beginning-of-line
-"\e[4~": end-of-line
+# # We're only modifying the emacs mode
+# $if mode=emacs
 
-# allow the use of the Delete/Insert keys
-"\e[3~": delete-char
-"\e[2~": quoted-insert
+# "\e[1~": beginning-of-line
+# "\e[4~": end-of-line
 
-# alternate mappings for "page up" and "page down" to search the history
-"\e[5~": history-search-backward
-"\e[6~": history-search-forward
+# # allow the use of the Delete/Insert keys
+# "\e[3~": delete-char
+# "\e[2~": quoted-insert
 
-# # mappings for Ctrl-left-arrow and Ctrl-right-arrow for word moving
-"\e[5C": forward-word
-"\e[5D": backward-word
+# # alternate mappings for "page up" and "page down" to search the history
+# "\e[5~": history-search-backward
+# "\e[6~": history-search-forward
 
-# uxterm and xterm mappings for Ctrl-left-arrow and Ctrl-right-arrow
-"\e[1;5C": forward-word
-"\e[1;5D": backward-word
+# # # mappings for Ctrl-left-arrow and Ctrl-right-arrow for word moving
+# "\e[5C": forward-word
+# "\e[5D": backward-word
 
-# allow the use of the Home/End keys
-"\eOH": beginning-of-line
-"\eOF": end-of-line
+# # uxterm and xterm mappings for Ctrl-left-arrow and Ctrl-right-arrow
+# "\e[1;5C": forward-word
+# "\e[1;5D": backward-word
+
+# # allow the use of the Home/End keys
+# "\eOH": beginning-of-line
+# "\eOF": end-of-line
+
+#********************************************************************************
 
 # ================================================================================
 # HAL STUFF
@@ -59,6 +64,9 @@ $if mode=emacs
 # Page Up "^[[5~"
 # Page Down "^[[6~"
 
+# $endif
+# HAL - the rest will be outside the emacs guard
+
 # --------------------------------------------------------------------------------
 # General settings
 # --------------------------------------------------------------------------------
@@ -66,10 +74,17 @@ $if mode=emacs
 # Might help to avoid scp failing when i tried to scp in from an outside machine.
 # When run without a terminal bind commands give the error:
 # warning: line editing not enabled
+
 # The following depends on the bash-completion package being downloaded also....
+
+# But if i run the following command i can no longer input the characters 'i' or 'f' 
+# from the command line!
+# if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+#     . /opt/local/etc/profile.d/bash_completion.sh
+# fi
 "\e[A": history-search-backward
 "\e[B": history-search-forward
-
+# --------------------------------------------------------------------------------
 # LETS TRY GETTING SOME OTHER COOL READLINE STUFF HAPPENING
 # "\C-w": unix-word-rubout
 "\C-W": kill-region
@@ -79,5 +94,5 @@ $if mode=emacs
 
 set completion-ignore-case on
 
-$endif
+
 
