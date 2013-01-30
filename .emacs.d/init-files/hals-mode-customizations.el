@@ -12,9 +12,9 @@
 (add-to-list 'auto-mode-alist '("\\.bash.*" . shell-script-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 
-;----------------------------------------------------------------------
-;  Shell Mode
-;----------------------------------------------------------------------
+;;----------------------------------------------------------------------
+;;  Shell Mode
+;;----------------------------------------------------------------------
           ;----------------------------------------------------------------------
           ;  Bash Completion - GIT
           ;  - a basic bit of bash completion
@@ -156,39 +156,31 @@ Possible values are VERSE, SRC language, QUOTE and EXAMPLE."
     ))
   ))
 ;; (global-set-key (kbd "M-P") 'org-insert-BEGIN-region)
+(define-key org-mode-map (kbd "C-c l") 'org-store-link)
+
 (add-hook 'org-mode-hook 
 	  '(define-key org-mode-map (kbd "M-P") 'org-insert-BEGIN-region))
-
 ;; Sample text for screwing aruond
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Insert the
-arguments, either strings or characters, at point.
-Point and before-insertion markers move forward to end up
- after the inserted text.
-Any other markers at the point of insertion remain before the text. and a good day
-abra
-#+BEGIN_SRC elisp
-cadabra
-#+END_SRC
-here is good
-
-
-
-
+;; Insert the
+;; arguments, either strings or characters, at point.
+;; Point and before-insertion markers move forward to end up
+;;  after the inserted text.
+;; Any other markers at the point of insertion remain before the text. and a good day
+;; abra
+;; #+BEGIN_SRC elisp
+;; cadabra
+;; #+END_SRC
+;; here is good
 
 
 ;; (insert-BEGIN)
-;; (read-key )function-b is:
-;; 98 (#o142, #x62)
 ;; (defun block-verse-region-or-line (beg end)
 ;;   ;; (set temp-left comment-start)
 ;;   ;; (set comment-start ": ")
 ;;   (comment-or-uncomment-region-or-line)
 ;;   ;; (set comment-start temp-left)
 ;;   )
-;; (define-key org-mode-map [98] (block-verse-region-or-line ())) ;; function-b
-
-;; (add-hook 'org-mode-hook 'block-verse-region-or-line)
 
 
 ;;----------------------------------------------------------------------
@@ -199,12 +191,19 @@ here is good
 (define-key lisp-interaction-mode-map (kbd "s-r") 'eval-print-last-sexp)
 ;; Select region and it will evaluate s-expressions - 
 (define-key lisp-interaction-mode-map (kbd "s-R") 'eval-region)
+; eval an s-expression without printing (overrwrites the binding for 'edit-abbrevs)
+(define-key lisp-interaction-mode-map (kbd "s-E") 'eval-last-sexp)
 ;; I want to comment with Command-Tab - will override Mac Expose...Oh well
 ; According to emacs [?\\s-\\t] should be used instead of [s-TAB]/(kbd "<s-TAB>")
 ;; (define-key lisp-interaction-mode-map "[?\\s-\\t]" 'completion-at-point) 
 (define-key lisp-interaction-mode-map (kbd "s-<tab>") 'completion-at-point)
 ;; (eval-after-load 'lisp-interaction-mode-map
 ;;                      '(define-key lisp-interaction-mode-map (kbd "s-r") 'eval-print-last-sexp))
+
+;; Open all elisp files in lisp-interaction-mode?
+(add-hook 'emacs-lisp-mode-hook 'lisp-interaction-mode)
+					; would have to remove .el files from 'auto-mode-alist also i would think
+					; (add-to-list 'auto-mode-alist '("\\.el" . lisp-interaction-mode))
 
 
 ;; From StackOverflow - how to set show-paren-mode to be non-global - only in elsip mode
@@ -303,12 +302,6 @@ here is good
       ;; (indent-to (* (/ (1- ci) haml-indent-offset) haml-indent-offset))
       (indent-to (- ci 2))
       )))
-hal-haml-indent-small
-
-hal-haml-indent-small
-
-	  hal-haml-indent-small
-
 
 ;; (global-set-key (kbd "<home>") (hal-haml-indent-small 14))
 ;; (global-unset-key (kbd "<home>"))
