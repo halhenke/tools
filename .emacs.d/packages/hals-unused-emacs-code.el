@@ -165,3 +165,30 @@ Basically so I can quickly grab the contents of a buffer and chuck it into jsFid
  ;;     Nth next (newer) history element that completes the current
  ;;     contents of the minibuffer before the point.
 
+
+
+
+
+;;----------------------------------------------------------------------
+;; Old el-get Recipes - Do Not Want
+;;----------------------------------------------------------------------
+   '((:name org-mode-experimental
+	  ;; Commit b63f5333e7bbab900b134584d07e158aeba14844 has the EXPERIMENTAL/org-export.el file with the org-export-set-backend function that we need in org-mediawiki
+	  ;; Later versions do not have this - org-export.el is now in contrib/lisp but does not have the org-export-set-backend function
+	  ;; The code for this package seems to have changed considerably....
+	  :description "Experimental stuff for org-mode - necessary to get org-mode to media-wiki export going..."
+	  :type git
+	  :url "git://repo.or.cz/org-mode.git"
+	  ;; :checkout "b63f5333e7bbab900b134584d07e158aeba14844"
+	  ;; :post-init (add-to-list 'load-path "~/.emacs.d/el-get/org-mode-experiment/EXPERIMENTAL")
+	  ;; :load-path ("EXPERIMENTAL") ;; Equivalent to above :post-init instruction
+	  ;; :load-path ("./contrib/lisp" "./lisp")
+	  )
+   (:name org-media-wiki	  
+	  :description "Export/convert from org-mode to media-wiki format - NOTE this dependds on an outdated version of org-mode and as such seems to be way more trouble than its worth"
+	  :depends org-mode-experimental
+	  :type http
+	  :url "http://lumiere.ens.fr/~guerry/u/org-mediawiki.el"
+	  ;; :features org-mediawiki
+	  ))
+;;----------------------------------------------------------------------

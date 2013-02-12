@@ -4,3 +4,5 @@ echo ".bashrc called..."
 source ~/.bashrc_mac
 # source ~/.bashrc_linux
 
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

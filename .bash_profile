@@ -9,3 +9,5 @@ source ~/.bashrc
 # Prob want to delete ~/.profile from my master "tools" branch of my home git repository - doesnt seem to be used by default anymore
 # source ~/.profile
 
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

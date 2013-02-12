@@ -19,6 +19,14 @@
 ;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------
+; Prevent Fuck-Ups
+;----------------------------------------------------------------------
+;; I was getting this message on start up:
+;; File mode specification error: (error "Lisp nesting exceeds `max-lisp-eval-depth'")
+;; Might be related to org-mode add-hook define-keys
+;; (setq max-specpdl-size 10000)
+;; (setq max-lisp-eval-depth 3000)
+;----------------------------------------------------------------------
 ; Some nice global emacs settings
 ;----------------------------------------------------------------------
 ;; Persisting command history and other things between emacs sessions
@@ -111,76 +119,10 @@
        "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
     (goto-char (point-max))
     (eval-print-last-sexp)))
-;----------------------------------------------------------------------
-; - RECIPES
-;   Chuck this stuff in its own directory eventually
-;----------------------------------------------------------------------
-;; Attempting to create recipes for my stuff - either set el-get-sources or in recipe directory...i think
-;; Might be able to set arbitrary list name if you explicitly call it with el-get....Cant remember
-(setq 
- el-get-sources 
- '((:name org-mode-experimental
-	  ;; Commit b63f5333e7bbab900b134584d07e158aeba14844 has the EXPERIMENTAL/org-export.el file with the org-export-set-backend function that we need in org-mediawiki
-	  ;; Later versions do not have this - org-export.el is now in contrib/lisp but does not have the org-export-set-backend function
-	  ;; The code for this package seems to have changed considerably....
-	  :description "Experimental stuff for org-mode - necessary to get org-mode to media-wiki export going..."
-	  :type git
-	  :url "git://repo.or.cz/org-mode.git"
-	  ;; :checkout "b63f5333e7bbab900b134584d07e158aeba14844"
-	  ;; :post-init (add-to-list 'load-path "~/.emacs.d/el-get/org-mode-experiment/EXPERIMENTAL")
-	  ;; :load-path ("EXPERIMENTAL") ;; Equivalent to above :post-init instruction
-	  ;; :load-path ("./contrib/lisp" "./lisp")
-	  )
-   (:name org-media-wiki	  
-	  :description "Export/convert from org-mode to media-wiki format - NOTE this dependds on an outdated version of org-mode and as such seems to be way more trouble than its worth"
-	  :depends org-mode-experimental
-	  :type http
-	  :url "http://lumiere.ens.fr/~guerry/u/org-mediawiki.el"
-	  ;; :features org-mediawiki
-	  )
-   (:name evernote-mode
-	  :description "Mode for the editing of evernote documents. 
-This is a fork from the package available on package-management that requires Ruby 1.9.3 etc rather than Ruby 1.8.7
-This needs something called gdbm 'sudo port install gdbm ruby' and you have to run a ruby script after installation i think..."
-	  :type git
-	  ;; :url "git@github.com:rubbish/evernote-mode.git"
-	  :url "https://github.com/rubbish/evernote-mode.git"
-	  ;; either prepare or post-init
-	  :post-init (setq evernote-ruby-command "/Users/Hal/.hals_macport_links/ruby") 
-	  :features evernote-mode
-	  )
-   ))
-;; Check our packages are installed and initialized properly
-;; syn/asyn determines if its a synchronous operation or not
-(el-get 'sync)
-;----------------------------------------------------------------------
-
+;; The rest of setup goes here
+(require 'hals-el-get-setup)
 ;----------------------------------------------------------------------
 ;;  Revert All Buffers - see self-installed
-;----------------------------------------------------------------------
-
-;----------------------------------------------------------------------
-;;  Web Mode
-;----------------------------------------------------------------------
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-;----------------------------------------------------------------------
-;; EVERNOTE MODE
-;----------------------------------------------------------------------
-;; This is installed by el-get but for now goes here...
-;; (setq evernote-username "haroldpark") ; optional: you can use this username as default.
-(setq evernote-enml-formatter-command '("w3m" "-dump" "-I" "UTF8" "-O" "UTF8")) ; option
-;; (global-set-key "\C-cec" 'evernote-create-note)
-;; (global-set-key "\C-ceo" 'evernote-open-note)
-;; (global-set-key "\C-ces" 'evernote-search-notes)
-;; (global-set-key "\C-ceS" 'evernote-do-saved-search)
-;; (global-set-key "\C-cew" 'evernote-write-note)
-;; (global-set-key "\C-cep" 'evernote-post-region)
-;; (global-set-key "\C-ceb" 'evernote-browser)
 ;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------
@@ -319,6 +261,12 @@ are 'touched' by a particular region."
 (global-set-key (kbd "<C-s-down>") 'windmove-down)
 (global-set-key (kbd "<C-s-right>") 'windmove-right)
 (global-set-key (kbd "<C-s-left>") 'windmove-left)
+(global-set-key (kbd "ESC <up>") 'windmove-up)
+(global-set-key (kbd "ESC <down>") 'windmove-down)
+(global-set-key (kbd "ESC <right>") 'windmove-right)
+(global-set-key (kbd "ESC <left>") 'windmove-left)
+;; Eliminate the possibility of super annoying 'keyboard-escape-quit behaviour when using escape key a lot 
+(global-unset-key (kbd "ESC ESC ESC"))
 ;; Again from the web
 (defun win-bck()
   "Step sequentially forwards from one window in current frame to the next."
@@ -519,3 +467,19 @@ should turn the current window into 4 new windows."
 (require 'hals-cool-stuff)
 ;----------------------------------------------------------------------
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ '(column-number-mode t)
+ '(custom-enabled-themes (quote (tsdh-dark)))
+ '(delete-selection-mode t)
+ '(show-paren-mode t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Helvetica" :foundry "apple" :slant normal :weight normal :height 160 :width normal)))))

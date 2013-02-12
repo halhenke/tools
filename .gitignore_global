@@ -6,3 +6,8 @@
 #Vim files
 *.*~
 
+
+
+# Rails Specific Stuff
+.rails-console-history
+.redebugrc

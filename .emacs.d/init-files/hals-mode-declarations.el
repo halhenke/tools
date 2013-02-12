@@ -106,7 +106,7 @@
 ;;----------------------------------------
 ;; A slightly different, more declarative way with regexp-opt
 
-(defvar comic-quotes '("[quote]" "[/quote]") "Alvaro quote tags")
+(defvar comic-quotes '("[quote]" "[/quote] [QUOTE]" "[/QUOTE]") "Alvaro quote tags")
 (defvar comic-markup '("<i>" "</i>" "<b>" "</b>") "Simple html markup")
 (defvar comic-image '("<img src="">") "Alvaros image tags")
 
@@ -131,19 +131,53 @@
 	(,comic-image-regexp . font-lock-function-name-face)
 	))
 
+(defun forum-break-quote (break-tag unbreak-tag)
+  "Insert a close quote tags followed by an open tag in order to add comments in the middle of someone elses quoted text
+e.g.
+[quote] Thor is the best and [/quote]
+
+...no he isn't...
+
+[quote] the prettiest character in the Marvel Universe [/quote]"
+(interactive)
+;; (insert "[/quote]\n")
+(insert (format "%s\n" break-tag))
+(save-excursion
+  ;; (insert "\n[quote]")
+  (insert (format "\n%s" unbreak-tag))
+  )
+)
+
+
+;; Make a comicboard mode-map - ACTUALLY THIS SEEMS TO BE DONE AUTOMATICALLY BY DERIVED-MODE
+;; (defvar comicboard-mode-map nil "Keymap for comicboard-mode")
+;; basically copy another mode-map
+;; (when (not comicboard-mode-map) ; if it is not already defined
+;;   ;; assign command to keys
+;;   (setq comicboard-mode-map (copy-keymap html-mode-map))
+;; )
+
 (define-derived-mode comicboard-mode fundamental-mode
   "Comicboards mode"
   "Major mode for editing posts destined to be published on Alvaros boards at comicboards.com"
   ;; code for syntax highlighting
   (setq font-lock-defaults '(comicboard-font-lock-keywords))
-)
+  ;; (define-key comicboard-mode-map (kbd "<s-return>") 'comicboard-break-quote)
+  ;; (define-key comicboard-mode-map (kbd "<s-backspace>") (forum-break-quote "[/quote]" "[quote]")) ; DOESNT WORK
+  (define-key comicboard-mode-map (kbd "<s-backspace>") (lambda () (interactive)
+							  (forum-break-quote "[/quote]" "[quote]")
+							  ))
+  (easy-menu-add-item nil '("Comicboard")
+			    ;; ("Files"
+		      '("Comics"
+			["Break quote" comicboard-break-quote])
+))
 ;;----------------------------------------
 
 
 ;;----------------------------------------
 ;; Comicvine mode
-;; - Cant get it to highlight everything within 
-;;   blockquotes though...
+;; - Cant get it to highlight everything within blockquotes though...
 (setq vine-block '("<blockquote>" "</blockquote>"))
 (setq vine-block-regexp (regexp-opt vine-block))
 (setq vine-in-block "<blockquote>\\(.\\|\n\\)*?</blockquote>")
@@ -159,22 +193,60 @@
 	(,vine-username . font-lock-warning-face)
 	(,vine-generic-tag . font-lock-doc-face)
 	))
+
 (define-derived-mode vine-mode html-mode
   "ComicVine mode"
   "Major mode for editing posts destined to be published on Comicvine"
   ;; code for syntax highlighting
   (make-face 'username-font)
   (set-face-attribute 'username-font nil :weight 'bold :foreground "red")
+  (define-key vine-mode-map (kbd "<s-backspace>") 
+    		(lambda () (interactive)
+		  (forum-break-quote "</blockquote>" "<blockquote>"))
+		)
   (font-lock-add-keywords nil 
   			  `(
 			    ("<.*?blockquote>" . font-lock-warning-face)
-			    (,vine-username 1 'username-font)
-			    ;; ("^\\s *def\\s +\\([^( ]+\\)" 1 font-lock-function-name-face)
-;; 
+			    (,vine-username 1 'username-font) 
   			    ))
   ;; (setq font-lock-defaults '(vine-font-lock-keywords))
   )
 ;;----------------------------------------
+
+;;----------------------------------------
+;; KMC/CBR MODE
+;;----------------------------------------
+(setq kmc-bold "\\[/*\\(b\\|B\\)\\]")
+(setq kmc-italic "\\[/*\\(i\\|I\\)\\]")
+(setq kmc-url "\\[/*\\(url\\|URL\\)\\]")
+(setq kmc-link "\\[/*\\(url\\|URL\\)\\]\\(.*?\\)\\[/\\1\\]")
+(setq kmc-bolded "\\[\\(b\\|B\\)\\]\\(.*?\\)\\[/\\1\\]")
+(setq kmc-italicised "\\[\\(i\\|I\\)\\]\\(.*?\\)\\[/\\1\\]")
+;; (setq kmc-string "")
+(setq kmc-quotes "\\[/*QUOTE.*?\\]")
+(setq kmc-font-lock-keywords
+      `(
+	(,kmc-bold . 'font-lock-constant-face)
+	(,kmc-italic . 'font-lock-constant-face)
+	(,kmc-url . 'font-lock-constant-face)
+	(,kmc-bolded 2 'bold)
+	(,kmc-italicised 2 'italic)
+	(,kmc-link 2 'underline)
+	;; (,kmc-string . font-lock-string-face)
+	(,kmc-quotes . font-lock-warning-face)
+	))
+(define-derived-mode kmc-mode html-mode
+  "KMC mode"
+  "Major mode for editing posts destined to be published on KMC or CBR"
+  ;; code for syntax highlighting
+  (setq font-lock-defaults '(kmc-font-lock-keywords))
+  (define-key kmc-mode-map (kbd "<s-backspace>") (lambda () (interactive)
+							  (forum-break-quote "[/QUOTE]" "[QUOTE]")
+							  ))
+)
+;;----------------------------------------
+
+
 
 
 ;;----------------------------------------

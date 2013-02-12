@@ -11,6 +11,44 @@
 (add-to-list 'auto-mode-alist '("\\.inputrc" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("\\.bash.*" . shell-script-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.haml\\'" . haml-mode))
+
+;----------------------------------------------------------------------
+;  Web Mode
+;----------------------------------------------------------------------
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+
+;----------------------------------------------------------------------
+; EVERNOTE MODE
+;----------------------------------------------------------------------
+;; This is installed by el-get but for now goes here...
+;; (setq evernote-username "haroldpark") ; optional: you can use this username as default.
+(setq evernote-enml-formatter-command '("w3m" "-dump" "-I" "UTF8" "-O" "UTF8")) ; option
+;; (global-set-key "\C-cec" 'evernote-create-note)
+;; (global-set-key "\C-ceo" 'evernote-open-note)
+;; (global-set-key "\C-ces" 'evernote-search-notes)
+;; (global-set-key "\C-ceS" 'evernote-do-saved-search)
+;; (global-set-key "\C-cew" 'evernote-write-note)
+;; (global-set-key "\C-cep" 'evernote-post-region)
+;; (global-set-key "\C-ceb" 'evernote-browser)
+;----------------------------------------------------------------------
+
+;;----------------------------------------------------------------------
+;;  Completion Mode
+;;----------------------------------------------------------------------
+(define-key completion-list-mode-map (kbd "h") (lambda () (interactive)
+						 (describe-function (function-called-at-point))))
+
+;; completion-list-mode-map
+;; (keymap (122 . kill-this-buffer) (113 . quit-window) (right . next-completion) (left . previous-completion) (27 keymap (27 keymap (27 . delete-completion-window))) (13 . choose-completion) (down-mouse-2) (follow-link . mouse-face) (mouse-2 . mouse-choose-completion))
+
+
+;; (add-hook 'completion-list-mode-hook)
 
 ;;----------------------------------------------------------------------
 ;;  Shell Mode
@@ -155,11 +193,19 @@ Possible values are VERSE, SRC language, QUOTE and EXAMPLE."
        )
     ))
   ))
+
+;; (define-key org-mode-map (kbd "M-P") 'org-insert-BEGIN-region)
+;; (define-key org-mode-map (kbd "C-c l") 'org-store-link)
+
 ;; (global-set-key (kbd "M-P") 'org-insert-BEGIN-region)
-(define-key org-mode-map (kbd "C-c l") 'org-store-link)
+;; (global-unset-key (kbd "M-P"))
 
 (add-hook 'org-mode-hook 
-	  '(define-key org-mode-map (kbd "M-P") 'org-insert-BEGIN-region))
+	  (lambda ()
+	     (define-key org-mode-map (kbd "M-P") 'org-insert-BEGIN-region)
+	     (define-key org-mode-map (kbd "C-c l") 'org-store-link)
+	     ))
+
 ;; Sample text for screwing aruond
 ;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; Insert the
@@ -200,8 +246,9 @@ Possible values are VERSE, SRC language, QUOTE and EXAMPLE."
 ;; (eval-after-load 'lisp-interaction-mode-map
 ;;                      '(define-key lisp-interaction-mode-map (kbd "s-r") 'eval-print-last-sexp))
 
+
 ;; Open all elisp files in lisp-interaction-mode?
-(add-hook 'emacs-lisp-mode-hook 'lisp-interaction-mode)
+;; (add-hook 'emacs-lisp-mode-hook 'lisp-interaction-mode)
 					; would have to remove .el files from 'auto-mode-alist also i would think
 					; (add-to-list 'auto-mode-alist '("\\.el" . lisp-interaction-mode))
 
@@ -329,3 +376,12 @@ Possible values are VERSE, SRC language, QUOTE and EXAMPLE."
 ;;         (rename-buffer "*rails-console*")
 ;;         (term-line-mode))
 ;;     (switch-to-buffer "*rails-console*")))
+
+;----------------------------------------------------------------------
+; RINARI MODE
+; - I'm bringing it back baby!
+;----------------------------------------------------------------------
+;; set this to the path where your TAGS file lives
+;; rinari-tags-file-name
+
+;----------------------------------------------------------------------
