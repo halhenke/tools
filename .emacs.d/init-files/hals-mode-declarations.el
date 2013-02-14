@@ -92,8 +92,10 @@
 
 ;;----------------------------------------
 ;; An ALVARO Specific mode
+;;----------------------------------------
 ;; - with explicit reg-exps
 ;; highlights for quote, img, bold and italic tags
+;;----------------------------------------
 (setq hero-keywords '(("\\[.*?quote\\]\\|<.*?\\(i\\|I\\)>\\|<.*?\\(b\\|B\\)>\\|\".*\"" . font-lock-function-name-face)
    ("<img.*?src=\\(.*\\)>" . font-lock-constant-face)
   )
@@ -113,7 +115,8 @@
 ;; Create regular expressions
 ;; - dont use 'words it doesnt seem to match anything
 ;; If you want to change any of these variables after definition you have to use setq
-(defvar comic-quotes-regexp (regexp-opt comic-quotes))
+(defvar comic-quotes-regexp "\\[/*\\(quote\\|QUOTE\\)\\]") 
+;; (defvar comic-quotes-regexp (regexp-opt comic-quotes))
 (defvar comic-markup-regexp (regexp-opt comic-markup))
 ;; (defvar comic-italic "<\\(i\\|I\\)>\\(.*?\\)</\\(i\\|I\\)>")
 ;; (defvar comic-bold "<\\(b\\|B\\)>\\(.*?\\)</\\(b\\|B\\)>")
@@ -177,6 +180,7 @@ e.g.
 
 ;;----------------------------------------
 ;; Comicvine mode
+;;----------------------------------------
 ;; - Cant get it to highlight everything within blockquotes though...
 (setq vine-block '("<blockquote>" "</blockquote>"))
 (setq vine-block-regexp (regexp-opt vine-block))
@@ -247,10 +251,50 @@ e.g.
 ;;----------------------------------------
 
 
+;;----------------------------------------
+;; Vimscript-Mode!
+;;----------------------------------------
+;; lets use regexp-opt...
+(setq vim-var-set (regexp-opt '("let" "unlet" "unlet!") 'symbols))
+(setq vim-funcdef (regexp-opt '("function!" "endfunction" "delfunction" "call") 'symbols))
+(setq vim-if (regexp-opt '("if" "elsif" "else" "endif") 'symbols))
+(setq vim-for (regexp-opt '("for" "in" "endfor") 'symbols))
+(setq vim-while (regexp-opt '("while" "endwhile") 'symbols))
+(setq vim-try (regexp-opt '("try" "catch" "finally" "endtry") 'symbols))
+(setq vim-comment "\".*$")
+(setq vim-control-flow (regexp-opt '("continue" "break") 'symbols))
+(setq vim-other-func-words (regexp-opt '("set" "source") 'symbols))
+(setq vim-other-var-words (regexp-opt '("runtimepath") 'symbols))
+
+;; ((lambda (bound) (catch (quote found) (while (re-search-forward "\\(\\\\\\\\\\)\\(?:\\(\\\\\\\\\\)\\|\\((\\(?:\\?[0-9]*:\\)?\\|[|)]\\)\\)" bound t) (unless (match-beginning 2) (let ((face (get-text-property (1- (point)) (quote face)))) (when (or (and (listp face) (memq (quote font-lock-string-face) face)) (eq (quote font-lock-string-face) face)) (throw (quote found) t)))))))
+
+;; Assign faces to reg-exps...
+(setq vimscript-font-lock-keywords
+      `(
+	(,vim-comment . '(0 'font-lock-comment-face t))
+	(,vim-var-set . 'font-lock-type-face)
+	(,vim-funcdef . 'font-lock-function-name-face)
+	(,vim-if . 'font-lock-keyword-face)
+	(,vim-for . 'font-lock-keyword-face)
+	(,vim-while . 'font-lock-keyword-face)
+	(,vim-try . 'font-lock-keyword-face)
+	(,vim-control-flow . 'font-lock-warning-face)
+	(,vim-other-func-words . 'css-property)
+	(,vim-other-var-words . 'js2-jsdoc-type-face)
+	))
+
+(define-derived-mode vim-script-mode python-mode
+  "vimscript mode"
+  "Major mode for editing vimscript files"
+  (setq font-lock-defaults '(vimscript-font-lock-keywords))
+)
 
 
 ;;----------------------------------------
-;; Doing a mode from scratch
+
+;;----------------------------------------
+;; DOING A MODE FROM SCRATCH
+;;----------------------------------------
 ;; Example from
 ;; http://ergoemacs.org/emacs/elisp_menu_for_major_mode.html
 

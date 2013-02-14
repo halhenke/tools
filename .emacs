@@ -50,7 +50,7 @@
 ;; (set 'scroll-preserve-screen-position nil)
 ;; Enable Line numbers in margins of all buffers
 (global-linum-mode 1)
-;; Enable column number
+;; Enable column number at bottom of the screen
 (column-number-mode 1)
 ;----------------------------------------------------------------------
 ;; Web Derived Theme Stuff 
