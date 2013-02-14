@@ -12,6 +12,7 @@
 (add-to-list 'auto-mode-alist '("\\.bash.*" . shell-script-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.haml\\'" . haml-mode))
+(add-to-list 'auto-mode-alist '("~\\.vimrc\\'" . vim-script-mode))
 
 ;----------------------------------------------------------------------
 ;  Web Mode
