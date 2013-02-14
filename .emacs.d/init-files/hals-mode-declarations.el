@@ -192,7 +192,7 @@ e.g.
 (setq vine-font-lock-keywords
       `(
 	(,vine-block-regexp . font-lock-constant-face)
-	(,vine-in-block . font-lock-comment-face)
+	(,vine-in-block 1 font-lock-comment-face)
 	(,vine-string . font-lock-string-face)
 	(,vine-username . font-lock-warning-face)
 	(,vine-generic-tag . font-lock-doc-face)
