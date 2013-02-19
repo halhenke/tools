@@ -7,7 +7,6 @@ echo ".bashrc_mac called..."
 # /opt/local/bin/bash
 echo "Your shell is $SHELL and you are running version $BASH_VERSION"
 
-
 # ----------------------------------------------------------------------
 # SETTING COMMAND HISTORY
 # ----------------------------------------------------------------------
@@ -49,13 +48,11 @@ export PS1="$LOOKGOOD$LOOKBLUE\u$LOOKNORM@$LOOKGOOD$LOOKWHITE\h:$LOOKRED \w$LOOK
 # ----------------------------------------------------------------------
 #rvm stuff
 # Yeah this stuff kinda sucks
-echo "Ruby RVM bypassed..."
+# echo "Ruby RVM bypassed..."
 # echo "doing Ruby RVM stuff - modifying your PATH..."
 # [[ -s "/Users/Hal/.rvm/scripts/rvm" ]] && source "/Users/Hal/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 # rvm default 1.9.3
 # rvm gemset use rails3
-
-
 
 # ----------------------------------------------------------------------
 # PYTHON
@@ -66,7 +63,8 @@ echo "Ruby RVM bypassed..."
 #------------------------------------------------------------
 echo "doing Python stuff - modifying your PATH..."
 if [ -d ~/.local/bin ]; then
-  export PATH=~/.local/bin:$PATH
+    export PYTHON_PATH=~/.local/bin
+    export PATH=$PYTHON_PATH:$PATH
 fi
 
 # Python path -----------------------------------------------------
@@ -100,16 +98,21 @@ defaults write com.apple.Finder AppleShowAllFiles YES
 # Dont want this if possible
 # echo "doing Homebrew stuff - modifying your PATH..."
 # echo "You sure about this?"
-# export PATH=/usr/homebrew/bin:$PATH
+# export BREW_PATH=/usr/homebrew/bin
+# export PATH=$BREW_PATH:$PATH
 
 # ----------------------------------------------------------------------
 # MACPORTS
 # ----------------------------------------------------------------------
 # MacPorts Installer addition on 2012-11-17_at_22:42:07: adding an appropriate PATH variable for use with MacPorts.
 echo "doing Macports stuff - modifying your PATH..."
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export MACPORT_PATH=/opt/local/bin:/opt/local/sbin
+export PATH=$MACPORT_PATH:$PATH
 # Finished adapting your PATH environment variable for use with MacPorts.
 
+# ----------------------------------------------------------------------
+# BASH COMPLETION
+# ----------------------------------------------------------------------
 # # Enable the bash-completion port
 echo "enabling bash_completion..."
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
@@ -119,18 +122,20 @@ fi
 # bind '"\e[A":history-search-backward'
 # bind '"\e[B":history-search-forward'
 
-
 # POSTGRES 
 echo "hackish way to get Postgres commands available with MacPorts - modifying your PATH..."
-export PATH=/opt/local/lib/postgresql92/bin/:$PATH
+export PG_PATH=/opt/local/lib/postgresql92/bin/
+export PATH=$PG_PATH:$PATH
 
 # VERSIONLESS LINKS TO BINARIES IN MACPORTS
 echo "hackish way to access some MacPorts binaries with versions as suffixed onto their names - modifying your PATH..."
-export PATH=~/.hals_macport_links:$PATH
+export HALS_PORT_LINK_PATH=~/.hals_macport_links
+export PATH=$HALS_PORT_LINK_PATH:$PATH
 
 # mucking with escape sequences
 # 0x1b 0x5b 0x35 0x1b 0x5b 0x44
 
 ### Added by the Heroku Toolbelt
 echo "Yuck - heroku is appending itself to the front of your PATH :-|"
-export PATH="/usr/local/heroku/bin:$PATH"
+export HEROKU_PATH=/usr/local/heroku/bin
+export PATH=$HEROKU_PATH:$PATH
