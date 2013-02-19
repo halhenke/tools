@@ -65,12 +65,23 @@
 #======================================================================
 # VIM STUFF
 #======================================================================
-.vim/
+.vim
 .viminfo
 .vim_mru_files
 .vim_runtime
 # ~/.vim_runtime/ is a git repo installed by the Amix Ultimate vimrc Configuration 
 # Its loaded by .vimrc but i keep my own customisations in my home directory
+
+#----------------------------------------
+# This is stuff related to spf13 vim configuration
+.vimswap/
+.vimundo/
+.vimviews/
+.spf13-vim-3/
+# My rename of old directory
+.vim.amix/
+#----------------------------------------
+
 #======================================================================
 .virtualenvs/
 Comics/
