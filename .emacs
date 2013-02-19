@@ -19,6 +19,16 @@
 ;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------
+; Emacs Server/Client  Setup
+;----------------------------------------------------------------------
+(setq server-use-tcp 't)
+;; This tells emacsclient who to connect to
+(setq server-host "localhost") 
+;; By default emacs-server will grab a random port
+;; (setq server-port 100)
+;----------------------------------------------------------------------
+
+;----------------------------------------------------------------------
 ; Prevent Fuck-Ups
 ;----------------------------------------------------------------------
 ;; I was getting this message on start up:
@@ -349,7 +359,7 @@ should turn the current window into 4 new windows."
 	     (splitter
 	      (if (= (car this-win-edges)
 		     (car (window-edges (next-window))))
-		  'split-window-horizontally}
+		  'split-window-horizontally
 		'split-window-vertically)))
 	(delete-other-windows)
 	(let ((first-win (selected-window)))

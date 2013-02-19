@@ -26,6 +26,7 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 	  )
    (:name rect-mark
 	  :features rect-mark
+	  ;; :autoloads ("rm-set-mark" "rm-kill-region" "rm-kill-ring-save" "rm-mouse-drag-region")
 	  )
    (:name rtf-mode
 	  :features rtf-mode
