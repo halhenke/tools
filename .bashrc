@@ -4,7 +4,7 @@ echo ".bashrc called..."
 
 current_os=$(uname)
 # current_os=OSTYPE # More complex
-if [[ $current_os  == 'linux' ]]; then
+if [[ $current_os  == 'Linux' ]]; then
     source ~/.bashrc_linux
 elif [[ $current_os == 'Darwin'  ]]; then
     source ~/.bashrc_mac

@@ -102,10 +102,14 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 
 # HAL
+# ----------------------------------------------------------------------
+# PKGSRC stuff
+# ----------------------------------------------------------------------
 # Add pkgsrc commands - after regular commands
 PATH=$PATH:$HOME/pkg/sbin:$HOME/pkg/bin
 MANPATH=:$HOME/pkg/man
 # This is to ensure that building the emacs package builds emacs 24 and not emacs 23
 export EMACS_TYPE="emacs24"
+# ----------------------------------------------------------------------
 # Add shared library files installed locally via dpkg
 # export LD_LIBRARY_PATH="/home/hal.henke/local/sub-root/usr/lib:/home/hal.henke/local/sub-root/usr/lib/x86_64-linux-gnu"

@@ -37,7 +37,7 @@
 ;; (global-unset-key (kbd "<s-prior>"))
 ;----------------------------------------------------------------------
 ;----------------------------------------------------------------------
-;; Naigation Specific
+;; Navigation Specific
 ;----------------------------------------------------------------------
 ;; Apple full sized aluminium keyboard specific
 (global-set-key (kbd  "<home>") 'move-beginning-of-line)
