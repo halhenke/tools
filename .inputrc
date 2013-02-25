@@ -1,0 +1,98 @@
+# HAL - DONT HAVE OUTPUT LIKE 'echo "la la la' IN YOUR INPUTRC FILE - it caused the MySQL CLI to fuck up for one thing
+
+# HAL - below is taken from Catalyst .inputrc
+
+# ~/.inputrc for Andrew McMillan <andrew@catalyst.net.nz> to enable
+# things like Ctrl+Left etc in readline.
+
+#********************************************************************************
+# Commenting out below here for now to the next line of asterisks
+
+# # Be 8 bit clean.
+# set input-meta on
+# set output-meta on
+
+# # Allow 8-bit characters to be input because we like that
+# set convert-meta off
+
+# # We're only modifying the emacs mode
+# $if mode=emacs
+
+# "\e[1~": beginning-of-line
+# "\e[4~": end-of-line
+
+# # allow the use of the Delete/Insert keys
+# "\e[3~": delete-char
+# "\e[2~": quoted-insert
+
+# # alternate mappings for "page up" and "page down" to search the history
+# "\e[5~": history-search-backward
+# "\e[6~": history-search-forward
+
+# # # mappings for Ctrl-left-arrow and Ctrl-right-arrow for word moving
+# "\e[5C": forward-word
+# "\e[5D": backward-word
+
+# # uxterm and xterm mappings for Ctrl-left-arrow and Ctrl-right-arrow
+# "\e[1;5C": forward-word
+# "\e[1;5D": backward-word
+
+# # allow the use of the Home/End keys
+# "\eOH": beginning-of-line
+# "\eOF": end-of-line
+
+#********************************************************************************
+
+# ================================================================================
+# HAL STUFF
+# ================================================================================
+# --------------------------------------------------------------------------------
+# KDE specific settings
+# on KDE Alt key is Alt & the Super/Command/Windows key is Meta
+# these setting wont work on a Mac where Alt is Meta and Command key is Super
+# --------------------------------------------------------------------------------
+# HAL mappings for Alt + Left and Right arrows in Konsole
+# "\e[1;3C": forward-word
+# "\e[1;3D": backward-word
+
+# HAL mappings for Meta + Left and Right arrows in Konsole
+# "\e[1;1C": end-of-line
+# "\e[1;1D": beginning-of-line
+
+# HAL mappings for Page Up and Page Down in Konsole
+# Actually this is better done in Konsole User Settings...
+# Page Up "^[[5~"
+# Page Down "^[[6~"
+
+# $endif
+# HAL - the rest will be outside the emacs guard
+
+# --------------------------------------------------------------------------------
+# General settings
+# --------------------------------------------------------------------------------
+# going to try putting this stuff here instead of .bashrc_local M
+# Might help to avoid scp failing when i tried to scp in from an outside machine.
+# When run without a terminal bind commands give the error:
+# warning: line editing not enabled
+
+# The following depends on the bash-completion package being downloaded also....
+
+# But if i run the following command i can no longer input the characters 'i' or 'f' 
+# from the command line!
+# if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+#     . /opt/local/etc/profile.d/bash_completion.sh
+# fi
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+# --------------------------------------------------------------------------------
+# LETS TRY GETTING SOME OTHER COOL READLINE STUFF HAPPENING
+# "\C-w": unix-word-rubout
+"\C-W": kill-region
+# This is the equivalent of copy - we want to bind it to "s-C" if possible
+"^[m": copy-region-as-kill
+# "\M-W": copy-region-as-kill
+
+set completion-ignore-case on
+
+
+
