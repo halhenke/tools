@@ -86,3 +86,12 @@ nnoremap <C-Tab> :buffers<CR>:buffer<Space>
 " This sets up the NERDTree plugin so that it shows hidden files/folders
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let NERDTreeShowHidden=1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"New Stuff
+" This is where i am adding my post-merge 2013 stuff
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("gui_macvim")
+    let macvim_hig_shift_movement = 1
+endif

@@ -4,10 +4,13 @@ echo ".bash_profile called..."
 # It is not called by "non-login" shells (like emacs shells) which instead call ~/.bashrc
 # Therefore, in order to ensure that all our stuff is set-up in "non-login shells" we are going to chuck it into ~/.bashrc and call that from here
 
+# Want to be able to reset PATH variable later without restarting shell
+export HAL_ORIG_PATH=PATH
+
 source ~/.bashrc
 
 # Prob want to delete ~/.profile from my master "tools" branch of my home git repository - doesnt seem to be used by default anymore
 # source ~/.profile
 
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# echo "doing RVM stuff - loading rvm script..."
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
