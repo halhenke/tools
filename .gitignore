@@ -1,0 +1,99 @@
+.CFUserTextEncoding
+.Trash/
+.Xauthority
+.android/
+.bash_history
+# .bash_profile
+.bash_profile.macports-saved_2012-11-17_at_22:42:07
+.cabal/
+.cache
+#======================================================================
+# EMACS STUFF
+#======================================================================
+# .emacs
+# In my .emacs.d directory i only really want my "packages" directory where i have hand installed stuff for
+# whatever reason, and my OS dependent install directory 
+# .emacs.d/
+# .emacs.d/Noches.el
+.emacs.d/eshell/
+.emacs.d/history
+.emacs.d/auto-save-list/
+.emacs.d/url/
+.emacs.d/nxhtml/
+# Stores the info on packages and different repos
+.emacs.d/elpa/
+.emacs.d/el-get/
+.emacs.d/tramp
+.emacs.desktop
+.emacs.desktop.lock
+#======================================================================
+.fontconfig/
+.gdb_history
+.gem/
+.gforth-history
+.ghc/
+#======================================================================
+# GIT STUFF
+#======================================================================
+# I think i need to ignore gitconfig - it has a hardcoded expanded home directory path
+.gitconfig
+.gitk
+# .gitignore
+# .gitignore_global
+#======================================================================
+.hals_macport_links/
+.heroku/
+.ido.last
+# .inputrc
+.irb-history
+.irb_history
+.lesshst
+.local/
+.mysql_history
+.netrc
+.passenger/
+.pip/
+.psql_history
+.rnd
+.rvm/
+.serverauth*
+.sh_history
+.slime/
+.sqlite_history
+.ssh/
+.tramp_history
+#======================================================================
+# VIM STUFF
+#======================================================================
+.vim
+.viminfo
+.vim_mru_files
+.vim_runtime
+# ~/.vim_runtime/ is a git repo installed by the Amix Ultimate vimrc Configuration 
+# Its loaded by .vimrc but i keep my own customisations in my home directory
+
+#----------------------------------------
+# This is stuff related to spf13 vim configuration
+.vimswap/
+.vimundo/
+.vimviews/
+.spf13-vim-3/
+# My rename of old directory
+.vim.amix/
+#----------------------------------------
+
+#======================================================================
+.virtualenvs/
+Comics/
+Desktop/
+Documents/
+Downloads/
+Google\ Drive
+Library/
+Movies/
+Music/
+Pictures/
+Public/
+Samsung/
+code/
+tools/

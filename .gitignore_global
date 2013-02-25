@@ -1,0 +1,13 @@
+# OS X System Files
+.DS_Store
+# Emacs temp files
+.#*
+\#*#
+#Vim files
+*.*~
+*~
+
+
+# Rails Specific Stuff
+.rails-console-history
+.redebugrc

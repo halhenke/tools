@@ -1,0 +1,76 @@
+#*********************************************************************************
+# This is how you do it! Needed macports bash_completion module
+# AND appparently needs bash > 4.1 and/or macports bash to be the default shell
+# if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+#    . /opt/local/etc/profile.d/bash_completion.sh
+# fi
+# bind '"\e[A":history-search-backward'
+# bind '"\e[B":history-search-forward'
+
+#===============================================================================================================
+# This sets how many commands are stored in the bash history file and how many are stored from the current session
+# Default values were previously 500 for both...
+export HISTFILESIZE=20000
+export HISTSIZE=20000
+# Changes commands to be appended to bash history file rather than overwritten
+# Not sure about the below 2 lines
+# # # unset HISTFILESIZE
+# # # export PROMPT_COMMAND="history -a"
+#shopt -s histappend
+# This means that all terminals will append their history to the main ~/.bash_history file when exiting
+shopt -s histappend
+export PROMPT_COMMAND='history -a'
+
+#===============================================================================================================
+#Setup Git editor - not sure about this....
+export GIT_EDITOR='emacs'
+
+# ----------------------------------------------------------------------
+# SETTING UP THE PROMPT
+# ----------------------------------------------------------------------
+
+#echo "Setting up your prompt: colour"
+
+# Colour format:
+# \e[   # colour begin
+# 0;xxm # light text colour
+# 1;xxm # dark text colour
+# xxm   # background colour
+# \e[m  # colour end
+
+#STARTCOLOR='\e[';
+#ENDCOLOR="\e[m";
+#BLUE="1;34m";
+#RED="1;31m";
+
+# STANDARD COLOURS
+# setaf_black=`tput setaf 0`
+# setaf_blue=`tput setaf 1`
+# setaf_green=`tput setaf 2`
+# setaf_cyan=`tput setaf 3`
+# setaf_red=`tput setaf 4`
+# setaf_magenta=`tput setaf 5`
+# setaf_yellow=`tput setaf 6`
+# setaf_white=`tput setaf 7`
+
+# export PS1="\u@\h \w: "
+# export PS1="\e[1;34m\u\e[m@\h \e[0;31m\w\e[m> "
+
+# export PS1="$STARTCOLOR$BLUE\u$ENDCOLOR@\h $STARTCOLOR$RED\w$ENDCOLOR> "
+
+# export PS1="\[$(tput bold)$(tput setb 4)$(tput setaf 7)\]\u@\h:\w $ \[$(tput sgr0)\]"
+# LOOKGOOD="\[$(tput bold)\]"; #$(tput setb 4)\]"
+# LOOKNORM= "\[$(tput sgr0)\]"
+# LOOKWHITE="\[$(tput setaf 7)\]"
+# LOOKBLUE="\[$(tput setaf 4)\]"
+# LOOKRED="\[$(tput setaf 1)\]"
+# export PS1="\[$(tput bold)$(tput setb 4)$(tput setaf 4)\]\u@\[$(tput setaf 7)\]\h:\[$(tput setaf 1)\] \w\[$(tput sgr0)\]: "
+# export PS1="$LOOKGOOD$LOOKBLUE\u$LOOKNORM@$LOOKGOOD$LOOKWHITE\h:$LOOKRED \w$LOOKNORM: "
+
+
+# ----------------------------------------------------------------------
+# SETTING UP DEBIAN PACKAGING
+# ----------------------------------------------------------------------
+export DEBFULLNAME='Hal Henke'
+export DEBEMAIL='hal@catalyst-au.net'
+#===============================================================================================================
