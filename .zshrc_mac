@@ -1,0 +1,198 @@
+echo ".bashrc_mac called..."
+
+# ----------------------------------------------------------------------
+# THE Z SHELL
+# ----------------------------------------------------------------------
+# echo "Setting your shell - Bash via MacPorts"
+# /opt/local/bin/bash
+echo "Your shell is $SHELL and you are running version $ZSH_VERSION"
+
+# This is much more familiar to $BASH and especially getting the PATH to work correctly
+setopt shwordsplit
+
+ZSHELL_COMMANDS=/opt/local/share/zsh/5.0.0/functions
+export PATH=/opt/local/share/zsh/5.0.0/functions:$PATH
+echo "We are adding the zshell commands to your path"
+
+# ----------------------------------------------------------------------
+# SETTING COMMAND HISTORY
+# ----------------------------------------------------------------------
+# export HISTCONTROL=ignoredups
+# export HISTFILESIZE=10000
+
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTFILE=~/.zsh_history
+
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt SHARE_HISTORY
+
+# ----------------------------------------------------------------------
+# SETTING UP THE PROMPT
+# ----------------------------------------------------------------------
+echo "Setting up your prompt: colour"
+
+# Z-Shell Prompt Selection
+autoload -U promptinit
+promptinit
+# Choose a prompt
+prompt clint
+
+# ----------------------------------------------------------------------
+# RUBY
+# ----------------------------------------------------------------------
+#rvm stuff
+# Yeah this stuff kinda sucks
+# echo "Ruby RVM bypassed..."
+# echo "doing Ruby RVM stuff - modifying your PATH..."
+# [[ -s "/Users/Hal/.rvm/scripts/rvm" ]] && source "/Users/Hal/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# rvm default 1.9.3
+# rvm gemset use rails3
+
+# ----------------------------------------------------------------------
+# PYTHON
+# ----------------------------------------------------------------------
+#python stuff - python packages are now to be installed to ~/.local
+#with the command 
+#python setup.py install --prefix=~/.local
+#------------------------------------------------------------
+# echo "doing Python stuff - modifying your PATH..."
+# if [ -d ~/.local/bin ]; then
+#     export PYTHON_PATH=~/.local/bin
+#     export PATH=$PYTHON_PATH:$PATH
+# fi
+# # Python path -----------------------------------------------------
+# if [ -d ~/.local/lib/python2.7/site-packages ]; then
+#   export PYTHONPATH=~/.local/lib/python2.7/site-packages:$PYTHONPATH
+# fi
+# #python stuff related to virtualenv
+# export VIRTUALENV_USE_DISTRIBUTE=true
+# #HAL - Think we need this to have virtualenvwrapper commands available from the shell...
+# source /Users/Hal/.local/bin/virtualenvwrapper.sh
+# ----------------------------------------------------------------------
+
+# ----------------------------------------------------------------------
+# HAL STUFF
+# ----------------------------------------------------------------------
+#HAL - This allows us to see hidden files in Finder if we then "hold ‘alt’ on the keyboard and right click on the Finder icon in the dock and Click on Relaunch"
+echo "hidden paths will be shown in Finder..."
+defaults write com.apple.Finder AppleShowAllFiles YES
+
+#Starting PostgreSQL:
+# postgres -D /usr/homebrew/var/postgres
+# or
+# pg_ctl -D /usr/homebrew/var/postgres -l logfile start
+##
+# Your previous /Users/Hal/.bash_profile file was backed up as /Users/Hal/.bash_profile.macports-saved_2012-11-17_at_22:42:07
+##
+
+# ----------------------------------------------------------------------
+# HOMEBREW
+# ----------------------------------------------------------------------
+# Dont want this if possible
+# echo "doing Homebrew stuff - modifying your PATH..."
+# echo "You sure about this?"
+# export BREW_PATH=/usr/homebrew/bin
+# export PATH=$BREW_PATH:$PATH
+
+# ----------------------------------------------------------------------
+# MACPORTS
+# ----------------------------------------------------------------------
+# MacPorts Installer addition on 2012-11-17_at_22:42:07: adding an appropriate PATH variable for use with MacPorts.
+echo "doing Macports stuff - modifying your PATH..."
+export MACPORT_PATH=/opt/local/bin:/opt/local/sbin
+export PATH=$MACPORT_PATH:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+# ----------------------------------------------------------------------
+# Z-SHELL AUTO-COMPLETION
+# ----------------------------------------------------------------------
+# # Enable the bash-completion port
+# echo "enabling bash_completion..."
+# if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+#     . /opt/local/etc/profile.d/bash_completion.sh
+# fi
+# # This is currently duplicated in .inputrc - fix
+# bind '"\e[A":history-search-backward'
+# bind '"\e[B":history-search-forward'
+
+# enable auto-completion
+autoload -U compinit
+compinit
+# "Arrow Key style" Auto-Completion
+zstyle ':completion:*' menu select
+
+# ----------------------------------------------------------------------
+# POSTGRES 
+# ----------------------------------------------------------------------
+echo "hackish way to get Postgres commands available with MacPorts - modifying your PATH..."
+export PG_PATH=/opt/local/lib/postgresql92/bin/
+export PATH=$PG_PATH:$PATH
+
+# ----------------------------------------------------------------------
+# VERSIONLESS LINKS TO BINARIES IN MACPORTS
+# ----------------------------------------------------------------------
+echo "hackish way to access some MacPorts binaries with versions as suffixed onto their names - modifying your PATH..."
+export HALS_PORT_LINK_PATH=~/.hals_macport_links
+export PATH=$HALS_PORT_LINK_PATH:$PATH
+
+### Added by the Heroku Toolbelt
+# echo "Yuck - heroku is appending itself to the front of your PATH :-|"
+# export HEROKU_PATH=/usr/local/heroku/bin
+# export PATH=$HEROKU_PATH:$PATH
+
+# ----------------------------------------------------------------------
+# Z-SHELL READLINE STYLE STUFF
+# ----------------------------------------------------------------------
+# create a zkbd compatible hash;
+# to add other keys to this hash, see: man 5 terminfo
+typeset -A key
+
+key[Home]=${terminfo[khome]}
+
+key[End]=${terminfo[kend]}
+key[Insert]=${terminfo[kich1]}
+key[Delete]=${terminfo[kdch1]}
+key[Up]=${terminfo[kcuu1]}
+key[Down]=${terminfo[kcud1]}
+key[Left]=${terminfo[kcub1]}
+key[Right]=${terminfo[kcuf1]}
+key[PageUp]=${terminfo[kpp]}
+key[PageDown]=${terminfo[knp]}
+
+# setup key accordingly
+[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
+[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
+[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
+[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
+# [[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
+# [[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
+[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
+[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
+
+# [[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
+# [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
+[[ -n "${key[Up]}"   ]]  && bindkey  "${key[Up]}"    history-beginning-search-backward
+[[ -n "${key[Down]}" ]]  && bindkey  "${key[Down]}"  history-beginning-search-forward
+
+
+# Finally, make sure the terminal is in application mode, when zle is
+# active. Only then are the values from $terminfo valid.
+if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
+    function zle-line-init () {
+        printf '%s' ${terminfo[smkx]}
+    }
+    function zle-line-finish () {
+        printf '%s' ${terminfo[rmkx]}
+    }
+    zle -N zle-line-init
+    zle -N zle-line-finish
+fi
+# ----------------------------------------------------------------------
+
+# ----------------------------------------------------------------------
+# SOME USEFUL ALIASES
+# ----------------------------------------------------------------------
+alias ll="ls -lh"
+# ----------------------------------------------------------------------

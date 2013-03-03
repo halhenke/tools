@@ -1,12 +1,15 @@
-echo ".bashrc called..."
+echo ".zshrc called..."
+
+# Some good info on setting up
+# https://wiki.archlinux.org/index.php/Zsh
 
 # Now we have tried to separate this file into OS X/Linux specific bashrcs: 
 current_os=$(uname)
 # current_os=OSTYPE # More complex
 if [[ $current_os  == 'Linux' ]]; then
-    source ~/.bashrc_linux
+    source ~/.zshrc_linux
 elif [[ $current_os == 'Darwin'  ]]; then
-    source ~/.bashrc_mac
+    source ~/.zshrc_mac
 else
     echo "Some other OS..."
 fi
