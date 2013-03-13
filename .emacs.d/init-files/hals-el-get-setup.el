@@ -91,9 +91,9 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
  ;; Make a list of all packages we want to install apart from el-get-sources
 (setq my-el-get-packages  
      (append  
-      ;; Some of the below dont compile on linux???
-;;      '(el-get evernote-mode magit rails-el re-builder+ rect-mark regex-tool slime sr-speedbar)
-      '(el-get evernote-mode rails-el re-builder+ rect-mark regex-tool  sr-speedbar)
+      ;; Some of the below (magit slime) require "apt-get install texinfo" to compile on linux
+     '(el-get evernote-mode magit rails-el re-builder+ rect-mark regex-tool slime sr-speedbar)
+      ;; '(el-get evernote-mode rails-el re-builder+ rect-mark regex-tool  sr-speedbar magit)
       (mapcar 'el-get-source-name el-get-sources)))  
 ;; Check our packages are installed and initialized properly
 ;; syn/asyn determines if its a synchronous operation or not

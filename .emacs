@@ -50,7 +50,11 @@
 ;; Enables a mode where when a region is highlighted/active and text is entered that region is deleted/killed rather than deselected
 ;; see also pc-selection-model
 (delete-selection-mode 1)
-
+;; Show file path in frame title if available
+(setq frame-title-format
+  '("" (:eval (invocation-name)) ": " (:eval (if (buffer-file-name)
+                (abbreviate-file-name (buffer-file-name))
+                  "%b")) " [%*]"))
 ;; ;; If this is true then we will never have to type out full "yes" or "no" to confirm changes
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;; OR
@@ -484,12 +488,14 @@ should turn the current window into 4 new windows."
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(column-number-mode t)
- '(custom-enabled-themes (quote (tsdh-dark)))
+ '(cua-mode t nil (cua-base))
+ '(custom-enabled-themes (quote (manoj-dark)))
  '(delete-selection-mode t)
+ '(scroll-bar-mode (quote right))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Helvetica" :foundry "apple" :slant normal :weight normal :height 160 :width normal)))))
+ )
