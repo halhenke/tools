@@ -37,6 +37,9 @@
 ;; (setq max-specpdl-size 10000)
 ;; (setq max-lisp-eval-depth 3000)
 ;----------------------------------------------------------------------
+
+
+;----------------------------------------------------------------------
 ; Some nice global emacs settings
 ;----------------------------------------------------------------------
 ;; Persisting command history and other things between emacs sessions
@@ -50,7 +53,11 @@
 ;; Enables a mode where when a region is highlighted/active and text is entered that region is deleted/killed rather than deselected
 ;; see also pc-selection-model
 (delete-selection-mode 1)
-
+;; If the buffer is associated with a file display the path at the top of the frame - Also shows a modified/read-only flag
+(setq frame-title-format
+  '("" invocation-name ": "(:eval (if (buffer-file-name)
+                (abbreviate-file-name (buffer-file-name))
+                  "%b")) " [%*]"))
 ;; ;; If this is true then we will never have to type out full "yes" or "no" to confirm changes
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;; OR

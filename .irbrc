@@ -4,6 +4,9 @@
 # require ‘irb/ext/save-history’
 #require ‘irb/ext/save-history’IRB.conf[:SAVE_HISTORY] = 2000IRB.conf[:HISTORY_FILE] = “#{ENV['HOME']}/.irb-history”
 
+# Enable auto-completion in irb
+require 'irb/completion'
+
 # Makes output look great
 require "awesome_print"
 AwesomePrint.irb!
