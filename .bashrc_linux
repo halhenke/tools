@@ -70,6 +70,6 @@ fi
 # ----------------------------------------------------------------------
 # # Enable the bash-completion port
 echo "enabling bash_completion..."
-if [ -f /etc/bash_completion.sh ] && ! shopt -oq posix; then
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     source /etc/bash_completion
 fi
