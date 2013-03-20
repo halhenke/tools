@@ -21,9 +21,9 @@
 ;----------------------------------------------------------------------
 ; Emacs Server/Client  Setup
 ;----------------------------------------------------------------------
-(setq server-use-tcp 't)
+;; (setq server-use-tcp 't)
 ;; This tells emacsclient who to connect to
-(setq server-host "localhost") 
+;; (setq server-host "localhost") 
 ;; By default emacs-server will grab a random port
 ;; (setq server-port 100)
 ;----------------------------------------------------------------------
