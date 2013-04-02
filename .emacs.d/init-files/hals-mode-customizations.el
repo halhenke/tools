@@ -5,6 +5,12 @@
 ;================================================================================
 ; Associating filetypes with modes
 ;================================================================================
+;; Remove previous associations
+;----------------------------------------------------------------------
+(setq auto-mode-alist (delq (rassoc 'javascript-generic-mode auto-mode-alist) auto-mode-alist))
+;----------------------------------------------------------------------
+;; Add new associations
+;----------------------------------------------------------------------
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.gitignore\\'" . shell-script-mode))
@@ -13,6 +19,8 @@
 ;; (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.haml\\'" . haml-mode))
 (add-to-list 'auto-mode-alist '("~\\.vimrc\\'" . vim-script-mode))
+(add-to-list 'auto-mode-alist '("~\\.js\\'" . js2-mode))
+;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------
 ;  Web Mode

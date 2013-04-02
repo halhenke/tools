@@ -4,9 +4,11 @@
 (provide 'mac-setup)
 
 ;; Menlo font not available on linux
-;; (set-frame-font "Menlo-16" nil t)
-(set-frame-font "Helvetica-16" nil t)
-;; (set-frame-font "Courier-16" nil t)
+;; (set-frame-font "Menlo-14" nil t)
+;; (set-frame-font "Helvetica-16" nil t)
+(set-default-font "Courier New-14" nil t)
+nil
+
 
 ;----------------------------------------------------------------------
 ;; Frames 

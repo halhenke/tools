@@ -65,8 +65,10 @@
 ;; Will setting this 't' or 'f' this help me with scrolling to the top and bottom of files?
 ;; (set 'scroll-preserve-screen-position t)
 ;; (set 'scroll-preserve-screen-position nil)
+
 ;; Enable Line numbers in margins of all buffers
-(global-linum-mode 1)
+;; DISABLE - until we can figure out a way to auto-enable it only in certain buffers
+(global-linum-mode nil)
 ;; Enable column number at bottom of the screen
 (column-number-mode 1)
 ;----------------------------------------------------------------------
