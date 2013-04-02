@@ -4,20 +4,34 @@
 (provide 'unix-setup)
 
 ;; Menlo font not available on linux
-(set-frame-font "DejaVu Serif-10" nil t)
+(set-default-font "DejaVu Serif-10" nil t)
+;; Actually at the moment, after a lot of troubles, i kind of want this as returned by
+;; describe-font:
+;; ----------------------------------------------------------------------
+;; name (opened by): -unknown-DejaVu Sans Mono-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1
+;;        full name: DejaVu Sans Mono:pixelsize=13:foundry=unknown:weight=normal:slant=normal:width=normal:spacing=100:scalable=true
+;;             size: 13
+;;           height: 17
+;;  baseline-offset:  0
+;; relative-compose:  0
+;; ----------------------------------------------------------------------
+;; But whats it proper name?
+
 
 ;----------------------------------------------------------------------
 ;; Frames 
 ;----------------------------------------------------------------------
 ;; Switching Forward & Backward between frames with Command-{ & Command-}
+;; NOTE - I'm not sure if this is just a UNIX/GNOME thing but it seemed to make more 
+;; sense whn I switched the sign of the (other-frame +|- 1) commands
 (global-set-key (kbd "s-{") (lambda () (interactive) 
 			       "Go to previous frame"
 			       (interactive)
-			       (other-frame -1)))
+			       (other-frame 1)))
 (global-set-key (kbd "s-}")  (lambda () (interactive) 
 			       "Go to next frame"
 			       (interactive)
-			       (other-frame 1)))
+			       (other-frame -1)))
 ;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------

@@ -83,6 +83,13 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
    ;; (:name haml-mode   
    ;; 	  :type elpa
    ;; 	  )
+   ;; ..................................................
+   ;; workgroups - maybe do here or in main file after el-get installation
+   (:name workgroups
+	  :after (wg-load "~/.emacs.d/workgroups/initial-wg")
+	  (workgroups-mode 1)
+	  )
+   ;; ..................................................
    ))
 
 ;; list all installed packages   
@@ -92,7 +99,7 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 (setq my-el-get-packages  
      (append  
       ;; Some of the below (magit slime) require "apt-get install texinfo" to compile on linux
-     '(el-get evernote-mode magit rails-el re-builder+ rect-mark regex-tool slime sr-speedbar)
+     '(el-get evernote-mode magit rails-el re-builder+ rect-mark regex-tool slime sr-speedbar workgroups)
       ;; '(el-get evernote-mode rails-el re-builder+ rect-mark regex-tool  sr-speedbar magit)
       (mapcar 'el-get-source-name el-get-sources)))  
 ;; Check our packages are installed and initialized properly
