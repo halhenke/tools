@@ -11,6 +11,10 @@ require 'irb/completion'
 require "awesome_print"
 AwesomePrint.irb!
 
+# MetaProgramming Methods
+require "~/code/myLib/Ruby/meta_methods"
+include MetaMethods
+
 # If we are running rails console then store command history in the Rails app, directory
 IRB.conf[:SAVE_HISTORY] = 10000
 if defined? Rails
