@@ -62,3 +62,14 @@ fi
 if [ -f ~/.bashrc_local ]; then
     . ~/.bashrc_local
 fi
+
+
+# HAL - should unify/work on this
+# ----------------------------------------------------------------------
+# BASH COMPLETION
+# ----------------------------------------------------------------------
+# # Enable the bash-completion port
+echo "enabling bash_completion..."
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    source /etc/bash_completion
+fi

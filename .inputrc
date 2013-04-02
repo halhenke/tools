@@ -9,37 +9,37 @@
 # Commenting out below here for now to the next line of asterisks
 
 # # Be 8 bit clean.
-# set input-meta on
-# set output-meta on
+set input-meta on
+set output-meta on
 
-# # Allow 8-bit characters to be input because we like that
-# set convert-meta off
+# Allow 8-bit characters to be input because we like that
+set convert-meta off
 
-# # We're only modifying the emacs mode
-# $if mode=emacs
+# We're only modifying the emacs mode
+$if mode=emacs
 
-# "\e[1~": beginning-of-line
-# "\e[4~": end-of-line
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
 
-# # allow the use of the Delete/Insert keys
-# "\e[3~": delete-char
-# "\e[2~": quoted-insert
+# allow the use of the Delete/Insert keys
+"\e[3~": delete-char
+"\e[2~": quoted-insert
 
-# # alternate mappings for "page up" and "page down" to search the history
-# "\e[5~": history-search-backward
-# "\e[6~": history-search-forward
+# alternate mappings for "page up" and "page down" to search the history
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward
 
-# # # mappings for Ctrl-left-arrow and Ctrl-right-arrow for word moving
-# "\e[5C": forward-word
-# "\e[5D": backward-word
+# # mappings for Ctrl-left-arrow and Ctrl-right-arrow for word moving
+"\e[5C": forward-word
+"\e[5D": backward-word
 
-# # uxterm and xterm mappings for Ctrl-left-arrow and Ctrl-right-arrow
-# "\e[1;5C": forward-word
-# "\e[1;5D": backward-word
+# uxterm and xterm mappings for Ctrl-left-arrow and Ctrl-right-arrow
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
 
-# # allow the use of the Home/End keys
-# "\eOH": beginning-of-line
-# "\eOF": end-of-line
+# allow the use of the Home/End keys
+"\eOH": beginning-of-line
+"\eOF": end-of-line
 
 #********************************************************************************
 
@@ -52,12 +52,12 @@
 # these setting wont work on a Mac where Alt is Meta and Command key is Super
 # --------------------------------------------------------------------------------
 # HAL mappings for Alt + Left and Right arrows in Konsole
-# "\e[1;3C": forward-word
-# "\e[1;3D": backward-word
+"\e[1;3C": forward-word
+"\e[1;3D": backward-word
 
 # HAL mappings for Meta + Left and Right arrows in Konsole
-# "\e[1;1C": end-of-line
-# "\e[1;1D": beginning-of-line
+"\e[1;1C": end-of-line
+"\e[1;1D": beginning-of-line
 
 # HAL mappings for Page Up and Page Down in Konsole
 # Actually this is better done in Konsole User Settings...
@@ -65,8 +65,9 @@
 # Page Down "^[[6~"
 
 # $endif
-# HAL - the rest will be outside the emacs guard
 
+
+# HAL - the rest will be outside the emacs guard
 # --------------------------------------------------------------------------------
 # General settings
 # --------------------------------------------------------------------------------
