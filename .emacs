@@ -510,6 +510,12 @@ should turn the current window into 4 new windows."
 ;----------------------------------------------------------------------
 
 ;=================================================
+; Macros that were once useful
+;=================================================
+(require 'hals-stored-macro-definitions)
+;----------------------------------------------------------------------
+
+;=================================================
 ;; This is code that is prob only relevant to specific situations/environments
 ;; or perhaps just work in progress
 ;; - might be more generalized later

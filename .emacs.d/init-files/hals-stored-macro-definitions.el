@@ -1,3 +1,7 @@
+;=================================================
+; MACROS THAT WERE SO USEFUL I SAVED THEM
+;=================================================
+(provide 'hals-stored-macro-definitions)
 ;; ======================================================================
 ;; This is where I am going to chuck some macros that have proven helpful more than once
 ;; Being macros they are not as reliable or foolproof as 'proper code' but may be useful in the future
