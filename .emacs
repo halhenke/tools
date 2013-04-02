@@ -21,8 +21,16 @@
 ;----------------------------------------------------------------------
 ; Emacs Server/Client  Setup
 ;----------------------------------------------------------------------
+;; ++++++++++++++++++++++++
+;; Open NX Settings?
+;; Best way seems to be to have no options enabled, start emacs normally and then run the 
+;; (server-start)
+;; command. After this new frames can be launched via the command line with
+;; emacsclient -c
+;; ++++++++++++++++++++++++
+;; This sort of works locally - not over Open NX
 ;; (setq server-use-tcp 't)
-;; This tells emacsclient who to connect to
+;; ;; This tells emacsclient who to connect to
 ;; (setq server-host "localhost") 
 ;; By default emacs-server will grab a random port
 ;; (setq server-port 100)
@@ -55,9 +63,10 @@
 (delete-selection-mode 1)
 ;; If the buffer is associated with a file display the path at the top of the frame - Also shows a modified/read-only flag
 (setq frame-title-format
-  '("" invocation-name ": "(:eval (if (buffer-file-name)
-                (abbreviate-file-name (buffer-file-name))
-                  "%b")) " [%*]"))
+      '("" (:eval (invocation-name)) ": " 
+	(:eval (if (buffer-file-name)
+		   (abbreviate-file-name (buffer-file-name))
+		 "%b")) " [%*]"))
 ;; ;; If this is true then we will never have to type out full "yes" or "no" to confirm changes
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;; OR
@@ -67,8 +76,7 @@
 ;; (set 'scroll-preserve-screen-position nil)
 
 ;; Enable Line numbers in margins of all buffers
-;; DISABLE - until we can figure out a way to auto-enable it only in certain buffers
-(global-linum-mode nil)
+(global-linum-mode 1)
 ;; Enable column number at bottom of the screen
 (column-number-mode 1)
 ;----------------------------------------------------------------------
@@ -80,8 +88,10 @@
 ;; Should really make this so it only goes on in lisp mode...
 (show-paren-mode 1)
 (setq show-paren-style 'expression)
+;----------------------------------------------------------------------
+;; Ido Mode Setup
 (ido-mode t)
-
+(setq ido-default-file-method 'maybe-mode)
 ;; Enable the use of set upper/lower case commands
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
@@ -101,6 +111,17 @@
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 ;; (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 ;; (setq scroll-step 1) ;; keyboard scroll one line at a time
+
+
+;======================================================================
+; WORKGROUPS - This has to be moved to after el-get section to work properly
+;======================================================================
+;; (wg-load "~/.emacs.d/workgroups")
+;; Set the workspaces command prefix
+;; (setq wg-prefix-key (kbd "C-c w"))
+;; This cant be enabled before el-get 
+;; (workgroups-mode 1)
+;----------------------------------------------------------------------
 
 ;======================================================================
 ; PACKAGE MANAGEMENT
@@ -140,6 +161,8 @@
     (eval-print-last-sexp)))
 ;; The rest of setup goes here
 (require 'hals-el-get-setup)
+
+
 ;----------------------------------------------------------------------
 ;;  Revert All Buffers - see self-installed
 ;----------------------------------------------------------------------
@@ -480,10 +503,18 @@ should turn the current window into 4 new windows."
 (require 'hals-mode-declarations)
 ;----------------------------------------------------------------------
 
-;----------------------------------------------------------------------
-; Package Specific Stuff
-;----------------------------------------------------------------------
+;=================================================
+; Just Generally Cool Shit
+;=================================================
 (require 'hals-cool-stuff)
+;----------------------------------------------------------------------
+
+;=================================================
+;; This is code that is prob only relevant to specific situations/environments
+;; or perhaps just work in progress
+;; - might be more generalized later
+;=================================================
+(require 'hals-site-situation-specific-code)
 ;----------------------------------------------------------------------
 
 (custom-set-variables
@@ -493,12 +524,14 @@ should turn the current window into 4 new windows."
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(column-number-mode t)
- '(custom-enabled-themes (quote (tsdh-dark)))
+ '(cua-mode t nil (cua-base))
+ '(custom-enabled-themes (quote (manoj-dark)))
  '(delete-selection-mode t)
+ '(scroll-bar-mode (quote right))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Helvetica" :foundry "apple" :slant normal :weight normal :height 160 :width normal)))))
+ )
