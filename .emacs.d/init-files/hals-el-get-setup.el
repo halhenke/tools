@@ -99,6 +99,8 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 (setq my-el-get-packages  
      (append  
       ;; Some of the below (magit slime) require "apt-get install texinfo" to compile on linux
+      ;; '(el-get evernote-mode magit rails-el re-builder+ rect-mark regex-tool slime sr-speedbar workgroups)
+      ;; Having el-get in this list seemed to screw me up on jn-big
      '(el-get evernote-mode magit rails-el re-builder+ rect-mark regex-tool slime sr-speedbar workgroups)
       ;; '(el-get evernote-mode rails-el re-builder+ rect-mark regex-tool  sr-speedbar magit)
       (mapcar 'el-get-source-name el-get-sources)))  

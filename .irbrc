@@ -15,7 +15,14 @@ AwesomePrint.irb!
 IRB.conf[:SAVE_HISTORY] = 10000
 if defined? Rails
   puts "You are running Rails in #{Rails.env}"
-  IRB.conf[:HISTORY_FILE] = "#{Rails.root}/.rails-console-history"
+  # Really should put development files in their own file also but this will be backwards compatible for now
+  if Rails.env == "development"	
+    puts "Using a generic Rails console history file" + "#{Rails.root}/.rails-console-history"	
+    IRB.conf[:HISTORY_FILE]     = "#{Rails.root}/.rails-console-history"
+  else
+    puts "Using an environment specific Rails console history file: " + "#{Rails.root}/.rails-console-#{Rails.env}-history"	
+    IRB.conf[:HISTORY_FILE]     = "#{Rails.root}/.rails-console-#{Rails.env}-history"
+  end
 else
   IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb-history"
 end
