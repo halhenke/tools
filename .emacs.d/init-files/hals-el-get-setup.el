@@ -86,8 +86,11 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
    ;; ..................................................
    ;; workgroups - maybe do here or in main file after el-get installation
    (:name workgroups
-	  :after (wg-load "~/.emacs.d/workgroups/initial-wg")
-	  (workgroups-mode 1)
+	  :after 
+	  (if (file-exists-p "~/.emacs.d/workgroups/initial-wg")
+	      (progn
+		(wg-load "~/.emacs.d/workgroups/initial-wg")
+		(workgroups-mode 1)))
 	  )
    ;; ..................................................
    ))
@@ -107,7 +110,7 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 ;; Check our packages are installed and initialized properly
 ;; syn/asyn determines if its a synchronous operation or not
 ;; (el-get 'sync my-el-get-packages)
-;; (el-get 'sync)
+(el-get 'sync)
 ;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------
