@@ -86,8 +86,11 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
    ;; ..................................................
    ;; workgroups - maybe do here or in main file after el-get installation
    (:name workgroups
-	  :after (wg-load "~/.emacs.d/workgroups/initial-wg")
-	  (workgroups-mode 1)
+	  :after 
+	  (if (file-exists-p "~/.emacs.d/workgroups/initial-wg")
+	      (progn
+		(wg-load "~/.emacs.d/workgroups/initial-wg")
+		(workgroups-mode 1)))
 	  )
    ;; ..................................................
    ))
@@ -99,12 +102,15 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 (setq my-el-get-packages  
      (append  
       ;; Some of the below (magit slime) require "apt-get install texinfo" to compile on linux
-     ;; '(el-get evernote-mode magit rails-el re-builder+ rect-mark regex-tool slime sr-speedbar workgroups)
-     '(evernote-mode magit rails-el re-builder+ rect-mark regex-tool slime sr-speedbar workgroups)
+      ;; '(evernote-mode magit rails-el re-builder+ rect-mark regex-tool slime sr-speedbar workgroups)
+      ;; Need to get rid of el-get from this list?
+      ;; '(evernote-mode magit rails-el re-builder+ rect-mark regex-tool slime sr-speedbar workgroups)
+      '(el-get evernote-mode magit rails-el re-builder+ rect-mark regex-tool slime sr-speedbar workgroups)
       (mapcar 'el-get-source-name el-get-sources)))  
 ;; Check our packages are installed and initialized properly
 ;; syn/asyn determines if its a synchronous operation or not
 (el-get 'sync my-el-get-packages)
+;; (el-get 'sync)
 ;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------
@@ -131,4 +137,3 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 ;; An example of it’s use:
 ;; (package-let 'kv "~/teamchat.net/shoesoff-elpa")
 ;;----------------------------------------------------------------------
-

@@ -151,6 +151,12 @@
 	     (outline-minor-mode)
 	     (setq outline-regexp " *\\(def \\|clas\\|#hea\\)")
 	     (hide-sublevels 1)))
+;; Better for some Ruby/Rails related modes/files - e.g. Factory girl/Rspec etc
+;; Current outline-regexp:
+;; " *\\(def \\|class\\|module\\)"
+;; For factory & Rspec
+;; " *\\(def \\|class\\|module\\|factory\\describe\\)"
+;; Didnt quite work
 ;----------------------------------------------------------------------
 ;;  Org Mode
 ;----------------------------------------------------------------------
