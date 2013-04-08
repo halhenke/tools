@@ -1,4 +1,4 @@
-echo ".bashrc_mac called..."
+echo ".zshrc_mac called..."
 
 # ----------------------------------------------------------------------
 # THE Z SHELL

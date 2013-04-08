@@ -1,64 +1,115 @@
 echo ".bashrc_linux called..."
 
-# Sourced by Hal 2013 from Catalyst .bash_profile
+# ----------------------------------------------------------------------
+# THE Z SHELL
+# ----------------------------------------------------------------------
+# echo "Setting your shell - Bash via MacPorts"
+# /opt/local/bin/bash
+echo "Your shell is $SHELL and you are running version $ZSH_VERSION"
 
-# ~/.bashrc: executed by bash(1) for non-login shells.
-#
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) for examples
+# This is much more familiar to $BASH and especially getting the PATH to work correctly
+setopt shwordsplit
+
+# ZSHELL_COMMANDS=/opt/local/share/zsh/5.0.0/functions
+# export PATH=/opt/local/share/zsh/5.0.0/functions:$PATH
+# echo "We are adding the zshell commands to your path"
+
+# ----------------------------------------------------------------------
+# SETTING COMMAND HISTORY
+# ----------------------------------------------------------------------
+# export HISTCONTROL=ignoredups
+# export HISTFILESIZE=10000
+
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTFILE=~/.zsh_history
+
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt SHARE_HISTORY
+
+# ----------------------------------------------------------------------
+# SETTING UP THE PROMPT
+# ----------------------------------------------------------------------
+echo "Setting up your prompt: colour"
+
+# Z-Shell Prompt Selection
+autoload -U promptinit
+promptinit
+# Choose a prompt
+prompt clint
+
+# ----------------------------------------------------------------------
+# Z-SHELL AUTO-COMPLETION
+# ----------------------------------------------------------------------
+# # Enable the bash-completion port
+# echo "enabling bash_completion..."
+# if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+#     . /opt/local/etc/profile.d/bash_completion.sh
+# fi
+# # This is currently duplicated in .inputrc - fix
+# bind '"\e[A":history-search-backward'
+# bind '"\e[B":history-search-forward'
+
+# enable auto-completion
+autoload -U compinit
+compinit
+# "Arrow Key style" Auto-Completion
+zstyle ':completion:*' menu select
 
 
-# If running interactively, then:
-if [ "$PS1" ]; then
+# ----------------------------------------------------------------------
+# Z-SHELL READLINE STYLE STUFF
+# ----------------------------------------------------------------------
+# create a zkbd compatible hash;
+# to add other keys to this hash, see: man 5 terminfo
+typeset -A key
 
-    # don't put duplicate lines in the history. See bash(1) for more options
-    export HISTCONTROL=ignoredups
+key[Home]=${terminfo[khome]}
 
-    # check the window size after each command and, if necessary,
-    # update the values of LINES and COLUMNS.
-    #shopt -s checkwinsize
+key[End]=${terminfo[kend]}
+key[Insert]=${terminfo[kich1]}
+key[Delete]=${terminfo[kdch1]}
+key[Up]=${terminfo[kcuu1]}
+key[Down]=${terminfo[kcud1]}
+key[Left]=${terminfo[kcub1]}
+key[Right]=${terminfo[kcuf1]}
+key[PageUp]=${terminfo[kpp]}
+key[PageDown]=${terminfo[knp]}
 
-    # enable color support of ls and also add handy aliases
-    if [ "$TERM" != "dumb" ]; then
-        eval `dircolors -b`
-        alias ls='ls --color=auto'
-        #alias dir='ls --color=auto --format=vertical'
-        #alias vdir='ls --color=auto --format=long'
-    fi
+# setup key accordingly
+[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
+[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
+[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
+[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
+# [[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
+# [[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
+[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
+[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
 
-    # some more ls aliases
-    #alias ll='ls -l'
-    #alias la='ls -A'
-    #alias l='ls -CF'
+# [[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
+# [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
+[[ -n "${key[Up]}"   ]]  && bindkey  "${key[Up]}"    history-beginning-search-backward
+[[ -n "${key[Down]}" ]]  && bindkey  "${key[Down]}"  history-beginning-search-forward
 
-    # set a fancy prompt
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 
-    # If this is an xterm set the title to user@host:dir
-    case $TERM in
-    xterm*)
-        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
-        ;;
-    *)
-        ;;
-    esac
-
-    # enable programmable completion features (you don't need to enable
-    # this, if it's already enabled in /etc/bash.bashrc).
-    #if [ -f /etc/bash_completion ]; then
-    #  . /etc/bash_completion
-    #fi
-
-    # Set a colourful prompt on production machines
-    if [ -e /etc/catalyst-machineinfo ]; then
-      . /etc/catalyst-machineinfo
-      if [ "$ROLE" == "production" ]; then
-        PS1="\[\e[31;1m\]$PS1\[\e[0m\]"
-      fi
-    fi
-
+# Finally, make sure the terminal is in application mode, when zle is
+# active. Only then are the values from $terminfo valid.
+if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
+    function zle-line-init () {
+        printf '%s' ${terminfo[smkx]}
+    }
+    function zle-line-finish () {
+        printf '%s' ${terminfo[rmkx]}
+    }
+    zle -N zle-line-init
+    zle -N zle-line-finish
 fi
+# ----------------------------------------------------------------------
 
-# include .bashrc_local if it exists
-if [ -f ~/.bashrc_local ]; then
-    . ~/.bashrc_local
-fi
+# ----------------------------------------------------------------------
+# SOME USEFUL ALIASES
+# ----------------------------------------------------------------------
+alias ll="ls -lh"
+alias la="ls -lah"
+# ----------------------------------------------------------------------
