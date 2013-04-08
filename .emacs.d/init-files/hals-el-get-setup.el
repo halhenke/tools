@@ -109,8 +109,8 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
       (mapcar 'el-get-source-name el-get-sources)))  
 ;; Check our packages are installed and initialized properly
 ;; syn/asyn determines if its a synchronous operation or not
-;; (el-get 'sync my-el-get-packages)
-(el-get 'sync)
+(el-get 'sync my-el-get-packages)
+;; (el-get 'sync)
 ;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------
