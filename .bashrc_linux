@@ -72,6 +72,7 @@ fi
 echo "enabling bash_completion..."
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     source /etc/bash_completion
+fi
 # include .bashrc_jn-sol stuff if it exists
 if [ -f ~/.bashrc_original ]; then
     . ~/.bashrc_original
