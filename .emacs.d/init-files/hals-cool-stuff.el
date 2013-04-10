@@ -56,3 +56,38 @@
 
 (add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
 ;; ----------------------------------------------------------------------
+
+
+;; (defun test-stuff ()
+;;   (interactive)
+;;   (let ((string (concat "\\<"
+;; 			(buffer-substring-no-properties
+;; 			 (progn (skip-syntax-backward "w_") (point))
+;; 			 (progn (skip-syntax-forward "w_") (point)))
+;; 			"\\>")))
+;;     (print string)
+;;     ))
+
+;; (defun test-rest (string)
+;;   (interactive)
+;;         (if (and isearch-case-fold-search
+;;                (eq 'not-yanks search-upper-case))
+;;           (setq string (downcase string)))
+;;       (setq isearch-string string
+;;             isearch-message
+;;             (concat isearch-message
+;;                     (mapconcat 'isearch-text-char-description
+;;                                string ""))
+;;             isearch-yank-flag t)
+;;       (isearch-search-and-update))
+
+;; The_end_of_days
+
+;; def apple_enterprises("Open for business")
+
+;; def bind_adhoc_data(params)
+
+;; (test-rest "The_end_of_days")
+;; (test-rest "\\<bind_adhoc_data\\>")
+
+
