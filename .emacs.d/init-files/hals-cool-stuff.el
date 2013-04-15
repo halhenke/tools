@@ -56,7 +56,7 @@
 
 (add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
 ;; ----------------------------------------------------------------------
-
+;; Mucking around - trying to find out why it isnt working....
 
 ;; (defun test-stuff ()
 ;;   (interactive)
@@ -70,24 +70,39 @@
 
 ;; (defun test-rest (string)
 ;;   (interactive)
-;;         (if (and isearch-case-fold-search
-;;                (eq 'not-yanks search-upper-case))
-;;           (setq string (downcase string)))
-;;       (setq isearch-string string
-;;             isearch-message
-;;             (concat isearch-message
-;;                     (mapconcat 'isearch-text-char-description
-;;                                string ""))
-;;             isearch-yank-flag t)
-;;       (isearch-search-and-update))
+;;   (if (and isearch-case-fold-search
+;; 	   (eq 'not-yanks search-upper-case))
+;;       (setq string (downcase string)))
+;;   (setq isearch-string string
+;; 	isearch-message
+;; 	(concat isearch-message
+;; 		(mapconcat 'isearch-text-char-description
+;; 			   string ""))
+;; 	isearch-yank-flag t)
+;;   (isearch-search-and-update))
 
-;; The_end_of_days
+;; ----------------------------------------------------------------------
+;; Alternative implementation from emacswiki
+;; http://www.emacswiki.org/emacs/SearchAtPoint
+;; ----------------------------------------------------------------------
+;; I-search with initial contents
+(defvar isearch-initial-string nil)
+(defun isearch-set-initial-string ()
+  (remove-hook 'isearch-mode-hook 'isearch-set-initial-string)
+  (setq isearch-string isearch-initial-string)
+  (isearch-search-and-update))
+(defun isearch-forward-at-point (&optional regexp-p no-recursive-edit)
+  "Interactive search forward for the symbol at point."
+  (interactive "P\np")
+  (if regexp-p (isearch-forward regexp-p no-recursive-edit)
+    (let* ((end (progn (skip-syntax-forward "w_") (point)))
+	   (begin (progn (skip-syntax-backward "w_") (point))))
+      (if (eq begin end)
+	  (isearch-forward regexp-p no-recursive-edit)
+	(setq isearch-initial-string (buffer-substring begin end))
+	(add-hook 'isearch-mode-hook 'isearch-set-initial-string)
+	(isearch-forward regexp-p no-recursive-edit)))))
+(global-set-key (kbd "s-f") 'isearch-forward-at-point)
 
-;; def apple_enterprises("Open for business")
-
-;; def bind_adhoc_data(params)
-
-;; (test-rest "The_end_of_days")
-;; (test-rest "\\<bind_adhoc_data\\>")
-
-
+isearch-string
+#("isearch-forward-at-pointnil" 0 24 (face font-lock-function-name-face fontified t))
