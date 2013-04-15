@@ -32,29 +32,30 @@
 ;; bind_adhoc_data 
 ;; (params)
 ;; ----------------------------------------------------------------------
-(defun my-isearch-word-at-point ()
-  (interactive)
-  (call-interactively 'isearch-forward-regexp))
+;; THIS DOESNT WORK WITHOUT FURHTER DEBUGGING
+;; ----------------------------------------------------------------------
+;; (defun my-isearch-word-at-point ()
+;;   (interactive)
+;;   (call-interactively 'isearch-forward-regexp))
 
-(defun my-isearch-yank-word-hook ()
-  (when (equal this-command 'my-isearch-word-at-point)
-    (let ((string (concat "\\<"
-                          (buffer-substring-no-properties
-                           (progn (skip-syntax-backward "w_") (point))
-                           (progn (skip-syntax-forward "w_") (point)))
-                          "\\>")))
-      (if (and isearch-case-fold-search
-               (eq 'not-yanks search-upper-case))
-          (setq string (downcase string)))
-      (setq isearch-string string
-            isearch-message
-            (concat isearch-message
-                    (mapconcat 'isearch-text-char-description
-                               string ""))
-            isearch-yank-flag t)
-      (isearch-search-and-update))))
-
-(add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
+;; (defun my-isearch-yank-word-hook ()
+;;   (when (equal this-command 'my-isearch-word-at-point)
+;;     (let ((string (concat "\\<"
+;;                           (buffer-substring-no-properties
+;;                            (progn (skip-syntax-backward "w_") (point))
+;;                            (progn (skip-syntax-forward "w_") (point)))
+;;                           "\\>")))
+;;       (if (and isearch-case-fold-search
+;;                (eq 'not-yanks search-upper-case))
+;;           (setq string (downcase string)))
+;;       (setq isearch-string string
+;;             isearch-message
+;;             (concat isearch-message
+;;                     (mapconcat 'isearch-text-char-description
+;;                                string ""))
+;;             isearch-yank-flag t)
+;;       (isearch-search-and-update))))
+;; (add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
 ;; ----------------------------------------------------------------------
 ;; Mucking around - trying to find out why it isnt working....
 
@@ -103,6 +104,3 @@
 	(add-hook 'isearch-mode-hook 'isearch-set-initial-string)
 	(isearch-forward regexp-p no-recursive-edit)))))
 (global-set-key (kbd "s-f") 'isearch-forward-at-point)
-
-isearch-string
-#("isearch-forward-at-pointnil" 0 24 (face font-lock-function-name-face fontified t))
