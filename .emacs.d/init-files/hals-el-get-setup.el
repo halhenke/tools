@@ -89,6 +89,7 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 	  :after 
 	  (if (file-exists-p "~/.emacs.d/workgroups/initial-wg")
 	      (progn
+		(setq wg-morph-on nil)
 		(wg-load "~/.emacs.d/workgroups/initial-wg")
 		(workgroups-mode 1)))
 	  )
