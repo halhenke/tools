@@ -7,7 +7,20 @@ echo ".bash_profile called..."
 # Want to be able to reset PATH variable later without restarting shell
 export HAL_ORIG_PATH=PATH
 
+# ----------------------------------------------------------------------
+# ADD SSH KEYS TO THE SSH-AGENT
+# Want to add stuff, particularly my fave ssh key, to the ssh-agent
+# ----------------------------------------------------------------------
+if [[ -a ~/.ssh/hal_rsa ]]; then
+    ssh-add ~/.ssh/hal_rsa
+fi
+# ----------------------------------------------------------------------
+
+# ----------------------------------------------------------------------
+# CALL BASHRC
+# ----------------------------------------------------------------------
 source ~/.bashrc
+# ----------------------------------------------------------------------
 
 # Prob want to delete ~/.profile from my master "tools" branch of my home git repository - doesnt seem to be used by default anymore
 # source ~/.profile
