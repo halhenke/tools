@@ -16,7 +16,7 @@ require "~/code/myLib/Ruby/meta_methods"
 include MetaMethods
 
 # If we are running rails console then store command history in the Rails app, directory
-IRB.conf[:SAVE_HISTORY] = 10000
+IRB.conf[:SAVE_HISTORY] = 100000
 if defined? Rails
   puts "You are running Rails in #{Rails.env}"
   # Really should put development files in their own file also but this will be backwards compatible for now
