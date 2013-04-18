@@ -6,6 +6,8 @@ echo ".zshenv called..."
 
 # Want to be able to reset PATH variable later without restarting shell
 export HAL_ORIG_PATH=$PATH
+# Add local bin with scripts to path - zshell style
+path=(~/bin $path)
 
 # ----------------------------------------------------------------------
 # ADD SSH KEYS TO THE SSH-AGENT
