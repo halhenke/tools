@@ -1,4 +1,4 @@
-echo ".bashrc_linux called..."
+echo ".zshrc_linux called..."
 
 # ----------------------------------------------------------------------
 # THE Z SHELL
@@ -113,3 +113,18 @@ fi
 alias ll="ls -lh"
 alias la="ls -lah"
 # ----------------------------------------------------------------------
+
+
+# --------------------------------------------
+# RVM
+# Add a test to make sure we are somewhere we want to use RVM - e.g. jn-dev
+# --------------------------------------------------
+# echo "doing RVM stuff - loading rvm script..."
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# --------------------------------------------
+# # My attempt to modify
+# echo "doing RVM stuff - modifying your PATH..."
+# # PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# export HAL_RVM_PATH=$HOME/.rvm/bin 
+# PATH=$PATH:$HAL_RVM_PATH
+# --------------------------------------------
