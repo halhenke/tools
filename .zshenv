@@ -16,6 +16,6 @@ path=(~/bin $path)
 # TODO
 #  - check if ssh-agent is running
 #  - check if hal_rsa has already been added to the ssh-agent
-if [[ -a ~/.ssh/hal_rsa ]]; then
-    ssh-add ~/.ssh/hal_rsa
-fi
+# if [[ -a ~/.ssh/hal_rsa ]]; then
+#     ssh-add ~/.ssh/hal_rsa
+# fi
