@@ -21,3 +21,13 @@ fi
 # # PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # export HAL_RVM_PATH=$HOME/.rvm/bin 
 # PATH=$PATH:$HAL_RVM_PATH
+
+
+# --------------------------------------------
+# STUFF THAT WE WANT IN ALL ENVIRONMENTS
+# --------------------------------------------
+# Mass file renaming
+# --------------------------------------------
+autoload -U zmv
+alias mmv='noglob zmv -W'
+# --------------------------------------------
