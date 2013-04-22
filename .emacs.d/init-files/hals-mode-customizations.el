@@ -8,6 +8,7 @@
 ;; Remove previous associations
 ;----------------------------------------------------------------------
 (setq auto-mode-alist (delq (rassoc 'javascript-generic-mode auto-mode-alist) auto-mode-alist))
+;; (setq auto-mode-alist (delq (rassoc 'javascript-mode auto-mode-alist) auto-mode-alist))
 ;----------------------------------------------------------------------
 ;; Add new associations
 ;----------------------------------------------------------------------
@@ -18,8 +19,8 @@
 (add-to-list 'auto-mode-alist '("\\.bash.*" . shell-script-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.haml\\'" . haml-mode))
-(add-to-list 'auto-mode-alist '("~\\.vimrc\\'" . vim-script-mode))
-(add-to-list 'auto-mode-alist '("~\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.vimrc\\'" . vim-script-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 ;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------
