@@ -77,12 +77,10 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
    ;;	  :before (defalias 'x-font-family-list 'font-family-list)
    ;;	  :features alt-font-menu
    ;;	  )
-   ;; (:name haml-mode
-   ;; 	  :after (add-to-list 'auto-mode-alist '("\\.haml\\'" . haml-mode))
-   ;; 	  )
-   ;; (:name haml-mode   
-   ;; 	  :type elpa
-   ;; 	  )
+   (:name haml-mode
+   	  ;; :after (add-to-list 'auto-mode-alist '("\\.haml\\'" . haml-mode))
+	  :after (modify-syntax-entry ?_ "_" haml-mode-syntax-table)
+   	  )
    ;; ..................................................
    ;; workgroups - maybe do here or in main file after el-get installation
    (:name workgroups
