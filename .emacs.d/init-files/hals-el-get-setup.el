@@ -78,6 +78,7 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
    ;;	  :features alt-font-menu
    ;;	  )
    (:name haml-mode
+	  :features haml-mode
    	  ;; :after (add-to-list 'auto-mode-alist '("\\.haml\\'" . haml-mode))
 	  :after (modify-syntax-entry ?_ "_" haml-mode-syntax-table)
    	  )
