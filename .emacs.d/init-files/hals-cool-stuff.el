@@ -104,3 +104,40 @@
 	(add-hook 'isearch-mode-hook 'isearch-set-initial-string)
 	(isearch-forward regexp-p no-recursive-edit)))))
 (global-set-key (kbd "s-f") 'isearch-forward-at-point)
+
+
+;; ----------------------------------------------------------------------
+;; Not that cool - but useful - byte recompile our main directory of elisp code
+;; ----------------------------------------------------------------------
+(defun byte-compile-my-shit ()
+  "Will recompile files in emacs init directory - set to ask what to do
+if file is not previously compiled."
+  (interactive)
+  (byte-recompile-directory "~/.emacs.d/init-files" 'ask))
+;; ----------------------------------------------------------------------
+
+;; ----------------------------------------------------------------------
+;; My own method to store and restore the entire frame configuration 
+;; between shutdown and reopening of emacs
+;; ----------------------------------------------------------------------
+(defvar stored-frame-config-path "~/.emacs.d/stored-frames"
+  "This variable indicates the file in which functions such as store-current-frame-config will store and read the current state of emacs frames, windows and buffers")
+(defun store-current-frame-config ()
+  "Will write the current emacs frame/window/buffer setup to a file"
+  (interactive)
+  (let ((current-frames (current-frame-configuration)))
+    (if stored-frame-config-path
+	;; Probably want to figure out some check as to whether the file actually exists - function fails otherwise...
+	(with-temp-file stored-frame-config-path (insert (format "%s" current-frames)))
+      (print "stored-frame-config-path is not set - frame configuration has not been saved..."))))
+(defun restore-previous-frame-config ()
+  "Will restore a previously saved emacs frame/window/buffer setup from a file"
+  (interactive)
+  (if (file-exists-p stored-frame-config-path)
+      (let ((previous-frames 
+	    (with-temp-buffer 
+	      (insert-file-contents stored-frame-config-path)
+	      (buffer-string))))
+	   (set-frame-configuration previous-frames)
+	   ))))
+;; ----------------------------------------------------------------------
