@@ -127,17 +127,31 @@ if file is not previously compiled."
   (interactive)
   (let ((current-frames (current-frame-configuration)))
     (if stored-frame-config-path
-	;; Probably want to figure out some check as to whether the file actually exists - function fails otherwise...
-	(with-temp-file stored-frame-config-path (insert (format "%s" current-frames)))
+	;; Create file if it doesnt previously exist
+	(progn
+	  (if (not (file-exists-p stored-frame-config-path))
+	      (shell-command (concat "touch " stored-frame-config-path)))
+	  (with-temp-file stored-frame-config-path (insert (format "%s" current-frames))))
       (print "stored-frame-config-path is not set - frame configuration has not been saved..."))))
 (defun restore-previous-frame-config ()
   "Will restore a previously saved emacs frame/window/buffer setup from a file"
   (interactive)
   (if (file-exists-p stored-frame-config-path)
       (let ((previous-frames 
-	    (with-temp-buffer 
-	      (insert-file-contents stored-frame-config-path)
+	     (with-temp-buffer 
+	       (insert-file-contents stored-frame-config-path)
 	      (buffer-string))))
-	   (set-frame-configuration previous-frames)
-	   )))
+	;; (print (concat "Hey bo: " previous-frames))
+	(set-frame-configuration (read-from-string previous-frames)))))
+;; Meh - 
+;; set-frame-configuration: Invalid read syntax: "#"
+;; ----------------------------------------------------------------------
+
+;; ----------------------------------------------------------------------
+;; Making a popup menu
+;; ----------------------------------------------------------------------
+;; Doesnt work yet
+;; (x-popup-menu '((10 10) (selected-window)) '("Bad idea" ("Dig". 1) ("Dog" . 2)))
+;; Does work
+;; (x-popup-menu t '("Bad idea" ("t1" ("Dig". 1)) ("t2" ("Dog" . 2))))
 ;; ----------------------------------------------------------------------
