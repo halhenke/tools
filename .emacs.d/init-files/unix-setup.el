@@ -32,6 +32,8 @@
 			       "Go to next frame"
 			       (interactive)
 			       (other-frame -1)))
+;; Select frame after loading
+(add-hook 'after-make-frame-functions 'select-frame)
 ;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------
