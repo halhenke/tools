@@ -139,5 +139,5 @@ if file is not previously compiled."
 	      (insert-file-contents stored-frame-config-path)
 	      (buffer-string))))
 	   (set-frame-configuration previous-frames)
-	   ))))
+	   )))
 ;; ----------------------------------------------------------------------
