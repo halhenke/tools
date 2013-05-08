@@ -104,7 +104,7 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
    ;; ..................................................
    ;; Pretty much we are using either this or smex
    (:name ido-ubiquitous
-	  :after (ido-ubiquitous-mode)))
+	  :after (ido-ubiquitous-mode))))
    ;; ..................................................
 
 
