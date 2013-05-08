@@ -276,6 +276,13 @@ Possible values are VERSE, SRC language, QUOTE and EXAMPLE."
                  (setq outline-regexp " *\\(def \\|class\\|module\\)")))
 
 ;;----------------------------------------------------------------------
+;; Rake Mode - we dont actually have one yet
+;;----------------------------------------------------------------------
+(add-hook 'rake-mode-hook
+	  '(lambda ()
+	     (outline-minor-mode)
+	     (setq outline-regexp " *\\(def \\|class\\|module\\|namespace\\|desc\\|task\\)")))
+;;----------------------------------------------------------------------
 ;; Haml Mode
 ;;----------------------------------------------------------------------
 ;; Haml-modes default indentation sucks - I want to be able to control 
