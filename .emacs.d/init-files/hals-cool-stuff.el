@@ -103,7 +103,9 @@
 	(setq isearch-initial-string (buffer-substring begin end))
 	(add-hook 'isearch-mode-hook 'isearch-set-initial-string)
 	(isearch-forward regexp-p no-recursive-edit)))))
-(global-set-key (kbd "s-f") 'isearch-forward-at-point)
+;; THIS FUNCTION DOESNT WORK IN ORG-MODE AND OTHER PLACES FOR SOME REASON..
+;; - see emacs Knowledge org-notes#Bugs for more info/investigation
+;; (global-set-key (kbd "s-f") 'isearch-forward-at-point)
 
 
 ;; ----------------------------------------------------------------------

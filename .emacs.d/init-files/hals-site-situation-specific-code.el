@@ -54,6 +54,20 @@
   (select-frame-set-input-focus (next-frame))
   (max-size-frame)
   )
+(defun smart-size-frame ()
+  "Find the max size for a frame from the screen size and maximize the frame. designed to be added as a hook after we make a new frame"
+  (interactive)
+  (let 
+      ((rows 47) (cols 175))
+      ;; ((rows (/ (frame-pixel-height) (frame-char-height)))
+      ;;  (cols (- (/ (frame-pixel-width) (frame-char-width)) 4)))
+    (progn
+      (set-frame-position  (selected-frame) 0 0)
+      (set-frame-size  (selected-frame) cols rows)
+      (set-frame-position  (selected-frame) 0 0)
+      ;; (setq vertical-scroll-bars 'right)      
+      (print (format "This is %d rows and %d cols\n" rows cols)))
+    ))
 ;; ;; This doesnt work:
 ;; (let (
 ;;       (my-height (/ (frame-pixel-height) (frame-char-height)))
