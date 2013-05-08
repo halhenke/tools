@@ -11,17 +11,17 @@
 ;----------------------------------------------------------------------
 ;; Attempting to create recipes for my stuff - either set el-get-sources or in recipe directory...i think
 ;; Might be able to set arbitrary list name if you explicitly call it with el-get....Cant remember
-(setq 
- el-get-sources 
+(setq
+ el-get-sources
  '(
    (:name evernote-mode
-	  :description "Mode for the editing of evernote documents. 
+	  :description "Mode for the editing of evernote documents.
 This is a fork from the package available on package-management that requires Ruby 1.9.3 etc rather than Ruby 1.8.7
 This needs something called gdbm 'sudo port install gdbm ruby' and you have to run a ruby script after installation i think..."
 	  :type git
 	  :url "https://github.com/rubbish/evernote-mode.git"
 	  ;; either prepare or post-init
-	  :post-init (setq evernote-ruby-command "/Users/Hal/.hals_macport_links/ruby") 
+	  :post-init (setq evernote-ruby-command "/Users/Hal/.hals_macport_links/ruby")
 	  :features evernote-mode
 	  )
    (:name rect-mark
@@ -52,7 +52,7 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 	  :features skewer-mode
 	  )
    ;; This is subbing in for simple-httpd which is temp unavailable on MELPA
-   (:name emacs-http-server   
+   (:name emacs-http-server
 	  :type git
 	  :url "https://github.com/skeeto/emacs-http-server"
 	  :features simple-httpd
@@ -60,16 +60,16 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
    ;; ..................................................
    ;; jquery-doc - problems with load-path and the dependents receipes were outdated
    ;; ..................................................
-   (:name popup 
-       :description "Visual Popup Interface Library for Emacs" 
-       :url "https://github.com/auto-complete/popup-el" 
+   (:name popup
+       :description "Visual Popup Interface Library for Emacs"
+       :url "https://github.com/auto-complete/popup-el"
        :type git)
    (:name auto-complete
-	  :description "The most intelligent auto-completion extension." 
-	  :url "https://github.com/auto-complete/auto-complete" 
-	  :type git 
+	  :description "The most intelligent auto-completion extension."
+	  :url "https://github.com/auto-complete/auto-complete"
+	  :type git
 	  :depends (popup fuzzy))
-   (:name jquery-doc 
+   (:name jquery-doc
 	  :load-path "."
 	  )
    ;; ..................................................
@@ -85,7 +85,7 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
    ;; ..................................................
    ;; workgroups - maybe do here or in main file after el-get installation
    (:name workgroups
-	  :after 
+	  :after
 	  (if (file-exists-p "~/.emacs.d/workgroups/initial-wg")
 	      (progn
 		(setq wg-morph-on nil)
@@ -93,23 +93,38 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 		(workgroups-mode 1)))
 	  )
    ;; ..................................................
-   ))
+   ;; Pretty much we are using either this or ido-ubiquitous
+   (:name smex
+	  :after
+	  (progn
+	   ;; (global-set-key (kbd "M-x") 'smex)
+	   ;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+	   ;; (global-set-key (kbd "<s-SPC>") 'smex))
+	  ))
+   ;; ..................................................
+   ;; Pretty much we are using either this or smex
+   (:name ido-ubiquitous
+	  :after (ido-ubiquitous-mode)))
+   ;; ..................................................
 
-;; list all installed packages   
+
+;; list all installed packages
 ;; (el-get-list-package-names-with-status "installed")
 
  ;; Make a list of all packages we want to install apart from el-get-sources
-(setq my-el-get-packages  
-     (append  
+(setq my-el-get-packages
+     (append
       ;; Some of the below (magit slime) require "apt-get install texinfo" to compile on linux
       ;; '(evernote-mode magit rails-el re-builder+ rect-mark regex-tool slime sr-speedbar workgroups)
       ;; Need to get rid of el-get from this list?
       '(evernote-mode magit rails-el re-builder+ rect-mark regex-tool slime sr-speedbar workgroups)
       ;; '(el-get evernote-mode magit rails-el re-builder+ rect-mark regex-tool slime sr-speedbar workgroups)
-      (mapcar 'el-get-source-name el-get-sources)))  
+      (mapcar 'el-get-source-name el-get-sources)))
 ;; Check our packages are installed and initialized properly
 ;; syn/asyn determines if its a synchronous operation or not
+
 (el-get 'sync my-el-get-packages)
+
 ;; (el-get 'sync)
 ;----------------------------------------------------------------------
 
@@ -120,7 +135,7 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 ;----------------------------------------------------------------------
 
 ;----------------------------------------------------------------------
-;; Install an ELPA package from a local archive/directory and then 
+;; Install an ELPA package from a local archive/directory and then
 ;; forget that local archive
 (defun package-let (package archive)
   "Install a package using the specified archive."
