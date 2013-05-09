@@ -104,7 +104,16 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
    ;; ..................................................
    ;; Pretty much we are using either this or smex
    (:name ido-ubiquitous
-	  :after (ido-ubiquitous-mode))))
+	  :after (ido-ubiquitous-mode 1))
+   ;; ..................................................
+   ;; Need to set this to nil on Mac
+   (:name igrep
+	  :after (progn
+		   (cond ((equal window-system 'ns)
+			  (setq igrep-find-use-xargs nil)))
+		   (setq igrep-options "-i")  ; ignore case by default
+		   (setq igrep-find t)))      ; search sub-directories by default
+   ))
    ;; ..................................................
 
 

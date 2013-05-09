@@ -532,6 +532,7 @@ should turn the current window into 4 new windows."
  '(column-number-mode t)
  '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (manoj-dark)))
+ '(custom-safe-themes (quote ("68769179097d800e415631967544f8b2001dae07972939446e21438b1010748c" default)))
  '(delete-selection-mode t)
  '(scroll-bar-mode (quote right))
  '(show-paren-mode t))
