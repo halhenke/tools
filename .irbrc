@@ -31,3 +31,14 @@ else
   IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb-history"
 end
 
+
+# ======================================================================
+# A CHEAP WAY TO LOAD PRY INSTEAD OF IRB WITHOUT MODIFYING RAILS IN PARTICULAR
+# ======================================================================
+begin
+  require "pry"
+  Pry.start
+  exit
+rescue LoadError => e
+  warn "=> Unable to load pry"
+end
