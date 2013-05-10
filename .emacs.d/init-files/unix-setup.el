@@ -4,7 +4,8 @@
 (provide 'unix-setup)
 
 ;; Menlo font not available on linux
-(set-default-font "DejaVu Serif-10" nil t)
+;; (set-default-font "DejaVu Serif-10" nil t) ;; Apparently deprecated
+(set-frame-font "DejaVu Sans Mono-10" 'keep-size t)
 ;; Actually at the moment, after a lot of troubles, i kind of want this as returned by
 ;; describe-font:
 ;; ----------------------------------------------------------------------
