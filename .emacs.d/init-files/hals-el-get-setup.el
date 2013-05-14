@@ -122,6 +122,11 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 
 
 ;; list all installed packages
+(defun el-get-list-installed-packages ()
+  "Print out a list of all packages that have been installed via el-get"
+  (interactive)
+  (el-get-list-package-names-with-status "installed")
+  )
 ;; (el-get-list-package-names-with-status "installed")
 
  ;; Make a list of all packages we want to install apart from el-get-sources
