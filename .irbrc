@@ -45,5 +45,3 @@ if defined? Rails
 else
   IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb-history"
 end
-
-
