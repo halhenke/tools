@@ -5,6 +5,24 @@ AwesomePrint.irb!
 # MetaProgramming Methods
 require "~/code/myLib/Ruby/meta_methods"
 include MetaMethods
+# ======================================================================
+# Lets try to get the history files going according to Rails status
+
+if defined? Rails
+  puts "You are running Rails in #{Rails.env}"
+  # Really should put development files in their own file also but this will be backwards compatible for now
+  if Rails.env == "development"	
+    puts "Pry is using a generic Rails console history file" + "#{Rails.root}/.rails-console-history"	
+    Pry.config.history.file     = "#{Rails.root}/.rails-console-history"
+  else
+    puts "Pry is using an environment specific Rails console history file: " + "#{Rails.root}/.rails-console-#{Rails.env}-history"	
+    Pry.config.history.file     = "#{Rails.root}/.rails-console-#{Rails.env}-history"
+  end
+else
+  Pry.config.history.file = "#{ENV['HOME']}/.pry_history"
+end
+
+# ======================================================================
 
 # ======================================================================
 # Some Stuff I got off the InterWebs

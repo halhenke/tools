@@ -1,4 +1,19 @@
 # -*- coding: utf-8 -*-
+# ======================================================================
+# A CHEAP WAY TO LOAD PRY INSTEAD OF IRB WITHOUT MODIFYING RAILS IN PARTICULAR
+# ======================================================================
+if %x(uname) =~ /Linux/
+  begin
+    require "pry"
+    Pry.start
+    exit
+  rescue LoadError => e
+    warn "=> Unable to load pry"
+  end
+end
+
+
+# -*- coding: utf-8 -*-
 # IRB.conf[:PROMPT][:DEMO] = {:PROMPT_I => "normal> ", :PROMPT_S => "string_continue> ", :PROMPT_C => "statement_continue> ", :PROMPT_N => "indent> ", :RETURN => "<< %s >>\n" }
 # IRB.conf[:PROMPT][:DEFAULT][:PROMPT_I] = "bacon"
 # require ‘irb/ext/save-history’
@@ -32,13 +47,3 @@ else
 end
 
 
-# ======================================================================
-# A CHEAP WAY TO LOAD PRY INSTEAD OF IRB WITHOUT MODIFYING RAILS IN PARTICULAR
-# ======================================================================
-begin
-  require "pry"
-  Pry.start
-  exit
-rescue LoadError => e
-  warn "=> Unable to load pry"
-end
