@@ -261,6 +261,16 @@ Possible values are VERSE, SRC language, QUOTE and EXAMPLE."
 						   (next-line n))))))
 ;; (forward-line n))))))
 
+;----------------------------------------------------------------------
+;; *** MAGIT ***
+;; - (this isnt really a mode - maybe should be in el-get-customizations)
+;----------------------------------------------------------------------
+;; Think we need and environment dependent variable to determine which repos are present 
+;; perhaps set from a file local to each computer?
+
+;; (shell-command-to-string "echo -n $PATH")
+(setq magit-repo-dirs
+      '("~/" "~/Documents/org-notes/" "~/code/myLib/")) ;"~/code/mySnipets"))
 
 ;================================================================================
 
