@@ -119,7 +119,7 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 		   (setq igrep-find t)))      ; search sub-directories by default
    ;; ..................................................
    (:name dash-at-point
-	  :type 'github'
+	  :type github
 	  :username "stanaka"
 	  ;; :pkgname "dash-at-point"
 	  ;; :autoload
