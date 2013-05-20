@@ -92,6 +92,11 @@ key[PageDown]=${terminfo[knp]}
 [[ -n "${key[Up]}"   ]]  && bindkey  "${key[Up]}"    history-beginning-search-backward
 [[ -n "${key[Down]}" ]]  && bindkey  "${key[Down]}"  history-beginning-search-forward
 
+# Raw keybindings for konsole terminal
+bindkey "^[[1;3D" backward-word     #back word
+bindkey "^[[1;3C" forward-word      #back word
+bindkey "^[[1;1D" beginning-of-line #beginning of line
+bindkey "^[[1;1C" end-of-line       #end of line
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.

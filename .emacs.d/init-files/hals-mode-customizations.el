@@ -14,6 +14,9 @@
 ;----------------------------------------------------------------------
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.pryrc\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.irbrc\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '"(\\.js\\.rjs\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.gitignore\\'" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("\\.inputrc" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("\\.bash.*" . shell-script-mode))
@@ -271,13 +274,13 @@ Possible values are VERSE, SRC language, QUOTE and EXAMPLE."
     (cond 
      ((equal host "AirBook.local")
       (setq magit-repo-dirs
-      '("~/" "~/Documents/Org-Docs/" "~/code/myLib/" "~/code/mySnipets")))
+      '("~/" "~/bin" "~/Documents/Org-Docs/" "~/code/myLib/" "~/code/mySnippets")))
      ((equal host "hal9000")
       (setq magit-repo-dirs
       '("~/" "~/Documents/org-notes/" "~/code/myLib/")))
      ((equal host "devubuntu")
       (setq magit-repo-dirs
-      '("~/" "~/Documents/org-notes/" "~/code/myLib/" "~/code/mySnipets")))
+      '("~/" "~/bin" "~/bridge" "~/Documents/org-notes/" "~/code/myLib/" "~/code/mySnippets")))
      ))
 ;; "Airbook.local"
 ;; "hal9000"
