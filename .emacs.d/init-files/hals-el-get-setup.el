@@ -117,32 +117,31 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 			  (setq igrep-find-use-xargs nil)))
 		   (setq igrep-options "-i")  ; ignore case by default
 		   (setq igrep-find t)))      ; search sub-directories by default
+   ;; ..................................................
+   (:name dash-at-point
+	  :type github
+	  :username "stanaka"
+	  ;; :pkgname "dash-at-point"
+	  ;; :autoload
+	  :after (progn
+		   (autoload 'dash-at-point "dash-at-point"
+		     "Search the word at point with Dash." t nil)
+		   (global-set-key "\C-cd" 'dash-at-point))
+	  :features dash-at-point)
    ))
    ;; ..................................................
 
-
-;; list all installed packages
-(defun el-get-list-installed-packages ()
-  "Print out a list of all packages that have been installed via el-get"
-  (interactive)
-  (el-get-list-package-names-with-status "installed")
-  )
-;; (el-get-list-package-names-with-status "installed")
 
  ;; Make a list of all packages we want to install apart from el-get-sources
 (setq my-el-get-packages
      (append
       ;; Some of the below (magit slime) require "apt-get install texinfo" to compile on linux
-      ;; '(evernote-mode magit rails-el re-builder+ rect-mark regex-tool slime sr-speedbar workgroups)
       ;; Need to get rid of el-get from this list?
       '(evernote-mode magit rails-el re-builder+ rect-mark regex-tool slime sr-speedbar workgroups)
-      ;; '(el-get evernote-mode magit rails-el re-builder+ rect-mark regex-tool slime sr-speedbar workgroups)
       (mapcar 'el-get-source-name el-get-sources)))
 ;; Check our packages are installed and initialized properly
 ;; syn/asyn determines if its a synchronous operation or not
-
 (el-get 'sync my-el-get-packages)
-
 ;; (el-get 'sync)
 ;----------------------------------------------------------------------
 
@@ -151,6 +150,13 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 ;; (el-get-duplicates (el-get-read-all-recipes
 ;; 		    (el-get-as-string (plist-get package :name))))
 ;----------------------------------------------------------------------
+;; List All Installed Packages
+(defun el-get-list-installed-packages ()
+  "Print out a list of all packages that have been installed via el-get"
+  (interactive)
+  (el-get-list-package-names-with-status "installed")
+  )
+;; (el-get-list-package-names-with-status "installed")
 
 ;----------------------------------------------------------------------
 ;; Install an ELPA package from a local archive/directory and then

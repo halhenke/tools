@@ -1,6 +1,7 @@
 # Makes output look great
 require "awesome_print"
 AwesomePrint.pry!
+# _pry_.refresh - if you change print method later you will have to call this
 
 # MetaProgramming Methods
 require "~/code/myLib/Ruby/meta_methods"

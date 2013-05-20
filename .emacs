@@ -7,7 +7,9 @@
 (cond ((equal window-system 'ns)
        (require 'mac-setup))
       ((equal window-system 'x)
-       (require 'unix-setup)))
+       (require 'unix-setup))
+      ((equal window-system nil)
+       (require 'term-setup)))
 
 ;; Stuff to choose if we are using a terminal rather than one of the window system
 ;; (unless (display-graphic-p)
