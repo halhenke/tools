@@ -1,4 +1,5 @@
-echo ".zshenv called..."
+# DONT DO - this it comes out in commands called from emacs etc
+# echo ".zshenv called..."
 
 # This file is called first (more or less) by all interactive "log-in shells". 
 # It is not called by "non-login" shells (like emacs shells) which instead call ~/.bashrc
