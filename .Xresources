@@ -1,0 +1,39 @@
+! Fix up xterms keybindings
+xterm*Background: white
+xterm*Foreground: black
+/*
+XTerm*metaSendsEscape: true
+XTerm*eightBitInput: false
+*/
+
+
+/* Fix up xterms keybindings */
+ xterm*VT100.translations:	#override \n\
+	Super<Key>Left:       string(0x1b) string("[1;1D")\n\
+	Super<Key>Right:      string(0x1b) string("[1;1C")
+
+/* 
+xrdb -query -all
+Alt_L + Left     ^[[1;3D
+Alt_R + Right    ^[[1;3C
+Super_L + Left   ^[[1;1D
+Super_R + Right  ^[[1;1C
+Left gives       ^[[D
+Right gives      ^[[C
+*/
+
+/*
+	<Key>Up :           string("^[[A")\n\
+	<KeyPress>Super:    string("^[[C;1")\n\
+	<KeyPress>Alt:      string("^[[F;18")
+*/
+
+/*       <Key>BackSpace:    string(0x7F) \n\	
+       <Key>Insert:       string(0x1b) string("[2~")\n\
+       <Key>Delete:       string(0x1b) string("[3~")\n\
+       <Key>Home:         string(0x1b) string("[1~")\n\
+       <Key>End:	     string(0x1b) string("[4~")\n\
+       <Key>Page_Up:      string(0x1b) string("[5~")\n\
+       <Key>Page_Down:    string(0x1b) string("[6~")\n\
+       <KeyPress>Prior : scroll-back(1,page)\n\
+	<Key>Up :           string(0x1b) string("[C") */
