@@ -285,6 +285,10 @@ Possible values are VERSE, SRC language, QUOTE and EXAMPLE."
 ;; (setq magit-repo-dirs
 ;;       '("~/" "~/Documents/org-notes/" "~/code/myLib/" "~/code/mySnipets"))
 
+(global-set-key (kbd "s-m")
+		(lambda ()
+		  (interactive)
+		  (magit-read-top-dir nil)))
 ;================================================================================
 
 ;;----------------------------------------------------------------------
