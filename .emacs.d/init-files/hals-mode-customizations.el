@@ -267,10 +267,23 @@ Possible values are VERSE, SRC language, QUOTE and EXAMPLE."
 ;----------------------------------------------------------------------
 ;; Think we need and environment dependent variable to determine which repos are present 
 ;; perhaps set from a file local to each computer?
-
-;; (shell-command-to-string "echo -n $PATH")
-(setq magit-repo-dirs
-      '("~/" "~/Documents/org-notes/" "~/code/myLib/")) ;"~/code/mySnipets"))
+(let ((host (shell-command-to-string "echo -n $HOST")))
+    (cond 
+     ((equal host "AirBook.local")
+      (setq magit-repo-dirs
+      '("~/" "~/Documents/Org-Docs/" "~/code/myLib/" "~/code/mySnipets")))
+     ((equal host "hal9000")
+      (setq magit-repo-dirs
+      '("~/" "~/Documents/org-notes/" "~/code/myLib/")))
+     ((equal host "devubuntu")
+      (setq magit-repo-dirs
+      '("~/" "~/Documents/org-notes/" "~/code/myLib/" "~/code/mySnipets")))
+     ))
+;; "Airbook.local"
+;; "hal9000"
+;; "devubuntu"
+;; (setq magit-repo-dirs
+;;       '("~/" "~/Documents/org-notes/" "~/code/myLib/" "~/code/mySnipets"))
 
 ;================================================================================
 
