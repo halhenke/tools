@@ -37,7 +37,8 @@ echo "Setting up your prompt: colour"
 autoload -U promptinit
 promptinit
 # Choose a prompt
-prompt clint
+# prompt clint
+prompt fade 'red'
 
 # ----------------------------------------------------------------------
 # Z-SHELL AUTO-COMPLETION
