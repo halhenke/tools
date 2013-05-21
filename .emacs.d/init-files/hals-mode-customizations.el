@@ -16,7 +16,7 @@
 (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.pryrc\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.irbrc\\'" . ruby-mode))
-(add-to-list 'auto-mode-alist '"(\\.js\\.rjs\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\.rjs\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.gitignore\\'" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("\\.inputrc" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("\\.bash.*" . shell-script-mode))
@@ -288,10 +288,15 @@ Possible values are VERSE, SRC language, QUOTE and EXAMPLE."
 ;; (setq magit-repo-dirs
 ;;       '("~/" "~/Documents/org-notes/" "~/code/myLib/" "~/code/mySnipets"))
 
+
+;; Yeah this doesnt work at all - needs to be required and then does nothing
+;; Sort of fixed
 (global-set-key (kbd "s-m")
-		(lambda ()
+		(lambda ()		  
 		  (interactive)
-		  (magit-read-top-dir nil)))
+		  (progn
+		    (setq current-prefix-arg 3)
+		    (call-interactively 'magit-status))))
 ;================================================================================
 
 ;;----------------------------------------------------------------------
