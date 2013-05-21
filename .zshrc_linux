@@ -92,7 +92,7 @@ key[PageDown]=${terminfo[knp]}
 [[ -n "${key[Up]}"   ]]  && bindkey  "${key[Up]}"    history-beginning-search-backward
 [[ -n "${key[Down]}" ]]  && bindkey  "${key[Down]}"  history-beginning-search-forward
 
-# Raw keybindings for konsole terminal
+# Raw keybindings for Super and Alt Escape Sequences
 bindkey "^[[1;3D" backward-word     #back word
 bindkey "^[[1;3C" forward-word      #back word
 bindkey "^[[1;1D" beginning-of-line #beginning of line
