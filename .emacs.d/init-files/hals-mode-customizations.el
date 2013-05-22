@@ -274,13 +274,13 @@ Possible values are VERSE, SRC language, QUOTE and EXAMPLE."
     (cond 
      ((equal host "AirBook.local")
       (setq magit-repo-dirs
-      '("~/" "~/bin" "~/Documents/Org-Docs/" "~/code/myLib/" "~/code/mySnippets/")))
+      '("~/" "~/bin/" "~/Documents/Org-Docs/" "~/code/myLib/" "~/code/mySnippets/")))
      ((equal host "hal9000")
       (setq magit-repo-dirs
-      '("~/" "~/Documents/org-notes/" "~/code/myLib/")))
+      '("~/" "~/bin/" "~/Documents/org-notes/" "~/code/myLib/")))
      ((equal host "devubuntu")
       (setq magit-repo-dirs
-      '("~/" "~/bin" "~/bridge" "~/Documents/org-notes/" "~/code/myLib/" "~/code/mySnippets/")))
+      '("~/" "~/bin/" "~/bridge/" "~/Documents/org-notes/" "~/code/myLib/" "~/code/mySnippets/")))
      ))
 ;; "Airbook.local"
 ;; "hal9000"
