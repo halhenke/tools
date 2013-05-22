@@ -21,10 +21,13 @@ XTerm*eightBitInput: false
 */
 
 
+! So this is F20 - apparently hardcoded in TMux - string("\033[34;1~")
+! and this is F19 etc 	{ KEYC_F19,	"\033[33;_~" },
 /* Fix up xterms keybindings */
  xterm*VT100.translations:   #override \n\
 	Super<Key>c:          select-end()\n\
 	Super<Key>v:          insert-selection(PRIMARY, SECONDARY, CLIPBOARD)\n\
+	Super<Key>t:	      string("\033[34;1~")\n\
 	Super<Key>=: 	      larger-vt-font()\n\
 	Super<Key>-: 	      smaller-vt-font()\n\
 	Super<Key>w:	      quit()\n\
@@ -38,6 +41,11 @@ XTerm*eightBitInput: false
 	Super<Key>Down:       scroll-forw(1, page -5)
 
 /*
+	Super<Key>}:  	      string("\033[33;1~")\n\
+	Super<Key>{:  	      string("\033[32;1~")\n\
+	Super<Key>y:   	      string("\033[34;2~")\n\ !This is modified F20
+	Super<Key>t:	      string(0x1b) string("[21~")\n\
+	Super<Key>t:	      string(0x1b) string("[1;3D")\n\
 	Shift<Key>Right:      select-cursor-start()\n\
 	Shift<KeyPress>Right: select-extend()\n\
 	<Key>Right:	      select-extend()
