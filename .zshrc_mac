@@ -210,3 +210,11 @@ alias la="ls -lah"
 source ~/.oh-my-zsh/templates/zshrc.zsh-template
 # ----------------------------------------------------------------------
 # plugins=(git macports mysql-macports apache2-macports rails3)
+
+
+# ----------------------------------------------------------------------
+# EMACS LOCAL VARS - mainly to avoid messing with auto-mode-alist
+# ----------------------------------------------------------------------
+ # Local Variables:
+ # mode: Shell-script
+ # End:

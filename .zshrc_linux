@@ -3,6 +3,14 @@ echo ".zshrc_linux called..."
 # ----------------------------------------------------------------------
 # THE Z SHELL
 # ----------------------------------------------------------------------
+if [[ -e ~/.Xresources ]] then
+    xrdb -load ~/.Xresources
+    # xrdb -merge ~/.Xresources
+fi
+
+# ----------------------------------------------------------------------
+# THE Z SHELL
+# ----------------------------------------------------------------------
 # echo "Setting your shell - Bash via MacPorts"
 # /opt/local/bin/bash
 echo "Your shell is $SHELL and you are running version $ZSH_VERSION"
@@ -134,3 +142,11 @@ alias la="ls -lah"
 # export HAL_RVM_PATH=$HOME/.rvm/bin 
 # PATH=$PATH:$HAL_RVM_PATH
 # --------------------------------------------
+
+
+# ----------------------------------------------------------------------
+# EMACS LOCAL VARS - mainly to avoid messing with auto-mode-alist
+# ----------------------------------------------------------------------
+ # Local Variables:
+ # mode: Shell-script
+ # End:
