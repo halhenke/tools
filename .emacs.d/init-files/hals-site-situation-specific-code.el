@@ -7,6 +7,14 @@
 (provide 'hals-site-situation-specific-code)
 
 ;; Following is of course only useful in a very specific place 
+;; OK THIS IS CRAP
+;; WHAT IS SHOULD DO - create a new emacs in a subshell/fork and get it to run
+;;   (progn
+;;     (ido-ubiquitous-mode 1)
+;;     (setq current-prefix-arg 3)
+;;     (call-interactively 'magit-status)
+;;     (my magit-mode))
+;; and it should do that AFTER i set magit-repo-dirs
 (defun bridge-magit-init ()
   "Upon initialization should create a new frame iin the appropriate directory and setup magit"
   (interactive)
@@ -17,6 +25,29 @@
     (magit-status (pwd))
     )
 )
+
+;; ----------------------------------------------------------------------
+;; Stuff to automatically do before i push to production
+ ;; - Probably add as a magit pre-push hook?
+;; ----------------------------------------------------------------------
+;; ==================================================
+;; First - get my changes - git diff?
+;; ==================================================
+
+;; ==================================================
+;; Ruby Lint over commits/changes
+;; ==================================================
+
+
+;; ==================================================
+;; Check for any "console.log"s in javascript - ( just assets or also views, or even controllers?)
+;; ==================================================
+
+
+;; ==================================================
+;; Check for any debugger calls or binding.prys
+;; ==================================================
+
 
 
 ;; ----------------------------------------------------------------------
