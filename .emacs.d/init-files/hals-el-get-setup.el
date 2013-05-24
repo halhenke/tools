@@ -128,6 +128,13 @@ This needs something called gdbm 'sudo port install gdbm ruby' and you have to r
 		     "Search the word at point with Dash." t nil)
 		   (global-set-key "\C-cd" 'dash-at-point))
 	  :features dash-at-point)
+   ;; ..................................................
+   (:name ido-ubiquitous
+	  :features ido-ubiquitous
+	  :after (progn
+		   (autoload 'ido-ubiquitous-mode "ido-ubiquitous" "I need to do this because something is fucked" t nil)
+		   (ido-ubiquitous-mode 1))
+	  )
    ))
    ;; ..................................................
 
