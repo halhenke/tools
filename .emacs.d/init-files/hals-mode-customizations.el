@@ -275,7 +275,7 @@ Possible values are VERSE, SRC language, QUOTE and EXAMPLE."
     (cond 
      ((equal host "AirBook.local")
       (setq magit-repo-dirs
-      '("~/" "~/bin/" "~/Documents/Org-Docs/" "~/code/myLib/" "~/code/mySnippets/")))
+      '("~/" "~/bin/" "~/Documents/Org-Docs/" "~/code/myLib/" "~/code/hunome/hunome-dev/" "~/code/mySnippets/")))
      ((equal host "hal9000")
       (setq magit-repo-dirs
       '("~/" "~/bin/" "~/Documents/org-notes/" "~/code/myLib/")))
@@ -283,12 +283,11 @@ Possible values are VERSE, SRC language, QUOTE and EXAMPLE."
       (setq magit-repo-dirs
       '("~/" "~/bin/" "~/bridge/" "~/Documents/org-notes/" "~/code/myLib/" "~/code/mySnippets/")))
      ))
-;; "Airbook.local"
-;; "hal9000"
-;; "devubuntu"
-;; (setq magit-repo-dirs
-;;       '("~/" "~/Documents/org-notes/" "~/code/myLib/" "~/code/mySnipets"))
 
+(eval-after-load 'magit
+  '(progn
+     (set-face-foreground 'magit-diff-add "green4")
+     (set-face-foreground 'magit-diff-del "red3")))
 
 ;; Yeah this doesnt work at all - needs to be required and then does nothing
 ;; Sort of fixed
