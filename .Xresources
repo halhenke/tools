@@ -6,14 +6,15 @@
 XTerm*internalBorder:  2
 XTerm*highlightSelection: true
 XTerm.vt100.faceName: Inconsolata
-XTerm.vt100.faceSize: 10
+XTerm.vt100.faceSize: 12
 XTerm.vt100.scrollKey: true
 XTerm*geometry: 200x120+0+0
 XTerm.maxBufferSize: 500000
 XTerm.title: "Standard Nerds"
 XTerm*cursorBlink: "true"
 XTerm*selectToClipboard: "true"
-xterm*saveLines: 10000
+XTerm*scrollBar: on	     ! Xterms with a scrollbar that
+xterm*saveLines: 10000	     ! keep track of last 10000 lines	
 
 /*
 XTerm*metaSendsEscape: true
@@ -27,20 +28,20 @@ XTerm*eightBitInput: false
  xterm*VT100.translations:   #override \n\
 	Super<Key>c:          select-end()\n\
 	Super<Key>v:          insert-selection(PRIMARY, SECONDARY, CLIPBOARD)\n\
-	Super<Key>t:	      string("\033[34;1~")\n\
+	! Super<Key>t:	      string("\033[34;1~")\n\
 	Shift Super<Key>[:    string("\033[33;_~")\n\
 	Shift Super<Key>]:    string("\033[32;_~")\n\
 	Super<Key>=: 	      larger-vt-font()\n\
 	Super<Key>-: 	      smaller-vt-font()\n\
 	Super<Key>w:	      quit()\n\
-	Meta<Key>Left:        string(0x1b) string("[1;3D")\n\
-	Meta<Key>Right:       string(0x1b) string("[1;3C")\n\
-	Alt<Key>Left:         string(0x1b) string("[1;3D")\n\
-	Alt<Key>Right:        string(0x1b) string("[1;3C")\n\
-	Super<Key>Left:       string(0x1b) string("[1;1D")\n\
-	Super<Key>Right:      string(0x1b) string("[1;1C")\n\
-	Super<Key>Up:         scroll-back(1, page -5)\n\
-	Super<Key>Down:       scroll-forw(1, page -5)
+	! Meta<Key>Left:      string(0x1b) string("[1;3D")\n\
+	! Meta<Key>Right:     string(0x1b) string("[1;3C")\n\
+	! Alt<Key>Left:       string(0x1b) string("[1;3D")\n\
+	! Alt<Key>Right:      string(0x1b) string("[1;3C")\n\
+	! Super<Key>Left:     string(0x1b) string("[1;1D")\n\
+	! Super<Key>Right:    string(0x1b) string("[1;1C")\n\
+	! Super<Key>Up:       scroll-back(1, page -5)\n\
+	! Super<Key>Down:     scroll-forw(1, page -5)
 
 /*
 	Shift Super<Key>[:    string("\033[33;_~")\n\
@@ -68,11 +69,6 @@ Left gives       ^[[D
 Right gives      ^[[C
 */
 
-/*
-	<Key>Up :           string("^[[A")\n\
-	<KeyPress>Super:    string("^[[C;1")\n\
-	<KeyPress>Alt:      string("^[[F;18")
-*/
 
 !! drop in Solarized colorscheme for Xresources/Xdefaults
 
