@@ -91,9 +91,16 @@
 (show-paren-mode 1)
 (setq show-paren-style 'expression)
 ;----------------------------------------------------------------------
-;; Ido Mode Setup
+;; Ido Mode Setup - move to mode customizations
 (ido-mode t)
-(setq ido-default-file-method 'maybe-mode)
+(setq ido-default-file-method 'maybe-frame
+      ido-default-buffer-method 'maybe-frame
+      ido-enable-flex-matching t) ; fuzzy matching is a must have
+;----------------------------------------------------------------------
+;; Make buffer names unique
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+;----------------------------------------------------------------------
 ;; Enable the use of set upper/lower case commands
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
@@ -150,6 +157,18 @@
              '("elpa" . "http://tromey.com/elpa/"))
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+;; Packages to install on new machines
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+Add in your own as you wish:
+(defvar my-packages nil
+  "A list of packages to ensure are installed at launch.")
+
+(dolist (p my-packages)
+  (when (not (package-installed-p p))
+    (package-install p)))
 ;----------------------------------------------------------------------
 ; EL-GET
 ;----------------------------------------------------------------------
