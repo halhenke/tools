@@ -13,8 +13,8 @@ XTerm.maxBufferSize: 500000
 XTerm.title: "Standard Nerds"
 XTerm*cursorBlink: "true"
 XTerm*selectToClipboard: "true"
-XTerm*scrollBar: on	     ! Xterms with a scrollbar that
-xterm*saveLines: 10000	     ! keep track of last 10000 lines	
+XTerm*scrollBar: on
+xterm*saveLines: 10000
 
 /*
 XTerm*metaSendsEscape: true
@@ -22,18 +22,30 @@ XTerm*eightBitInput: false
 */
 
 
-! So this is F20 - apparently hardcoded in TMux - string("\033[34;1~")
-! and this is F19 etc 	{ KEYC_F19,	"\033[33;_~" },
-/* Fix up xterms keybindings */
+
+/* Fix up xterms keybindings 
+ So this is F20 - apparently hardcoded in TMux - string("\033[34;1~")
+ and this is F19 etc 	{ KEYC_F19,	"\033[33;_~" },
+F20 - string("\033[34;1~")\n\
+F19 - string("\033[33;1~")\n\
+F18 - string("\033[32;1~")\n\
+F17 - string("\033[31;1~")\n\
+F16 - string("\033[30;1~")\n\ 
+is F16 a bum key?
+also F14 and F13?
+*/
+
  xterm*VT100.translations:   #override \n\
 	Super<Key>c:          select-end()\n\
 	Super<Key>v:          insert-selection(PRIMARY, SECONDARY, CLIPBOARD)\n\
 	! Super<Key>t:	      string("\033[34;1~")\n\
-	Shift Super<Key>[:    string("\033[33;_~")\n\
-	Shift Super<Key>]:    string("\033[32;_~")\n\
+	! Super<Key>w:	      string("\033[33;1~")\n\
+	Shift Super<Key>[:    string("\033[32;1~")\n\
+	Shift Super<Key>]:    string("\033[31;1~")\n\
+	! Super<Key>2: 	      string("\033[30;1~")\n\
+	! Super<Key>3: 	      string("\033[29;1~")\n\
 	Super<Key>=: 	      larger-vt-font()\n\
 	Super<Key>-: 	      smaller-vt-font()\n\
-	Super<Key>w:	      quit()\n\
 	! Meta<Key>Left:      string(0x1b) string("[1;3D")\n\
 	! Meta<Key>Right:     string(0x1b) string("[1;3C")\n\
 	! Alt<Key>Left:       string(0x1b) string("[1;3D")\n\
@@ -43,7 +55,11 @@ XTerm*eightBitInput: false
 	! Super<Key>Up:       scroll-back(1, page -5)\n\
 	! Super<Key>Down:     scroll-forw(1, page -5)
 
+
 /*
+	Shift Super<Key>]:    string("\033[30;_~")\n\ ! a bum key?
+	Super<Key>h:	      string("\033[32;1~")\n\ ! This is bound to nothing....
+	Super<Key>w:	      quit()\n\  !This killed whole xterm
 	Shift Super<Key>[:    string("\033[33;_~")\n\
 	Shift Super<Key>]:    string("\033[32;_~")\n\
 	Super<Key>y:   	      string("\033[34;2~")\n\ !This is modified F20

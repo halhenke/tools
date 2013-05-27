@@ -162,8 +162,8 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-Add in your own as you wish:
-(defvar my-packages nil
+;; Add in your own as you wish:
+(defvar my-packages ()
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
