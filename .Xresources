@@ -28,6 +28,8 @@ XTerm*eightBitInput: false
 	Super<Key>c:          select-end()\n\
 	Super<Key>v:          insert-selection(PRIMARY, SECONDARY, CLIPBOARD)\n\
 	Super<Key>t:	      string("\033[34;1~")\n\
+	Shift Super<Key>[:    string("\033[33;_~")\n\
+	Shift Super<Key>]:    string("\033[32;_~")\n\
 	Super<Key>=: 	      larger-vt-font()\n\
 	Super<Key>-: 	      smaller-vt-font()\n\
 	Super<Key>w:	      quit()\n\
@@ -41,8 +43,8 @@ XTerm*eightBitInput: false
 	Super<Key>Down:       scroll-forw(1, page -5)
 
 /*
-	Super<Key>}:  	      string("\033[33;1~")\n\
-	Super<Key>{:  	      string("\033[32;1~")\n\
+	Shift Super<Key>[:    string("\033[33;_~")\n\
+	Shift Super<Key>]:    string("\033[32;_~")\n\
 	Super<Key>y:   	      string("\033[34;2~")\n\ !This is modified F20
 	Super<Key>t:	      string(0x1b) string("[21~")\n\
 	Super<Key>t:	      string(0x1b) string("[1;3D")\n\
