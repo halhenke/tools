@@ -34,7 +34,7 @@ setopt SHARE_HISTORY
 echo "Setting up your prompt: colour"
 
 # Z-Shell Prompt Selection
-autoload -U promptinit
+autoload -Uz promptinit
 promptinit
 # Choose a prompt
 # prompt clint
