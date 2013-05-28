@@ -3,18 +3,18 @@
 !----------------------------------------------------------------------
 ! xterm*Background: black
 ! xterm*Foreground: green
-XTerm*internalBorder:  2
+XTerm*internalBorder: 2
 XTerm*highlightSelection: true
-XTerm.vt100.faceName: Inconsolata
-XTerm.vt100.faceSize: 12
+UXTerm.vt100.faceName: Inconsolata
+UXTerm.vt100.faceSize: 10
 XTerm.vt100.scrollKey: true
-XTerm*geometry: 200x120+0+0
+XTerm*geometry: 400x200+0+0
 XTerm.maxBufferSize: 500000
 XTerm.title: "Standard Nerds"
 XTerm*cursorBlink: "true"
 XTerm*selectToClipboard: "true"
-XTerm*scrollBar: on
-xterm*saveLines: 10000
+UXTerm*scrollBar: on
+UXTerm*saveLines: 10000
 
 /*
 XTerm*metaSendsEscape: true
@@ -24,36 +24,53 @@ XTerm*eightBitInput: false
 
 
 /* Fix up xterms keybindings 
- So this is F20 - apparently hardcoded in TMux - string("\033[34;1~")
- and this is F19 etc 	{ KEYC_F19,	"\033[33;_~" },
-F20 - string("\033[34;1~")\n\
-F19 - string("\033[33;1~")\n\
-F18 - string("\033[32;1~")\n\
-F17 - string("\033[31;1~")\n\
-F16 - string("\033[30;1~")\n\ 
-is F16 a bum key?
-also F14 and F13?
+ So this is F20 - apparently hardcoded in TMux - string	("\033[34;1~")
+ and this is F19 etc 	{ KEYC_F19,	"\033[33;_~" },	
+is F16 a bum key? - it seems to eat "\033[30" and leave ";1~"
+Now F15 seems also to be fucked - it eats "\033[29;1" and leaves "~"
+But - F15 was working good for a while...What gives?
+
+Heres the answer from xterm-keys.c
+	{ KEYC_F5,	"\033[15;_~" },
+	{ KEYC_F6,	"\033[17;_~" },
+	{ KEYC_F7,	"\033[18;_~" },
+	{ KEYC_F8,	"\033[19;_~" },
+	{ KEYC_F9,	"\033[20;_~" },
+	{ KEYC_F10,	"\033[21;_~" },
+	{ KEYC_F11,	"\033[23;_~" },
+	{ KEYC_F12,	"\033[24;_~" },
+	{ KEYC_F13,	"\033[25;_~" },
+	{ KEYC_F14,	"\033[26;_~" },
+	{ KEYC_F15,	"\033[28;_~" },
+	{ KEYC_F16,	"\033[29;_~" },
+	{ KEYC_F17,	"\033[31;_~" },
+	{ KEYC_F18,	"\033[32;_~" },
+	{ KEYC_F19,	"\033[33;_~" },
+	{ KEYC_F20,	"\033[34;_~" },
 */
 
  xterm*VT100.translations:   #override \n\
-	Super<Key>c:          select-end()\n\
-	Super<Key>v:          insert-selection(PRIMARY, SECONDARY, CLIPBOARD)\n\
-	! Super<Key>t:	      string("\033[34;1~")\n\
-	! Super<Key>w:	      string("\033[33;1~")\n\
-	Shift Super<Key>[:    string("\033[32;1~")\n\
-	Shift Super<Key>]:    string("\033[31;1~")\n\
-	! Super<Key>2: 	      string("\033[30;1~")\n\
-	! Super<Key>3: 	      string("\033[29;1~")\n\
-	Super<Key>=: 	      larger-vt-font()\n\
-	Super<Key>-: 	      smaller-vt-font()\n\
-	! Meta<Key>Left:      string(0x1b) string("[1;3D")\n\
-	! Meta<Key>Right:     string(0x1b) string("[1;3C")\n\
-	! Alt<Key>Left:       string(0x1b) string("[1;3D")\n\
-	! Alt<Key>Right:      string(0x1b) string("[1;3C")\n\
-	! Super<Key>Left:     string(0x1b) string("[1;1D")\n\
-	! Super<Key>Right:    string(0x1b) string("[1;1C")\n\
-	! Super<Key>Up:       scroll-back(1, page -5)\n\
-	! Super<Key>Down:     scroll-forw(1, page -5)
+! Super<Key>c:        string(0x1b) string("m")\n\
+! Super<Key>v:        insert-selection(PRIMARY, SECONDARY, CLIPBOARD)\n\
+! Super<Key>t:	      string("\033[34;1~")\n\
+! Super<Key>w:	      string("\033[33;1~")\n\
+! Super<Key>z:	      string(0x18) string(0x15)\n\
+! Alt<Key>d:	      string(0x1b) string("d")\n\
+! Alt<Key>y:	      string(0x1b) string("y")\n\
+Shift Super<Key>[:    string("\033[32;1~")\n\
+Shift Super<Key>]:    string("\033[31;1~")\n\
+! Super<Key>2:	      string("\033[29;1~")\n\
+! Super<Key>3:	      string("\033[28;1~")\n\
+Super<Key>=:	      larger-vt-font()\n\
+Super<Key>-:	      smaller-vt-font()\n\
+! Meta<Key>Left:      string(0x1b) string("[1;3D")\n\
+! Meta<Key>Right:     string(0x1b) string("[1;3C")\n\
+! Alt<Key>Left:	      string(0x1b) string("[1;3D")\n\
+! Alt<Key>Right:      string(0x1b) string("[1;3C")\n\
+! Super<Key>Left:     string(0x1b) string("[1;1D")\n\
+! Super<Key>Right:    string(0x1b) string("[1;1C")\n\
+! Super<Key>Up:	      scroll-back(1, page -5)\n\
+! Super<Key>Down:     scroll-forw(1, page -5)
 
 
 /*
@@ -65,10 +82,15 @@ also F14 and F13?
 	Super<Key>y:   	      string("\033[34;2~")\n\ !This is modified F20
 	Super<Key>t:	      string(0x1b) string("[21~")\n\
 	Super<Key>t:	      string(0x1b) string("[1;3D")\n\
-	Shift<Key>Right:      select-cursor-start()\n\
+	! Shift Alt <Key> c:  select-cursor-start()\n\
+	! Shift<Key>Right:    select-extend()\n\
+	! Shift<KeyUp>Right:  select-end()\n\	
 	Shift<KeyPress>Right: select-extend()\n\
 	<Key>Right:	      select-extend()
 
+! Shift Alt <Key> c:  select-start()\n\
+! Shift<Key>Right:    select-extend()\n\
+! Shift Alt <Key> v:  select-end()\n\
 	Super<Key>c:          select-set()\n\
 	Shift<Key>Right:      select-cursor-start()\n\
 	Shift<Key>Left:       select-cursor-start()
