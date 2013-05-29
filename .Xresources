@@ -53,6 +53,9 @@ Heres the answer from xterm-keys.c
 	{ KEYC_F18,	"\033[32;_~" },
 	{ KEYC_F19,	"\033[33;_~" },
 	{ KEYC_F20,	"\033[34;_~" },
+
+	// From xterm termcap file
+	kf53=\E[15;3~, kf54=\E[17;3~, kf55=\E[18;3~,
 */
 
  xterm*VT100.translations:   #override \n\
@@ -73,8 +76,8 @@ Super<Key>-:	      smaller-vt-font()\n\
 ! Meta<Key>Right:     string(0x1b) string("[1;3C")\n\
 ! Alt<Key>Left:	      string(0x1b) string("[1;3D")\n\
 ! Alt<Key>Right:      string(0x1b) string("[1;3C")\n\
-! Super<Key>Left:     string(0x1b) string("[1;1D")\n\
-! Super<Key>Right:    string(0x1b) string("[1;1C")\n\
+! Super<Key>Left:     string(0x1b) string("[15;3~")\n\
+! Super<Key>Right:    string(0x1b) string("[17;3~")\n\
 ! Super<Key>Up:	      scroll-back(1, page -5)\n\
 ! Super<Key>Down:     scroll-forw(1, page -5)
 
