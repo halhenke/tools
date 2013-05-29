@@ -31,3 +31,7 @@ fi
 autoload -U zmv
 alias mmv='noglob zmv -W'
 # --------------------------------------------
+# Hopefully make z-shell work better in emacs shells
+# See http://zsh.sourceforge.net/FAQ/zshfaq03.html
+ [[ $EMACS = t ]] && unsetopt zle
+# --------------------------------------------
