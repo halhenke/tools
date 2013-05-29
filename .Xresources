@@ -55,6 +55,7 @@ Heres the answer from xterm-keys.c
 	{ KEYC_F20,	"\033[34;_~" },
 
 	// From xterm termcap file
+	kf33=\E[20;5~, kf34=\E[21;5~, kf35=\E[23;5~,
 	kf53=\E[15;3~, kf54=\E[17;3~, kf55=\E[18;3~,
 */
 
@@ -78,9 +79,29 @@ Super<Key>-:	      smaller-vt-font()\n\
 ! Alt<Key>Right:      string(0x1b) string("[1;3C")\n\
 ! Super<Key>Left:     string(0x1b) string("[15;3~")\n\
 ! Super<Key>Right:    string(0x1b) string("[17;3~")\n\
+
+! Super<Key>Up:	      string(0x1b) string("[26;1~")\n\
+! Super<Key>Down:     string(0x1b) string("[25;1~")
+
+/* This binds F34 and F33
+! Super<Key>Up:	      string(0x1b) string("[21;5~")\n\
+! Super<Key>Down:     string(0x1b) string("[20;5~")
+*/
+/* This works in xterm but is fairly useless in tmux
 ! Super<Key>Up:	      scroll-back(1, page -5)\n\
 ! Super<Key>Down:     scroll-forw(1, page -5)
+*/
 
+
+/*
+Old/Natural/Sensible key sequences
+! Meta<Key>Left:      string(0x1b) string("[1;3D")\n\
+! Meta<Key>Right:     string(0x1b) string("[1;3C")\n\
+! Alt<Key>Left:	      string(0x1b) string("[1;3D")\n\
+! Alt<Key>Right:      string(0x1b) string("[1;3C")\n\
+! Super<Key>Left:     string(0x1b) string("[15;3~")\n\
+! Super<Key>Right:    string(0x1b) string("[17;3~")\n\
+*/
 
 /*
 	Shift Super<Key>]:    string("\033[30;_~")\n\ ! a bum key?
