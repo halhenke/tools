@@ -21,6 +21,12 @@ XTerm*metaSendsEscape: true
 XTerm*eightBitInput: false
 */
 
+/*
+Example from web - bind to Meta Function keys
+! Make Super_L act as Meta+F12
+XTerm.VT100.translations:       #override \
+<Key>Super_L:  string("\033\033[24~")
+*/
 
 
 /* Fix up xterms keybindings 

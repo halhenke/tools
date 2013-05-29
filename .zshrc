@@ -8,10 +8,10 @@ current_os=$(uname)
 # current_os=OSTYPE # More complex
 if [[ $current_os  == 'Linux' ]]; then
     source ~/.zshrc_linux
-elif [[ $current_os == 'Darwin'  ]]; then
+elif [[ $current_os == 'Darwin' ]]; then
     source ~/.zshrc_mac
 else
-    echo "Some other OS..."
+    echo "Some other OS - Not sure what further zshell config settings to run"
 fi
 
 # --------------------------------------------
