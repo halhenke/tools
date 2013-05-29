@@ -104,12 +104,15 @@ key[PageDown]=${terminfo[knp]}
 # Raw keybindings for Super and Alt Escape Sequences
 bindkey "^[[1;3D" backward-word     #back word
 bindkey "^[[1;3C" forward-word      #back word
-# bindkey "^[[1;1D" beginning-of-line #beginning of line
-# bindkey "^[[1;1C" end-of-line       #end of line
-
-# Trying to work around tmux bullshit....
+bindkey "^[[1;1D" beginning-of-line #beginning of line
+bindkey "^[[1;1C" end-of-line       #end of line
+# --------------------------------------------
+# XTERM/TMUX
+# Trying to work around tmux limitations
+# - alternate Super+L/Super+R bindings
 bindkey "^[[15;3~" beginning-of-line #beginning of line
 bindkey "^[[17;3~" end-of-line       #end of line
+# --------------------------------------------
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
@@ -136,7 +139,7 @@ alias la="ls -lah"
 # --------------------------------------------
 # RVM
 # Add a test to make sure we are somewhere we want to use RVM - e.g. jn-dev
-# --------------------------------------------------
+# --------------------------------------------
 # echo "doing RVM stuff - loading rvm script..."
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 # --------------------------------------------
