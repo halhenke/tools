@@ -182,6 +182,13 @@ bindkey "^[[1;3D" backward-word     #back word
 bindkey "^[[1;3C" forward-word      #back word
 bindkey "^[[1;1D" beginning-of-line #beginning of line
 bindkey "^[[1;1C" end-of-line       #end of line
+# --------------------------------------------
+# XTERM/TMUX
+# Trying to work around tmux limitations
+# - alternate Super+L/Super+R bindings
+bindkey "^[[15;3~" beginning-of-line #beginning of line
+bindkey "^[[17;3~" end-of-line       #end of line
+# --------------------------------------------
 
 
 # Finally, make sure the terminal is in application mode, when zle is
