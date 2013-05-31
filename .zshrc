@@ -33,5 +33,11 @@ alias mmv='noglob zmv -W'
 # --------------------------------------------
 # Hopefully make z-shell work better in emacs shells
 # See http://zsh.sourceforge.net/FAQ/zshfaq03.html
- [[ $EMACS = t ]] && unsetopt zle
+[[ $EMACS = t ]] && unsetopt zle
+
+# if [ -n "$INSIDE_EMACS" ]; then
+#   chpwd() { print -P "\033AnSiTc %d" }
+#   print -P "\033AnSiTu %n"
+#   print -P "\033AnSiTc %d"
+# fi
 # --------------------------------------------
