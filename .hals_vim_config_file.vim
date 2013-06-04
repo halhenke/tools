@@ -65,7 +65,13 @@ nnoremap <S-Tab> :bprevious<CR>
 
 "List all the buffers
 "nnoremap <C-Tab> :files<CR>
-nnoremap <C-Tab> :buffers<CR>:buffer<Space>
+"
+"This noly works on MAc in iTerm 2
+"nnoremap <C-Tab> :buffers<CR>:buffers!fer<Space>
+"nnoremap <C-E>> $
+"nnoremap <C-A> ^
+"nnoremap f <C-Right>>
+"nnoremap b <C-Left>>
 
 
 "A list of your buffers can be shown after switching by using the following maps:
