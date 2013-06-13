@@ -2,7 +2,7 @@
 # ======================================================================
 # A CHEAP WAY TO LOAD PRY INSTEAD OF IRB WITHOUT MODIFYING RAILS IN PARTICULAR
 # ======================================================================
-if %x(uname) =~ /Linux/
+if %x(uname) =~ /Linux/ and not ENV['IRB']
   begin
     require "pry"
     Pry.start
