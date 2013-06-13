@@ -18,7 +18,9 @@ fi
 # RVM
 # --------------------------------------------
 # echo "doing RVM stuff - modifying your PATH..."
-# # PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# Dont think we need this below bit with zshell - path is an array  
+# and much easier to manipulate
 # export HAL_RVM_PATH=$HOME/.rvm/bin 
 # PATH=$PATH:$HAL_RVM_PATH
 
