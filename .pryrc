@@ -1,3 +1,9 @@
+# ======================================================================
+# Enable rvm manipulation from within ruby itself
+# if Dir.exists? "#{Dir.home}/.rvm/lib"
+#   $LOAD_PATH << "#{Dir.home}/.rvm/lib"
+# end
+# ======================================================================
 # Makes output look great
 require "awesome_print"
 AwesomePrint.pry!
