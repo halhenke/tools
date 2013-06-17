@@ -183,6 +183,10 @@ bindkey "^[[1;3C" forward-word      #back word
 bindkey "^[[1;1D" beginning-of-line #beginning of line
 bindkey "^[[1;1C" end-of-line       #end of line
 # --------------------------------------------
+# Keybindings for Control Escape Sequences  
+bindkey "^[[1;5D" backward-word     #back word
+bindkey "^[[1;5C" forward-word      #back word
+# --------------------------------------------
 # XTERM/TMUX
 # Trying to work around tmux limitations
 # - alternate Super+L/Super+R bindings
