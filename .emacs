@@ -12,7 +12,8 @@
 ;;   (nil "We are running a terminal?")
 ;;   (otherwise "Window System/Environment unknown!"))
 
-
+;; Use remote emacs-client if possible
+(setq server-host "AirBook")
 
 
 ;----------------------------------------------------------------------
